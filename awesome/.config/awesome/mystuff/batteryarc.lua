@@ -128,7 +128,7 @@ local function worker(user_args)
         
         if show_current_level == true then
             --- if battery is fully charged (100) there is not enough place for three digits, so we don't show any text
-            text.font = beautiful.font .. " 10"
+            text.font = beautiful.font .. " 12"
             text.text = kanji(charge+10)
         else
             text.text = ''

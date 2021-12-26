@@ -1,111 +1,3 @@
-xev 
-mpc 
-mpris-proxy --help
-man mpris
-playerctl
-sudo pacman -S p�layerctl
-sudo pacman -S p�layerctl
-sudo pacman -S p�layerctl
-sudo pacman -S playerctl
-playerctl --help
-playerctl next
-playerctl next
-ls
-showkey --scancodes
-showkey --scancodes
-showkey --scancodes
-showkey
-man showkey
-evtest /dev/input/event
-evtest /dev/input/event12
-evtest
-sudo evtest
-evtest /dev/input/event11
-sudo evtest /dev/input/event11
-showkey 
-showkey -k
-sudo showkey -k
-sudo showkey -s
-man showkey
-man showkey
-sudo showkey -a
-xev 
-playerctl pause
-playerctl pause
-playerctl play
-playerctl --help
-playerctl play-pause
-playerctl play-pause
-playerctl metadata
-rofi
-rofi windowcd
-rofi -show windowcd
-rofi -show windowcd
-latexmk -c
-rm -rf out/
-htop
-picom
-htop 
-cd
-ls
-sudo pacman -Syu
-ls
-cat ripped/
-ls ripped/
-cat commands 
-pacman -Qtdq
-sudo pacman -Syu
-pacman -Qtdq
-exit
-ls
-cd
-ls
-ls uni/
-ls
-cd uni/
-ls
-ls -la
-which
-ls
-pwd
-ls
-cd
-ls .config/alacritty/
-cd .config/alacritty/
-ls
-nvim alacritty.yml 
-ls
-ls uni/
-ls
-ls uni/
-echo "[200~オラオラ~"
-echo "[200~オラオラ"
-echo ""
-echo "
-
-öö
-ö
-"
-sudo pacman -S alacritty
-asofa
-fcitx-diagnose 
-fcitx-diagnose 
-fcitx-diagnose | less
-fcitx-diagnose | less
-loacle -a
-locale -a
-nvim /etc/local.gen
-sudo nvim /etc/local.gen
-sudo nvim /etc/locale.gen 
-locale-gen
-sudo locale-gen
-locale
-nvim /etc/locale.conf
-localectl set-locale LANG=ja_JP.utf8
-locale
-locale
-locale -a
-man synology-drive
 synology-drive --help
 ls
 nvim eva.yml 
@@ -498,3 +390,111 @@ cd ..
 ls
 ls afa/
 cd afa/
+speedtest
+cd Dotfiles/
+git init
+git remote add origin https://github.com/SmokeArts/dotties.git
+git add .
+cd rofi/.config/rofi/
+ls
+ls -la
+cd rofi-bluetooth/
+ls
+ls -a
+ls .meta/
+rm -rf .git .meta
+cd ..
+cd ..
+cd ..
+cd ..
+s
+ls
+git add .
+git commit -m "initial commit"
+git config user.email "arthur.liske12@gmail.com"
+git config user.name "afa"
+git add .
+git commit -m "initial commit"
+git push --help
+git push -u
+git push -u origin master
+git config user.email ""
+git push -u origin master
+git push -u origin master
+git remote set-url origin https://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@github.com/SmokeArts/dotties.git
+git push -u origin master
+git push -u origin main
+touch README.md
+nvim README.md 
+git add .
+git commit -m "readme"
+git push origin master
+git checkout
+git checkout --help
+git checkout --help
+git branch
+git checkout main
+git checkout origin/main
+git checkout
+git checkout --help
+git checkout -b origin/main
+git add .
+git commit -m "initial commit"
+git add .
+git commit -m "initial commit"
+git branch
+git checkout -b main
+git add .
+git commit -m "initial commit"
+git branch
+git push --set-upstream origin main
+git pull main
+git pull origin main
+ls -la
+git branch
+cat README.md 
+git pull
+git branch
+git branch --set-upstream=origin/main main
+git branch --set-upstream-to=origin/main main
+git branch --set-upstream-to=origin/main main
+git branch
+git pull origin main
+rm README.md 
+git pull origin main
+ls
+git branch --help
+git branch -d main
+git checkout master
+git branch -d main
+git branch -d origin/main
+git branch
+git branch
+git pull
+ls 
+ls -la
+git checkout -b main
+git pull
+git pull origin main
+git config pull.rebase false
+git pull origin main
+ls
+git pull --allow-unrelated-histories origin main
+ls
+git add .
+git commit -m "initial commit"
+git branch
+git push origin main
+ls 
+cat README.md 
+nvim README.md 
+git commit -m "README fix"
+git add .
+git commit -m "README fix"
+git push
+git push origin main
+git push --set-upstream origin main
+git checkout -b master
+git branch
+git checkout master
+ls

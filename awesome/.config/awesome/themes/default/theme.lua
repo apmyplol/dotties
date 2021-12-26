@@ -4,6 +4,7 @@
 
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
+local gears = require("gears")
 local dpi = xresources.apply_dpi
 
 local gfs = require("gears.filesystem")
@@ -11,7 +12,7 @@ local themes_path = "/home/afa/.config/awesome/themes/"
 
 local theme = {}
 
-theme.font          = "Source Han Sans JP"
+theme.font          = "Source Han Sans Serif JP"
 
 -- mystuff
 theme.standart_on = "#c500f7"
@@ -56,13 +57,22 @@ theme.border_marked = "#91231c" -- Keine Ahnung
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
+theme.taglist_shape = gears.shape.circle
+theme.taglist_spacing = 1
+theme.taglist_forced_height = theme.wibox
+--theme.taglist_shape_border_width = 2
+--theme.taglist_shape_border_color = theme.standart_on
+theme.taglist_font = theme.font .. " 15"
+
+--[[
+local taglist_square_size = 5 --die kleinen Squares in der Ecke der Tags
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
     taglist_square_size, theme.standart_on
 )
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.standart_off
 )
+]]--
 
 -- Variables set for theming notifications:
 -- notification_font
