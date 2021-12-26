@@ -1,0 +1,22 @@
+#!/bin/bash
+max=$(cat /sys/class/backlight/intel_backlight/max_brightness)
+actual=$(cat /sys/class/backlight/intel_backlight/brightness)
+echo $max
+echo $actual
+newwal=$actual
+if [ $(($actual+$1)) -gt $max ]
+then 
+	newval=$max
+	echo "fast exit too much ${newval}"
+	exit
+fi
+if [ $(($actual+$1)) -lt 0 ]
+then 
+	newval=0
+	echo "fast exit below 0 ${newval}"
+	exit
+fi
+
+newval=$(($actual+$1))
+#echo $newval
+echo $1 | sudo tee /sys/class/backlight/intel_backlight/brightness
