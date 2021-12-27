@@ -266,7 +266,7 @@ awful.screen.connect_for_each_screen(function(s)
     }--]]
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, visible = true, opacity="0.7", height=beautiful.wibox})
+    s.mywibox = awful.wibar({ position = "top", screen = s, visible = true, opacity="1", height=beautiful.wibox})
 
     
     -- Add widgets to the wibox
