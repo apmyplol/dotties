@@ -14,6 +14,11 @@ local theme = {}
 
 theme.font          = "Source Han Sans Serif JP"
 
+
+-- clock
+theme.clock_extra_fg = theme.standart_on
+theme.clock_extra_bg = theme.eva_green
+
 -- mystuff
 theme.standart_on = "#c500f7"
 theme.standart_off = "#000000"
@@ -22,13 +27,18 @@ theme.bluetooth_pic = "/home/afa/.config/awesome/mystuff/2x/baseline_bluetooth_b
 
 theme.black = "#000000"
 theme.white = "#FFFFFF"
+theme.transp = "#00000000"
 
 
-theme.bg_normal     = "#222222" -- Hintergrundfarbe der Wibar
+theme.bg_normal     = "#FFFFFF"
 theme.bg_focus      = theme.eva_green--"#535d6c" -- Hintergrundfarbe des Desktops auf dem man gerade ist (壹,貳 usw)
 theme.bg_urgent     = "#ff0000"  -- Wenn auf einem Desktop was urgentes aufkommt dann leuchtet das in der farbe
 theme.bg_minimize   = "#444444" -- Keine Ahnung lol
---theme.bg_systray    = "#FFFFFF"
+
+-- TODO REMOVE SYSTRAY or add toggle trick
+theme.bg_systray    = "#FF0000"
+
+theme.wibar_bg = theme.transp
 
 theme.fg_normal     = theme.standart_on  -- textfarbe von nicht focused desktops
 theme.fg_focus      = "#000000"-- Textfarbe von focued desktop "#A2DA5A"
@@ -58,6 +68,9 @@ theme.border_marked = "#91231c" -- Keine Ahnung
 
 -- Generate taglist squares:
 theme.taglist_shape = gears.shape.circle
+theme.taglist_bg_occupied = theme.standart_on
+theme.taglist_fg_occupied = theme.standart_off
+theme.taglist_bg_focus = theme.eva_green
 theme.taglist_spacing = 1
 theme.taglist_forced_height = theme.wibox
 --theme.taglist_shape_border_width = 2

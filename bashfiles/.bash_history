@@ -1,48 +1,3 @@
-synology-drive --help
-ls
-nvim eva.yml 
-ls -la
-man alacritty
-ls 
-ls -las
-cd ..
-ls
-ls -la
-ls 
-ls -la
-ls .config/alacritty/
-nvim .config/alacritty/alacritty.yml 
-cd .config/alacritty/
-touch eva.yml
-rm eva.yml 
-cp alacritty.yml eva.yml
-nvim eva.yml 
-man alacritty.yml 
-man alacritty
-alacritty --config-file eva.yml 
-pip install alacritty-colorscheme
-alacritty-colorscheme eva.yml 
-alacritty-colorscheme -c eva.yml
-alacritty-colorscheme -c eva.yml apply
-alacritty-colorscheme apply eva.yml 
-man alacritty-colorscheme
-alacritty-colorscheme --help
-alacritty-colorscheme apply eva.yml 
-alacritty-colorscheme apply -c eva.yml
-alacritty-colorscheme --help apply
-alacritty-colorscheme apply --help
-alacritty-colorscheme status
-pwd
-EVA_THEME = '/home/afa/.config/alacritty/eva.yml'
-export EVA_THEME = '/home/afa/.config/alacritty/eva.yml'
-export EVA_THEME = "/home/afa/.config/alacritty/eva.yml"
-export --help
-cd .config/awesome
-ls
-mkdir launcher
-cd launcher/
-cp ~/.config/
-cp ~/.config/rofi/launchers/ribbon/* ./ribbon/*
 mkdir ribbon
 cp ~/.config/rofi/launchers/ribbon/* ./ribbon/
 cp -r ~/.config/rofi/launchers/ribbon/* ./ribbon/
@@ -498,3 +453,48 @@ git checkout -b master
 git branch
 git checkout master
 ls
+cd Dotfiles/
+ls
+git branch
+git checkout main
+got add .
+git commit .
+git add .
+git commit -m "awesomewm round taglist and finally centered wibar text"
+git push
+nm-applet --help
+man nm-applet
+nm-connection-editor 
+ls .config/
+cd .config/
+sl
+ls
+ls rofi
+cd rofi
+ls
+ls powermenu/
+ls
+powermenu/powermenu.sh 
+applets/applets/network.sh 
+applets/applets/network.sh 
+applets/applets/network.sh 
+applets/applets/network.sh 
+applets/applets/network.sh 
+ls
+./applets/android/volume.sh 
+./applets/applets/volume.sh 
+./applets/menu/volume.sh 
+./applets/menu/volume.sh 
+./applets/menu/volume.sh 
+./applets/menu/volume.sh 
+./applets/menu/backlight.sh 
+./applets/menu/backlight.sh 
+./applets/menu/backlight.sh 
+./applets/menu/backlight.sh 
+./applets/menu/quicklinks.sh 
+./applets/menu/style.sh 
+./applets/menu/style.sh
+./applets/menu/time.sh 
+ls
+rofi-bluetooth/rofi-bluetooth
+sudo rofi-bluetooth/rofi-bluetooth 
