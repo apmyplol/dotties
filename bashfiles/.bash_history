@@ -1,62 +1,3 @@
-mkdir ribbon
-cp ~/.config/rofi/launchers/ribbon/* ./ribbon/
-cp -r ~/.config/rofi/launchers/ribbon/* ./ribbon/
-ls
-ls ribbon/
-cd ribbon/
-cd styles/
-ls
-cd ..
-ls
-nvim launcher.sh 
-nvim launcher.sh
-ls styles/
-ls styles/
-ls styles/
-nvim launcher.sh
-man alacritty
-あああ
-助けて
-sudo
-help
-picom
-ls .config/rofi/bin/
-cd .config/rofi/bin/
-nvim launcher_ribbon
-cd ..
-ls
-cd launchers/
-ls
-cd ro
-cd ribbon/
-ls
-./launcher.sh 
-cat launcher.sh 
-ls
-rofi -no-lazy-grab -show drun -modi drun -theme full_bottom.rasi 
-rofi -no-lazy-grab -show drun -modi drun -theme full_right.rasi 
-rofi -no-lazy-grab -show drun -modi drun -theme ribbon_bottom.rasi 
-rofi -no-lazy-grab -show drun -modi drun -theme ribbon_bottom_round.rasi 
-ls
-ls
-./launcher.sh
-./launcher.sh
-./launcher.sh
-./launcher.sh
-./launcher.sh
-./launcher.sh
-./launcher.sh
-./launcher.sh
-./launcher.sh
-./launcher.sh
-./launcher.sh
-./launcher.sh
-./launcher.sh
-./launcher.sh
-./launcher.sh
-./launcher.sh
-./launcher.sh
-pwd
 ls
 cd .config/
 ls
@@ -498,3 +439,62 @@ ls
 ls
 rofi-bluetooth/rofi-bluetooth
 sudo rofi-bluetooth/rofi-bluetooth 
+cd Dotfiles/
+ls
+nvim README.md 
+touch TODO.md
+nvim TODO.md 
+ls
+git add .
+git commit -m "wibar transparency, taglist colors and TODO list"
+git push
+sudo pacman -S plasma-nm
+paru -S networkmanager-dmenu-git
+networkmanager_dmenu 
+paru -Rs networkmanager-dmenu-git
+sudo pacman -Rs networkmanager-dmenu-git
+ls .config/
+cat .config/QtProject.conf 
+ls -la .config/org.ukui/
+cd uni/5学期/Proseminar/Ausarbeitung/
+ls
+sudo pkill latexmk
+sudo pkill pdflatex
+latexmk -c
+latexmk -pdf
+latexmk -pdf
+latexmk -pdf
+compton
+picom
+compton
+pkill compton
+pkill picom
+sudo pacman -R compton
+pacman -Qi picom
+pacman -Qi compton
+sudo .config/rofi/rofi-bluetooth/rofi-bluetooth 
+ls Downloads/
+blueman
+blueman-manager 
+blueman-manager 
+cat /etc/group
+id afa
+sudo gpasswd -a afa lp
+id afa
+.config/rofi/rofi-bluetooth/
+.config/rofi/rofi-bluetooth/rofi-bluetooth 
+cat .config/rofi/rofi-bluetooth/rofi-bluetooth 
+less cat .config/rofi/rofi-bluetooth/rofi-bluetooth 
+less .config/rofi/rofi-bluetooth/rofi-bluetooth 
+ls .config/
+cd .config/rofi
+ls
+ls config.rasi 
+less config.rasi 
+ls
+ls
+ls 
+mkdir mpvitas
+poweroff
+less .bash_history 
+less .bash_history 
