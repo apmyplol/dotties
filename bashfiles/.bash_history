@@ -1,301 +1,3 @@
-ls
-cd .config/
-ls
-ls -la
-ls -la | less
-cd ..
-ls -la
-rm -rf .emacs.d/
-ls
-ls -la
-cat .bashrc 
-cat .Xauthority 
-nvim .
-nvim .
-ls
-ls -ls
-ls -la
-pgrep 
-pgrep --help
-pgrep --help | less
-pgrep Syno
-pgrep syno
-man pgrep
-pgrep syno*
-pgrep synology-drive
-pgrep synology*
-pgrep syno*
-pgrep -l syno*
-pgrep -l syn*
-pgrep -lf
-pgrep -lf sy
-pgrep -lf drive
-synology-drive 
-pgrep synologyDrive
-pgrep synolog
-pgrep -l *
-pgrep -l s*
-top
-top
-pgrep syno*
-pgrep -l syno*
-pgrep -l cloud
-pgrep -l cloud
-pgrep -l cloud && echo "bla"
-pgrep -l cloud ||  echo "bla"
-pgrep -l cloud ||  echo "bla"
-ls
-cat .bashrc 
-cat .bash_profile 
-cat .xinitrc 
-pgrep pic
-pgrep pic*
-pgrep -l pic*
-picom
-cat .xinitrc 
-pgrep -l picom
-pgrep -l pi
-ls
-ls -la
-cat .bashrc 
-nvim .xinitrc 
-day
-ls -la
-ls -ls
-nvim .xinitrc 
-awesome --help
-awesome
-alacritty
-cd .config/alacritty/
-ls
-mv alacritty.yml alacritty.yml.bak
-mv eva.yml alacritty.yml
-nvim alacritty.yml
-pkill picom
-cd .config/alacritty/
-nvim alacritty.yml
-ls
-ls -la
-cd .config/alacritty/
-alacritty .
-alacritty --help
-alacritty --working-directory .
-nvim alacritty.yml.bak 
-day
-alacritty-colorscheme 
-alacritty-colorscheme status
-mkdir .config/nvim
-touch .config/nvim/init.vim
-cd .config/nvim/
-ls
-curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-ls
-ls autoload/
-cd ..
-cd nvim/
-mkdir vim-plug
-ls
-cd vim-plug/
-touch plugins.vim
-cd ..
-cd vim-plug/plugins.vim 
-nvim vim-plug/plugins.vim 
-nvim
-ls 
-nvim init.vim 
-nvim
-nvim
-ls
-cd vim-plug/
-ls
-cat plugins.vim 
-cat plugins.vim 
-nvim plugins.vim
-nvim
-ls
-cd ..
-ls
-ls autoload/
-ls
-cd ..
-ls
-cd nvim/
-ls
-cd vim-plug/
-ls
-cd plugins.vim 
-cat plugins.vim 
-cd ..
-ls
-cat init.vim 
-cat vim-plug/plugins.vim 
-nvim
-ls
-mkdir lua
-touch lua/plug-colorizer.lua
-cat lua/plug-colorizer.lua 
-nvim 
-cat lua/plug-colorizer.lua 
-nvim lua/plug-colorizer.lua 
-cd ..
-ls
-cd nvim/
-ls
-nvim init.vim 
-nvim
-ls
-cd ..
-ls
-startx
-ls -lh .config/
-fc-list
-ls .xinitrc 
-cat .xinitrc 
-nemo
-syncthing 
-syncthing --help
-ls .config/rofi/bin/
-ls .config/rofi/bin/
-ls -lah .config/rofi/bin/
-cat .xinitrc 
-which obsidian
-cat commands 
-pacman -Qi obsidian
-pacman -Qi anki
-cat .xinitrc 
-ls -la
-cat .Xauthority 
-cat .Xauthority 
-cat .bashrc 
-cat .bash_profile 
-ls .local/bin/
-sudo pacman -Syu
-ls SynologyDrive/
-anki
-anki
-paru -S anki
-paru -S anki-official-binary-bundle
-sudo paru -S anki-official-binary-bundle
-paru -S anki-official-binary-bundle
-speedtest
-sudo pacman -Syu
-reflector --help
-man reflector
-man reflector
-mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-man reflector
-sudo reflector --country Germany --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-reboot
-ls
-cd uni/5学期/Proseminar/Ausarbeitung/
-ls
-pkill latexmk
-pgrep latex
-pgrep -t latex
-pgrep --help
-pgrep -l latex
-pkill pdflatex
-latexmk -c
-latexmk -pdf
-pkill pdflatex
-latexmk -c
-latexmk -pdf
-latexmk -pdf
-latexmk -pdf
-latexmk -pdf
-htop
-ls .config/
-ls .config/mpv/
-sudo pacman -S stow
-cd Dotfiles/
-ls
-rm -rf picom/
-mkdir compositor
-cd compositor/
-mkdir .config
-cp ~/.config/picom.conf .config/
-cd ..
-ls
-stow compositor/
-ls
-ls nvim/
-cd nvim/
-ls -la
-cd .config/
-ls -la
-cd ..
-cd .config/nvim/
-ls
-cd ..
- cd ..
-cd ..
-stow nvim/
-ls
-ls bashfiles/
-ls -la bashfiles/
-stow bashfiles/
-ls -la x/
-stow x
-ls -la
-cd .config/
-ls -la
-cd ..
-ls
-ls -la
-ls .cat_installer/
-ls japanese/
-cd .config/
-ls -la
-ls volumeicon/
-ls volumeicon/volumeicon 
-cat volumeicon/volumeicon 
-clear
-ls -la
-ls pcmanfm-qt/
-ls pcmanfm-qt/default/
-cat pcmanfm-qt/default/settings.conf 
-ls
-rm -rf fcitx/
-rm -rf mozc/
-ls
-ls
-rm -rf mozc
-ls -la
-ls
-cd picom
-ls
-cat opacity
-cat opacity.save 
-cd ..
-ls
-cat dconf/user 
-ls nvim/
-clear
-ls
-ls -la
-cd ..
-ls
-ls -la
-ls
-cd .config/
-ls
-あああ
-テスト
-cd ..
-ls
-ls afa/
-cd afa/
-speedtest
-cd Dotfiles/
-git init
-git remote add origin https://github.com/SmokeArts/dotties.git
-git add .
-cd rofi/.config/rofi/
-ls
-ls -la
-cd rofi-bluetooth/
-ls
 ls -a
 ls .meta/
 rm -rf .git .meta
@@ -498,3 +200,301 @@ mkdir mpvitas
 poweroff
 less .bash_history 
 less .bash_history 
+info stow
+info stow
+cd Dotfiles/
+ls
+ls -la
+nvim .stow-local-ignore 
+nvim .stow-local-ignore 
+nvim .stow-local-ignore 
+nvim .stow-local-ignore 
+stow --help
+Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome
+info stow
+stow --help
+stow -D mpv
+cd Dotfiles/
+stow -D mpv
+stow mpv
+stow mpv
+stow -D mpv
+stow mpv
+stow -D mpv
+stow mpv
+stow -D mpv
+rm .stow-local-ignore 
+stow -D mpv
+stow mpv
+stow -D mpv
+rm .stow-local-ignore 
+stow mpv
+stow -D mpv
+stow mpv
+ls
+d mpvitas/
+cd mpvitas/
+mkdir .config
+mkdir .config/mpv
+git init
+cd ..
+cd mpvitas/
+rm -rf .config/
+ls
+ls -la
+cp -r ~/Dotfiles/mpv/ ./
+ls 
+ls 
+cd ..
+ls
+cd Dotfiles/
+ls
+nvim .gitignore
+cd .
+cd ..
+ls
+cd mpvitas/
+cd ..
+ls
+ls
+rm -rf mpvitas/
+cd Dotfiles/
+ls
+cat .gitignore 
+cd mpv/.config/mpv/
+ls
+git init
+git remote add origin git@github.com:SmokeArts/mpvitas.git
+git branch --help
+git push --help
+git branch -M main
+git push -u origin main
+git push -u origin main
+git branch
+git branch -M main
+git branch
+git branch -l
+git branch --help
+git branch --help
+git branch -a
+git remote set-url origin https://ghp_0nIv9U6I1PXGle67WXEtGdDzgUc
+Hy23GOJ8q@github.com/SmokeArts/mpvitas.git
+git remote set-url origin https://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@github.com/SmokeArts/mpvitas.git
+git add .
+git commit -m "initial commit"
+git config user.name "afa"
+git commit -m "initial commit"
+git config user.email ""
+git commit -m "initial commit"
+nvim .gitignore
+ls
+rm desktop.ini
+nvim .gitignore
+git add .
+git commit -m "initial commit"
+git push -u origin master
+git push -u origin main
+nvim README.md
+git add .
+git commit -m "added readme"
+git push
+cd ..
+cd ..
+ls
+cd ..
+ls
+ls
+ls -la
+git status
+git submodule --help
+git submodule add https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv/
+git submodule absorbgitdirs mpv/.config/mpv/
+git status
+ls
+ls -la
+rm -rf .gitignore
+ls
+git submodule add https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv/
+git submodule absorbgitdirs mpv/.config/mpv/
+git status
+ls .git/
+ls -la
+ls -la .git/
+ls -la
+git status
+git submodule --help
+git submodule status
+git submodule --help
+git submodule status --recursive
+git submodule --init
+git submodule update --init
+git submodule status
+ls
+ls -la
+ls -la .git/
+git submodule
+git submodule--helper 
+git submodule--helper list
+ls -la
+git submodule add https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv
+git status
+ls .git/
+ls -la
+git submodule add https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv
+git submodule init
+git submodule --help
+git submodule deinit
+git submodule deinit --all
+git submodule add https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv
+git submodule --help
+git submodule init mpv/.config/mpv/
+git status
+git submodule
+git submodule--helper 
+git submodule--helper list
+git submodule--helper --help
+git submodule--helper
+git submodule update --init
+ls mpv/.config/mpv/
+ls -la mpv/.config/mpv/
+cdmpv/.config/mpv/
+cd mpv/.config/mpv/
+ls .stfolder/
+ls -la .stfolder/
+rmdir  .stfolder/
+ls -la
+rm -rf .gitignore
+ls -la
+cd ..
+cd ..
+cd ..
+ls
+git submodule--helper 
+git submodule--helper --help
+git submodule--helper list
+ls -la nvim/.config/nvim/autoload/plugged/NERDTree/
+ls
+cd mpv/.config/mpv/
+ls
+git pull
+git status
+cd ..
+cd ..
+cd ..
+ls
+git status
+git submodule init mpv/.config/mpv
+git submodule--helper config
+git submodule--helper config --check-writable
+git submodule--helper config --check-writeable
+git submodule--helper config --unset
+git pull
+git status
+git submodule add https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv
+git submodule add --force https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv
+cat .git/config 
+clear
+git submodule add --force https://github.com/SmokeArts/mpvitas.git
+mv -r mpv/.config/mpv/ ../ripped/
+mv mpv/.config/mpv/ ../ripped/
+ls mpv/.config/
+git rm -r mpv/.config/mpv
+git submodule add https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv
+git submodule add https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv
+git submodule add https://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@github.com/SmokeArts/dotties.git mpv/.config/mpv
+git status
+rm -rf mpv/.config/mpv/
+git rm -r mpv/.config/mpv/
+ls mpv/.config/
+mkdir mpv/.config/mpv
+git submodule add https://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@github.com/SmokeArts/mpvitas.git mpv/.config/mpv
+git submodule add --force https://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@github.com/SmokeArts/mpvitas.git mpv/.config/mpv
+git status
+git submodule
+ls mpv/.config/mpv/
+ls -la mpv/.config/mpv/
+git submodule add https://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@github.com/SmokeArts/mpvitas.git mpv/.config/mpv/
+rm -rf mpv/.config/mpv/
+git submodule add https://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@github.com/SmokeArts/mpvitas.git mpv/.config/mpv/
+ls -la
+nvim .gitmodules 
+git submodules --help
+git submodule --help
+git submodule deinit --all
+git submodule add https://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@github.com/SmokeArts/mpvitas.git mpv/.config/mpv/
+git submodule add --force https://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@github.com/SmokeArts/mpvitas.git mpv/.config/mpv/
+ls mpv/.config/mpv/
+rm -rf mpv/.config/mpv/
+git rm -r mpv/.config/mpv
+git submodule deinit --all
+cat .gitmodules 
+cat .git/config 
+nvim .git/config 
+git submodule --hep
+git submodule --help
+git submodule 
+git submodule add https://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@github.com/SmokeArts/mpvitas.git mpv/.config/mpv/
+git submodule add --name mpvitas https://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@github.com/SmokeArts/mpvitas.git mpv/.config/mpv/
+ls mpv/.config/mpv/
+ls -la
+git status
+ls -la
+ls -la mpv/.config/mpv/
+git 
+git status
+git add .
+git commit --help
+git commit -m "submodule test"
+git push --recurse-submodules=check
+git submodule
+git rm --cached nvim/
+git rm -r --cached nvim/
+git submodule
+git status
+git pull
+git restore
+git restore nvim/
+git restore --staged nvim/
+git statu
+git status
+man stow
+man stow 4
+info stow
+stow --help
+info stow
+touch .stow-local-ignore
+nvim .stow-local-ignore 
+cd ..
+cd .config/
+ls
+cd ..
+ls
+ls ripped/
+rm -rf ripped/mpv/
+mv .config/mpv/ ripped/
+ls ripped/
+ls .config/
+ls .config/
+ls .config/mpv
+ls -la .config/mpv
+ls -la .config/mpv/
+cd .config/
+ls
+ls
+clear
+ls
+ls
+ls mpv/
+ls -la mpv/
+ls -la mpv/
+ls
+ls -la mpv/
+ls
+ls -la mpv/
+ls -la
+ls -la mpv/
+ls 
+nvim
+cd Dotfiles/
+ls
+git status
