@@ -288,6 +288,7 @@ awful.screen.connect_for_each_screen(function(s)
             volumearc,
             bluetooth,
             --mykeyboardlayout,
+            -- TODO something with systray
             wibox.widget.systray(),
             batteryarc,
             --s.mylayoutbox,
