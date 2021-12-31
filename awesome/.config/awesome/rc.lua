@@ -410,7 +410,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "c",     function () awful.util.spawn("rofi -show run") end,
     {description = "run prompt", group = "launcher"}),
 
-            awful.key({ modkey },            "r",     function () awful.util.spawn("/home/afa/.config/rofi/bin/launcher_ribbon") end,
+            awful.key({ modkey },            "r",     function () awful.util.spawn("/home/afa/.config/rofi/evaribbon/launcher.sh") end,
                     {description = "run application prompt", group = "launcher"}),
                     
 

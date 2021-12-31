@@ -1,437 +1,3 @@
-ls -a
-ls .meta/
-rm -rf .git .meta
-cd ..
-cd ..
-cd ..
-cd ..
-s
-ls
-git add .
-git commit -m "initial commit"
-git config user.email "arthur.liske12@gmail.com"
-git config user.name "afa"
-git add .
-git commit -m "initial commit"
-git push --help
-git push -u
-git push -u origin master
-git config user.email ""
-git push -u origin master
-git push -u origin master
-git remote set-url origin https://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@github.com/SmokeArts/dotties.git
-git push -u origin master
-git push -u origin main
-touch README.md
-nvim README.md 
-git add .
-git commit -m "readme"
-git push origin master
-git checkout
-git checkout --help
-git checkout --help
-git branch
-git checkout main
-git checkout origin/main
-git checkout
-git checkout --help
-git checkout -b origin/main
-git add .
-git commit -m "initial commit"
-git add .
-git commit -m "initial commit"
-git branch
-git checkout -b main
-git add .
-git commit -m "initial commit"
-git branch
-git push --set-upstream origin main
-git pull main
-git pull origin main
-ls -la
-git branch
-cat README.md 
-git pull
-git branch
-git branch --set-upstream=origin/main main
-git branch --set-upstream-to=origin/main main
-git branch --set-upstream-to=origin/main main
-git branch
-git pull origin main
-rm README.md 
-git pull origin main
-ls
-git branch --help
-git branch -d main
-git checkout master
-git branch -d main
-git branch -d origin/main
-git branch
-git branch
-git pull
-ls 
-ls -la
-git checkout -b main
-git pull
-git pull origin main
-git config pull.rebase false
-git pull origin main
-ls
-git pull --allow-unrelated-histories origin main
-ls
-git add .
-git commit -m "initial commit"
-git branch
-git push origin main
-ls 
-cat README.md 
-nvim README.md 
-git commit -m "README fix"
-git add .
-git commit -m "README fix"
-git push
-git push origin main
-git push --set-upstream origin main
-git checkout -b master
-git branch
-git checkout master
-ls
-cd Dotfiles/
-ls
-git branch
-git checkout main
-got add .
-git commit .
-git add .
-git commit -m "awesomewm round taglist and finally centered wibar text"
-git push
-nm-applet --help
-man nm-applet
-nm-connection-editor 
-ls .config/
-cd .config/
-sl
-ls
-ls rofi
-cd rofi
-ls
-ls powermenu/
-ls
-powermenu/powermenu.sh 
-applets/applets/network.sh 
-applets/applets/network.sh 
-applets/applets/network.sh 
-applets/applets/network.sh 
-applets/applets/network.sh 
-ls
-./applets/android/volume.sh 
-./applets/applets/volume.sh 
-./applets/menu/volume.sh 
-./applets/menu/volume.sh 
-./applets/menu/volume.sh 
-./applets/menu/volume.sh 
-./applets/menu/backlight.sh 
-./applets/menu/backlight.sh 
-./applets/menu/backlight.sh 
-./applets/menu/backlight.sh 
-./applets/menu/quicklinks.sh 
-./applets/menu/style.sh 
-./applets/menu/style.sh
-./applets/menu/time.sh 
-ls
-rofi-bluetooth/rofi-bluetooth
-sudo rofi-bluetooth/rofi-bluetooth 
-cd Dotfiles/
-ls
-nvim README.md 
-touch TODO.md
-nvim TODO.md 
-ls
-git add .
-git commit -m "wibar transparency, taglist colors and TODO list"
-git push
-sudo pacman -S plasma-nm
-paru -S networkmanager-dmenu-git
-networkmanager_dmenu 
-paru -Rs networkmanager-dmenu-git
-sudo pacman -Rs networkmanager-dmenu-git
-ls .config/
-cat .config/QtProject.conf 
-ls -la .config/org.ukui/
-cd uni/5学期/Proseminar/Ausarbeitung/
-ls
-sudo pkill latexmk
-sudo pkill pdflatex
-latexmk -c
-latexmk -pdf
-latexmk -pdf
-latexmk -pdf
-compton
-picom
-compton
-pkill compton
-pkill picom
-sudo pacman -R compton
-pacman -Qi picom
-pacman -Qi compton
-sudo .config/rofi/rofi-bluetooth/rofi-bluetooth 
-ls Downloads/
-blueman
-blueman-manager 
-blueman-manager 
-cat /etc/group
-id afa
-sudo gpasswd -a afa lp
-id afa
-.config/rofi/rofi-bluetooth/
-.config/rofi/rofi-bluetooth/rofi-bluetooth 
-cat .config/rofi/rofi-bluetooth/rofi-bluetooth 
-less cat .config/rofi/rofi-bluetooth/rofi-bluetooth 
-less .config/rofi/rofi-bluetooth/rofi-bluetooth 
-ls .config/
-cd .config/rofi
-ls
-ls config.rasi 
-less config.rasi 
-ls
-ls
-ls 
-mkdir mpvitas
-poweroff
-less .bash_history 
-less .bash_history 
-info stow
-info stow
-cd Dotfiles/
-ls
-ls -la
-nvim .stow-local-ignore 
-nvim .stow-local-ignore 
-nvim .stow-local-ignore 
-nvim .stow-local-ignore 
-stow --help
-Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome
-info stow
-stow --help
-stow -D mpv
-cd Dotfiles/
-stow -D mpv
-stow mpv
-stow mpv
-stow -D mpv
-stow mpv
-stow -D mpv
-stow mpv
-stow -D mpv
-rm .stow-local-ignore 
-stow -D mpv
-stow mpv
-stow -D mpv
-rm .stow-local-ignore 
-stow mpv
-stow -D mpv
-stow mpv
-ls
-d mpvitas/
-cd mpvitas/
-mkdir .config
-mkdir .config/mpv
-git init
-cd ..
-cd mpvitas/
-rm -rf .config/
-ls
-ls -la
-cp -r ~/Dotfiles/mpv/ ./
-ls 
-ls 
-cd ..
-ls
-cd Dotfiles/
-ls
-nvim .gitignore
-cd .
-cd ..
-ls
-cd mpvitas/
-cd ..
-ls
-ls
-rm -rf mpvitas/
-cd Dotfiles/
-ls
-cat .gitignore 
-cd mpv/.config/mpv/
-ls
-git init
-git remote add origin git@github.com:SmokeArts/mpvitas.git
-git branch --help
-git push --help
-git branch -M main
-git push -u origin main
-git push -u origin main
-git branch
-git branch -M main
-git branch
-git branch -l
-git branch --help
-git branch --help
-git branch -a
-git remote set-url origin https://ghp_0nIv9U6I1PXGle67WXEtGdDzgUc
-Hy23GOJ8q@github.com/SmokeArts/mpvitas.git
-git remote set-url origin https://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@github.com/SmokeArts/mpvitas.git
-git add .
-git commit -m "initial commit"
-git config user.name "afa"
-git commit -m "initial commit"
-git config user.email ""
-git commit -m "initial commit"
-nvim .gitignore
-ls
-rm desktop.ini
-nvim .gitignore
-git add .
-git commit -m "initial commit"
-git push -u origin master
-git push -u origin main
-nvim README.md
-git add .
-git commit -m "added readme"
-git push
-cd ..
-cd ..
-ls
-cd ..
-ls
-ls
-ls -la
-git status
-git submodule --help
-git submodule add https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv/
-git submodule absorbgitdirs mpv/.config/mpv/
-git status
-ls
-ls -la
-rm -rf .gitignore
-ls
-git submodule add https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv/
-git submodule absorbgitdirs mpv/.config/mpv/
-git status
-ls .git/
-ls -la
-ls -la .git/
-ls -la
-git status
-git submodule --help
-git submodule status
-git submodule --help
-git submodule status --recursive
-git submodule --init
-git submodule update --init
-git submodule status
-ls
-ls -la
-ls -la .git/
-git submodule
-git submodule--helper 
-git submodule--helper list
-ls -la
-git submodule add https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv
-git status
-ls .git/
-ls -la
-git submodule add https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv
-git submodule init
-git submodule --help
-git submodule deinit
-git submodule deinit --all
-git submodule add https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv
-git submodule --help
-git submodule init mpv/.config/mpv/
-git status
-git submodule
-git submodule--helper 
-git submodule--helper list
-git submodule--helper --help
-git submodule--helper
-git submodule update --init
-ls mpv/.config/mpv/
-ls -la mpv/.config/mpv/
-cdmpv/.config/mpv/
-cd mpv/.config/mpv/
-ls .stfolder/
-ls -la .stfolder/
-rmdir  .stfolder/
-ls -la
-rm -rf .gitignore
-ls -la
-cd ..
-cd ..
-cd ..
-ls
-git submodule--helper 
-git submodule--helper --help
-git submodule--helper list
-ls -la nvim/.config/nvim/autoload/plugged/NERDTree/
-ls
-cd mpv/.config/mpv/
-ls
-git pull
-git status
-cd ..
-cd ..
-cd ..
-ls
-git status
-git submodule init mpv/.config/mpv
-git submodule--helper config
-git submodule--helper config --check-writable
-git submodule--helper config --check-writeable
-git submodule--helper config --unset
-git pull
-git status
-git submodule add https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv
-git submodule add --force https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv
-cat .git/config 
-clear
-git submodule add --force https://github.com/SmokeArts/mpvitas.git
-mv -r mpv/.config/mpv/ ../ripped/
-mv mpv/.config/mpv/ ../ripped/
-ls mpv/.config/
-git rm -r mpv/.config/mpv
-git submodule add https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv
-git submodule add https://github.com/SmokeArts/mpvitas.git mpv/.config/mpv
-git submodule add https://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@github.com/SmokeArts/dotties.git mpv/.config/mpv
-git status
-rm -rf mpv/.config/mpv/
-git rm -r mpv/.config/mpv/
-ls mpv/.config/
-mkdir mpv/.config/mpv
-git submodule add https://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@github.com/SmokeArts/mpvitas.git mpv/.config/mpv
-git submodule add --force https://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@github.com/SmokeArts/mpvitas.git mpv/.config/mpv
-git status
-git submodule
-ls mpv/.config/mpv/
-ls -la mpv/.config/mpv/
-git submodule add https://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@github.com/SmokeArts/mpvitas.git mpv/.config/mpv/
-rm -rf mpv/.config/mpv/
-git submodule add https://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@github.com/SmokeArts/mpvitas.git mpv/.config/mpv/
-ls -la
-nvim .gitmodules 
-git submodules --help
-git submodule --help
-git submodule deinit --all
-git submodule add https://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@github.com/SmokeArts/mpvitas.git mpv/.config/mpv/
-git submodule add --force https://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@github.com/SmokeArts/mpvitas.git mpv/.config/mpv/
-ls mpv/.config/mpv/
-rm -rf mpv/.config/mpv/
-git rm -r mpv/.config/mpv
-git submodule deinit --all
-cat .gitmodules 
-cat .git/config 
-nvim .git/config 
-git submodule --hep
-git submodule --help
 git submodule 
 git submodule add https://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@github.com/SmokeArts/mpvitas.git mpv/.config/mpv/
 git submodule add --name mpvitas https://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@github.com/SmokeArts/mpvitas.git mpv/.config/mpv/
@@ -498,3 +64,437 @@ nvim
 cd Dotfiles/
 ls
 git status
+cd Dotfiles/
+git add .
+git status
+git commit -m "stow ignore file added"
+git push
+cd .config/rofi/launchers/evaribbon/
+ls
+nvim
+man sed
+ls .config/awesome/themes
+ls .config/awesome/themes/default/
+nvim .config/awesome/themes/default/theme.lua 
+cd .config/rofi/launchers/
+ls 
+cd ribbon/
+clear
+nvim launcher.sh 
+ls 
+cd ..
+ls
+cp -r ribbon ./evaribbon
+ls evaribbon/
+cd evaribbon/
+clear
+ls
+nvim launcher.sh 
+cd styles/
+ls
+nvim ../launcher.sh 
+nvim ../launcher.sh 
+nvim ../launcher.sh 
+ls
+nvim colors.rasi 
+nvim berry.rasi 
+ls
+cd ..
+nvim launcher.sh 
+ls
+cd styles/
+ls
+nvim berry.rasi 
+cd ..
+s
+ls
+nvim launcher.sh 
+ls
+nvim launcher.sh 
+nvim launcher.sh 
+ls
+rm *round
+rm ribbon_bottom_round.rasi ribbon_left_round.rasi ribbon_right_round.rasi ribbon_top_round.rasi 
+ls
+cd styles/
+ls
+rm berry.rasi cocoa.rasi faded.rasi mask.rasi nordic.rasi bluish.rasi nightly.rasi 
+nvim gotham.rasi 
+ls
+rm gotham.rasi 
+ls
+nvim colors.rasi 
+ls
+cd ..
+nvim launcher.sh 
+cd ..
+ls
+cd ..
+ls
+cp -r launchers/evaribbon ./
+ls
+cd evaribbon/
+ls
+nvim launcher.sh 
+ls
+cd ..
+ls
+cd launchers/ribbon/ev
+cd launchers/evaribbon/
+nvim launcher.sh
+cd ..
+cd ..
+ls
+nvim evaribbon/launcher.sh 
+cd ..
+ls
+nvim awesome/rc.lua 
+nvim awesome/rc.lua 
+git status
+cd ..
+ls
+cd Dotfiles/
+ls
+git status
+git restore awesome/.config/awesome/rc.lua 
+nvim awesome/.config/awesome/rc.lua 
+git restore awesome/.config/awesome/rc.lua 
+cd .config/rofi
+ls
+cd bin/
+ls -la
+cd launcher_ribbon
+./launcher_*
+./launcher_*
+./launcher_colorful
+./launcher_colorful
+./launcher_colorful
+./launcher_colorful
+./launcher_colorful
+./launcher_colorful
+./launcher_misc
+./launcher_misc
+./launcher_misc
+./launcher_misc
+./launcher_misc
+./launcher_ribbon 
+./launcher_ribbon 
+./launcher_ribbon 
+./launcher_slate
+./launcher_slate
+./launcher_slate
+./launcher_slate
+./launcher_ribbon 
+./launcher_text 
+./launcher_text 
+./switcher_text 
+./switcher_text 
+./switcher_text 
+./switcher_text 
+./launcher_text 
+./launcher_text 
+./launcher_text 
+./launcher_text 
+./launcher_text 
+./launcher_text 
+man latexmk
+man pdflatex
+./launcher_text 
+qqq
+cd ..
+ls
+cd launchers/ribbon/
+ls
+./launcher.sh 
+clear
+./launcher.sh 
+cd ..
+cd evaribbon/
+ls
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+cd styles/
+ls
+rofi -no-lazy-grab -show drun -modi drun -theme berry.rasi 
+rofi -no-lazy-grab -show drun -modi drun -theme berry.rasi 
+rofi -no-lazy-grab -show drun -modi drun -theme "./berry.rasi"
+rofi -no-lazy-grab -show drun -modi drun -theme berry.rasi 
+rofi -no-lazy-grab -show drun -modi drun -theme berry.rasi 
+./launcher.sh 
+ls
+cd ..
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+ls
+nvim full_bottom.rasi 
+man rofi
+man rofi-theme
+nvim full_bottom.rasi 
+ls
+cd styles/
+ls
+cd ..
+ls
+clear
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+cd ~
+ls
+cd .config/rofi
+ls
+cd evaribbon/
+chmod +x launcher.sh 
+ls
+./launcher.sh 
+pwd
+pwd ./launcher.sh 
+/home/afa/.config/rofi/evaribbon/launcher.sh 
+ls -la
+pwd
+realpath 
+realpath --help
+cd Dotfiles/nvim/.config/nvim/
+ls
+nvim init.vim 
+cd autoload/
+ls
+nvim plug
+nvim plug.vim 
+cd plug
+cd plugged/
+ls
+cd ..
+cd ..
+ls
+cd init.vim 
+nvim init.vim 
+ls
+cd vim-plug/
+ls
+nvim plugins.vim 
+nvim .config/awesome/rc.lua 
+nvim
+cd Dotfiles/nvim/.config/nvim/vim-plug/
+ls
+nvim plugins.vim 
+nvim
+ls 
+nvim plugins.vim 
+cd ..
+ls
+cd lua/
+ls
+nvim plug-colorizer.lua 
+ls
+cd ..
+ls
+cd vim-plug/
+ls
+cd ..
+ls
+cd autoload/
+ls
+cd lu
+cd plug
+cd plugged/
+ls
+find --help
+man find
+find coc
+find coc.vim
+find -r coc.vim
+cd ..
+ls
+find coc
+cd ..
+find coc
+cd Dotfiles/rofi/.config/rofi/
+ls
+cd laub
+cd launchers/
+ls
+cd text/
+ls
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+./launcher.sh 
+nvim laub
+nvim launcher.sh 
+cd .config/
+cd rofi/bin/
+ls -la
+ls -la
+cd ..
+ls
+cd evaribbon/
+ls
+./launcher.sh 
+ls -a
+ls -la
+chmod -rwx launcher.sh 
+ls -la
+chmod +rwx launcher.sh 
+ls -la
+sudo chmod +rwx launcher.sh 
+ls -la
+pwd
+ls 
+cd ..
+cd ..
+cd ..
+/home/afa/.config/rofi/evaribbon/launcher.sh 
+nvim
+nvim .config/rofi/evaribbon/launcher.sh 
+ls
+cd Dotfiles/
+ls
+cd rofi/
+ls
+ls -la
+cd .config/rofi/
+ls
+ls -la
+cat config.rasi 
+ls
+cd bin/
+ls
+./android_apps 
+./android_apps 
+./android_backlight 
+./switcher_
+./switcher_colorful 
+./switcher_colorful 
+./switcher_colorful 
+./switcher_colorful 
+./switcher_colorful 
+./switcher_colorful 
+./used
+./used_c
+./usedcpu 
+./usedram 
+rm used*
+ls
+./powermenu 
+./powermenu 
+./powermenu 
+./menu_ba
+./menu_battery 
+./launcher_text 
+./launcher_text 
+./launcher_text 
+./launcher_text 
+./launcher_text 
+cd ..
+ls
+cd evaribbon/
+ls
+nvim launcher.sh 
+cd ..
+ls
+mkdir evarun
+cd evarun/
+nvim
+nvim Dotfiles/rofi/.config/rofi/evaribbon/styles/colors.rasi
+cd Dotfiles/nvim/.config/nvim/
+ls
+rm -rf ./
+ls
+rm -rf ./*
+ls
+mkdir lua
+mkdir lua/default
+nvim init.lua
+nvim init.lua
+ls
+mv lua/default/ lua/main
+ls lua/
+nvim lua/main/
+nvim lua/main/options.lua
+nvim lua/main/options.lua
+nvim lua/main/keyap.lua
+nvim lua/main/keyap.lua
+mv lua/main/keyap.lua lua/main/keymaps.lua
+nvim lua/main/keyap.lua
+nvim lua/main/keyaps.lua
+nvim lua/main/keymaps.lua
+nvim lua/main/keymaps.lua
