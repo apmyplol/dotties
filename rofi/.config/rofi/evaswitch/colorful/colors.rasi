@@ -1,0 +1,10 @@
+/* colors */
+
+* {
+  al:   #00000000;
+  bg:   #916cadff;
+  se:   #FFFFFF11;
+  fg:   #FFFFFFff;
+  ac:   #00FF00FF;
+    sen:  #c500f7ff;
+}

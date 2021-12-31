@@ -400,7 +400,7 @@ globalkeys = gears.table.join(
 
     awful.key({ modkey,           }, "Tab",
     function ()
-        awful.util.spawn("/home/afa/.config/rofi/bin/switcher_misc")
+        awful.util.spawn("/home/afa/.config/rofi/evaswitch/colorful_eva")
     end,
     {description = "change tabs", group = "client"}),
 
