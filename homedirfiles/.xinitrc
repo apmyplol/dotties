@@ -48,14 +48,12 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-export PATH=$PATH:/home/afa/.config/my_scripts
+export PATH=$PATH:$HOME/.config/my_scripts
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
-picom --experimental-backends --config /home/afa/.config/picom.conf &
-nm-applet &
-#volumeicon &
+
+xrandr --output DVI-I-0 --off --output DVI-I-1 --off --output HDMI-0 --primary --mode 1920x1080 --pos 0x623 --rotate normal --output DP-0 --mode 1920x1200 --pos 1920x0 --rotate left --output DP-1 --off --output DVI-D-0 --off &
 fcitx &
-blueman-applet &
 exec awesome
