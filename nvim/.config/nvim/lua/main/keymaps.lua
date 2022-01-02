@@ -26,7 +26,7 @@ keymap("n", "ö", "h", opts)
 -- Normal --
 -- Better window navigation
 -- moving between tabs with ctrl + jklö
-keymap("n", "<C-h>", "<C-w>h", opts)
+keymap("n", "<C-:>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
@@ -39,9 +39,9 @@ keymap("n", "<C-Down>", ":resize -2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
--- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+-- Navigate buffers , someting like tabs in vim
+keymap("n", "<S-j>", ":bnext<CR>", opts)
+keymap("n", "<S-k>", ":bprevious<CR>", opts)
 
 -- Insert --
 -- Press jk fast to enter

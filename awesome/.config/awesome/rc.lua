@@ -43,28 +43,6 @@ require("awful.hotkeys_popup.keys")
         height = 25,                   
     })
 
-    local batteryarc = mystuff.battery_widget({
-        show_current_level = true,
-        arc_thickness = 2,
-        size = beautiful.wibox,
-        timeout = 10,
-        --main stuff
-        arc_main_color = beautiful.standart_on,
-        main_background = beautiful.black,
-        main_text = beautiful.white,
-        -- chargin stuff
-        charging_background = beautiful.black,
-        charging_text = beautiful.white,
-        arc_charging_color = beautiful.eva_green,
-        get_bat_cmd = "cat /sys/class/power_supply/BAT1/capacity /sys/class/power_supply/BAT1/status"
-      })
-
-    local bluetooth = wibox.widget {
-        image  = beautiful.bluetooth_pic,
-        widget = wibox.widget.imagebox
-    }
-      --
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -220,9 +198,8 @@ local taglist_buttons = gears.table.join(
 
 ]]--
 
-
 local function set_wallpaper(s)
-    awful.spawn.with_shell("feh --bg-fill --randomize /home/afa/SynologyDrive/BG/*")
+    awful.spawn.with_shell("feh --bg-fill $HOME/SynologyDrive/BG/random/eva_2.jpg --bg-max $HOME/SynologyDrive/BG/tate/eva_3.jpg")
 end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
@@ -286,11 +263,9 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             volumearc,
-            bluetooth,
             --mykeyboardlayout,
             -- TODO something with systray
             wibox.widget.systray(),
-            batteryarc,
             --s.mylayoutbox,
         },
     }
