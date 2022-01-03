@@ -15,7 +15,8 @@ local beautiful = require("beautiful")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/home/afa/.config/awesome/themes/default/theme.lua")
+-- TODO: replace path with relative path 
+beautiful.init("/home/afa/.config/awesome/themes/evatheme.lua")
 
 
 
@@ -222,6 +223,7 @@ local taglist_buttons = gears.table.join(
 
 
 local function set_wallpaper(s)
+    -- TODO: copy images to awesome path and replace with relative path
     awful.spawn.with_shell("feh --bg-fill --randomize /home/afa/SynologyDrive/BG/*")
 end
 
@@ -400,6 +402,7 @@ globalkeys = gears.table.join(
 
     awful.key({ modkey,           }, "Tab",
     function ()
+        -- TODO: replace with relative path
         awful.util.spawn("/home/afa/.config/rofi/evaswitch/colorful_eva")
     end,
     {description = "change tabs", group = "client"}),
@@ -410,6 +413,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "c",     function () awful.util.spawn("rofi -show run") end,
     {description = "run prompt", group = "launcher"}),
 
+        -- TODO: replace with relative path
             awful.key({ modkey },            "r",     function () awful.util.spawn("/home/afa/.config/rofi/evaribbon/launcher.sh") end,
                     {description = "run application prompt", group = "launcher"}),
                     
@@ -706,6 +710,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 --autostart apps
 awful.spawn.with_shell("pgrep -l cloud || synology-drive")
+-- TODO: replace with relative path
 awful.spawn.with_shell("pgrep -l picom || picom --experimental-backends --config /home/afa/.config/picom.conf")
 --awful.spawn.with_shell("nitrogen --random /home/afa/BG")
 --awful.spawn.with_shell("nm-applet")
