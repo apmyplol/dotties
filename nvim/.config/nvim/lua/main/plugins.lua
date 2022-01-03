@@ -75,7 +75,8 @@ return packer.startup(function(use)
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
   
   use "benfowler/telescope-luasnip.nvim"  -- Luasnip integration for telescope
-  
+
+  use "norcalli/nvim-colorizer.lua" -- Colorizer to see fancy colors when writing code
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
