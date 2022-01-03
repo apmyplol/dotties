@@ -20,10 +20,9 @@ theme.clock_extra_fg = theme.standart_on
 theme.clock_extra_bg = theme.eva_green
 
 -- mystuff
-theme.standart_on = "#c500f7"
+theme.standart_on = "#c500f9"
 theme.standart_off = "#000000"
 theme.eva_green = "#00FF00"--"#A2DA5A" --"#AEF359"
-theme.bluetooth_pic = "/home/afa/.config/awesome/mystuff/2x/baseline_bluetooth_black_24dp.png"
 
 theme.black = "#000000"
 theme.white = "#FFFFFF"
@@ -36,7 +35,7 @@ theme.bg_urgent     = "#ff0000"  -- Wenn auf einem Desktop was urgentes aufkommt
 theme.bg_minimize   = "#444444" -- Keine Ahnung lol
 
 -- TODO REMOVE SYSTRAY or add toggle trick
-theme.bg_systray    = "#FF0000"
+theme.bg_systray    = "#FF000000"
 
 theme.wibar_bg = theme.transp
 
