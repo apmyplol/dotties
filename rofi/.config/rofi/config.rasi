@@ -1,6 +1,8 @@
 /** Basic config file **/
 
 configuration {
+  cycle: true;
   show-icons:         true;
   icon-theme:         "Papirus";
+  kb-accept-entry:    "Return,KP_Enter,Super_L";
 }
