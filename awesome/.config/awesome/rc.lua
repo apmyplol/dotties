@@ -41,7 +41,7 @@ require("awful.hotkeys_popup.keys")
         dec_volume_cmd=DEC_VOLUME,
         tog_volume_cmd=TOG_VOLUME,
         thickness = 12.5,
-        height = 25,                   
+        height = 25,
     })
 
     local batteryarc = mystuff.battery_widget({
@@ -92,16 +92,16 @@ end
 -- }}}
 
 -- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
-editor = os.getenv("subl") or "editor"
-editor_cmd = terminal .. " -e " .. editor
+local terminal = "alacritty"
+local editor = os.getenv("subl") or "editor"
+local editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+local modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -126,52 +126,36 @@ awful.layout.suit.corner.nw,
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-myawesomemenu = {
-{ "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-{ "manual", terminal .. " -e man awesome" },
-{ "edit config", editor_cmd .. " " .. awesome.conffile },
-{ "restart", awesome.restart },
-{ "quit", function() awesome.quit() end },
+local myawesomemenu = {
+    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+    { "manual", terminal .. " -e man awesome" },
+    { "edit config", editor_cmd .. " " .. awesome.conffile },
+    { "restart", awesome.restart },
+    { "quit", function() awesome.quit() end },
 }
-
+--[[ was unused
 local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
 local menu_terminal = { "open terminal", terminal }
-
--- Auskommentiert!!!
---if has_fdo then
---    mymainmenu = freedesktop.menu.build({
---        before = { menu_awesome },
---        after =  { menu_terminal }
---    })
---else
---    mymainmenu = awful.menu({
---        items = {
---                  menu_awesome,
-	--                  { "Debian", debian.menu.Debian_menu.Debian },
---                  menu_terminal,
---                }
---    })
---end
-
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 			     menu = mymainmenu })
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
 
+menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+
+--]]
 -- Keyboard map indicator and switcher
 --mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock("<big>" .. mystuff.clock.get_current_day_of_week_in_kanji() .. "  %H時%M分</big>")
+local mytextclock = wibox.widget.textclock("<big>" .. mystuff.clock.get_current_day_of_week_in_kanji() .. "  %H時%M分</big>")
 
 
 mytextclock:connect_signal('mouse::enter', function(self)
-self.format ="<big><span foreground='" .. beautiful.standart_on .. "' background='" .. beautiful.eva_green .. "'>" .. mystuff.clock.get_current_month_in_kanji() 
-..  "%d日 </span>  " .. mystuff.clock.get_current_day_of_week_in_kanji() .. "  %H時%M分</big>"
+    self.format ="<big><span foreground='" .. beautiful.standart_on .. "' background='" .. beautiful.eva_green .. "'>" .. mystuff.clock.get_current_month_in_kanji()
+    ..  "%d日 </span>  " .. mystuff.clock.get_current_day_of_week_in_kanji() .. "  %H時%M分</big>"
 end)
 
 mytextclock:connect_signal('mouse::leave', function(self)
@@ -270,9 +254,8 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, visible = true, opacity="1", height=beautiful.wibox})
 
-    
     -- Add widgets to the wibox
-    
+
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         expand = "none",
@@ -308,7 +291,7 @@ root.buttons(gears.table.join(
 -- }}}
 
 -- {{{ Key bindings
-globalkeys = gears.table.join(
+local globalkeys = gears.table.join(
     -- Random
         awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
                 {description="show help", group="awesome"}),
@@ -407,7 +390,6 @@ globalkeys = gears.table.join(
     end,
     {description = "change tabs", group = "client"}),
 
-    
     -- Prompt
 
     awful.key({ modkey },            "c",     function () awful.util.spawn("rofi -show run") end,
@@ -416,25 +398,23 @@ globalkeys = gears.table.join(
         -- TODO: replace with relative path
             awful.key({ modkey },            "r",     function () awful.util.spawn("/home/afa/.config/rofi/evaribbon/launcher.sh") end,
                     {description = "run application prompt", group = "launcher"}),
-                    
 
-    --        awful.key({ modkey }, "x",
-    --                function ()
-    --                    awful.prompt.run {
-    --                        prompt       = "Run Lua code: ",
-    --                        textbox      = awful.screen.focused().mypromptbox.widget,
-    --                        exe_callback = awful.util.eval,
-    --                        history_path = awful.util.get_cache_dir() .. "/history_eval"
-    --                   }
-    --                end,
-    --               {description = "lua execute prompt", group = "awesome"}),
-    --
+    --[[      awful.key({ modkey }, "x",
+                    function ()
+                        awful.prompt.run {
+                            prompt       = "Run Lua code: ",
+                            textbox      = awful.screen.focused().mypromptbox.widget,
+                            exe_callback = awful.util.eval,
+                            history_path = awful.util.get_cache_dir() .. "/history_eval"
+                       }
+                    end,
+                  {description = "lua execute prompt", group = "awesome"}),
 
 
     -- Menubar
-    --awful.key({ modkey }, "p", function() menubar.show() end,
-    --          {description = "show the menubar", group = "launcher"}),
-
+    awful.key({ modkey }, "p", function() menubar.show() end,
+              {description = "show the menubar", group = "launcher"}),
+    --]]
 
 
     -- Brightness
@@ -459,7 +439,7 @@ globalkeys = gears.table.join(
         {description="lower volume", group="media"}),
 
     -- music control
-    awful.key({}, "XF86AudioPause",
+    awful.key({}, "XF86AudioPlay",
         function () awful.spawn("playerctl play-pause") end,
         {description="play/pause", group = "media"}),
     awful.key({}, "XF86AudioNext",
@@ -471,7 +451,7 @@ globalkeys = gears.table.join(
 
 )
 
-clientkeys = gears.table.join(
+local clientkeys = gears.table.join(
     awful.key({ modkey,           }, "f",
         function (c)
             c.fullscreen = not c.fullscreen
@@ -565,7 +545,7 @@ for i = 1, 9 do
     )
 end
 
-clientbuttons = gears.table.join(
+local clientbuttons = gears.table.join(
     awful.button({ }, 1, function (c)
         c:emit_signal("request::activate", "mouse_click", {raise = true})
     end),
@@ -637,8 +617,8 @@ awful.rules.rules = {
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+     { rule = { class = "discord" },
+       properties = { screen = 1, tag = "玖" } },
 }
 -- }}}
 
