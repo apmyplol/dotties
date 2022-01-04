@@ -51,9 +51,9 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs" -- autocomplete for ( { [
 
   -- File explorer and telescope for search
-  use "kyazdani42/nvim-web-devicons" 
+  use "kyazdani42/nvim-web-devicons"
   use {"kyazdani42/nvim-tree.lua", requires="nvim-web-devicons"}
-  
+
   -- Telescope
   use "nvim-telescope/telescope.nvim"
   -- use "nvim-telescope/telescope-media-files.nvim"
@@ -62,21 +62,31 @@ return packer.startup(function(use)
   use "akinsho/bufferline.nvim"
 
   use "moll/vim-bbye" -- for :Bdelete
-  
+
     -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
+  use "hrsh7th/cmp-nvim-lsp" -- cmdline completions
+  use "hrsh7th/cmp-nvim-lua" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
 
     -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
-  
+
   use "benfowler/telescope-luasnip.nvim"  -- Luasnip integration for telescope
 
   use "norcalli/nvim-colorizer.lua" -- Colorizer to see fancy colors when writing code
+
+  use "ggandor/lightspeed.nvim" -- for quick jumping around files
+
+  -- LSP for code completion and definitions etc
+  use "neovim/nvim-lspconfig"
+  use "williamboman/nvim-lsp-installer"
+
+  use "lewis6991/gitsigns.nvim" -- for git information, added/deleted stuff and see changes while file is opened
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
