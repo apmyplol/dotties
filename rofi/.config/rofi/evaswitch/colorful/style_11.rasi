@@ -43,7 +43,7 @@ prompt {
 
 textbox-prompt-colon {
 	padding: 						1.40% 0% 1% 0%;
-	background-color: 				@se;
+	background-color: 				@sen;
 	text-color: 					@fg;
 	expand: false;
 	str: " :: ";
@@ -55,14 +55,14 @@ entry {
     placeholder-color:              @fg;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "Search";
+    placeholder:                    "検索";
 	padding: 						1.5% 0.5% 1% 0%;
     blink:                          true;
 }
 
 inputbar {
 	children: 						[ prompt, textbox-prompt-colon, entry ];
-    background-color:               @se;
+    background-color:               @sen;
     text-color:                     @fg;
     expand:                         false;
 	border:							0% 0% 0% 0%;
@@ -76,7 +76,6 @@ listview {
     columns:                        3;
     lines:                          8;
     spacing:                       	1%;
-    cycle:                          false;
     dynamic:                        true;
     layout:                         vertical;
 }
@@ -106,9 +105,9 @@ element-icon {
     vertical-align:                 0.5;
     size:                           24px;
     border:                         1%;
-    border-color:                  	@sen;
+    border-color:                  	@bg;
     border-radius:                  0px;
-    background-color:               @sen;
+    background-color:               @bg;
 }
 
 element-text {
@@ -130,4 +129,5 @@ element selected {
 
 element-icon selected {
   border-color:  @ac;
+  background-color: @ac;
 }
