@@ -46,7 +46,7 @@ entry {
     placeholder-color:              @bg;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "Search";
+    placeholder:                    "検索";
     padding:                        0.10% 0% 0% 0%;
     blink:                          true;
 }
@@ -69,7 +69,6 @@ listview {
     columns:                        1;
     lines:                          5;
     spacing:                        0%;
-    cycle:                          false;
     dynamic:                        true;
     layout:                         vertical;
 }
@@ -110,10 +109,9 @@ element-text {
     margin:                         0% 0.25% 0% 0.25%;
 }
 
+
 element selected {
-    background-color:               @se;
-    text-color:                     @fg;
-	border:							0% 0% 0% 0%;
-    border-radius:                  0px;
-    border-color:                  	@bg;
+    text-color:                     @ac;
+    border-color:                  	@ac;
 }
+

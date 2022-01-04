@@ -43,11 +43,7 @@ EOF
 
 # comment these lines to disable random style
 themes=($(ls -p --hide="colors.rasi" $dir))
-theme="${themes[$(( $RANDOM % 8 ))]}"
-#theme="${themes[5]}"
-
-echo $theme
-
-
+theme="${themes[$(( $RANDOM % 7 ))]}"
+#theme="${themes[6]}"
 
 rofi -no-lazy-grab -show windowcd -modi windowcd -theme $dir/"$theme"

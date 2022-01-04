@@ -36,25 +36,25 @@ prompt {
     enabled: 						true;
 	padding: 						0.30% 1% 0% -0.5%;
 	background-color: 				@al;
-	text-color: 					@bg;
+	text-color: 					@fg;
 	font:							"FantasqueSansMono Nerd Font 12";
 }
 
 entry {
-    background-color:               @al;
-    text-color:                     @bg;
-    placeholder-color:              @bg;
+    background-color:               @sen;
+    text-color:                     @fg;
+    placeholder-color:              @fg;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "Search";
+    placeholder:                    "検索";
     padding:                        0.10% 0% 0% 0%;
     blink:                          true;
 }
 
 inputbar {
 	children: 						[ prompt, entry ];
-    background-color:               @fg;
-    text-color:                     @bg;
+    background-color:               @sen;
+    text-color:                     @fg;
     expand:                         false;
 	border:							0% 0% 0% 0%;
     border-radius:                  0px;
@@ -69,7 +69,6 @@ listview {
     columns:                        2;
     lines:                          10;
     spacing:                        0%;
-    cycle:                          false;
     dynamic:                        true;
     layout:                         vertical;
 }
