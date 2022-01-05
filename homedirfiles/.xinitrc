@@ -54,6 +54,12 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
+# Set stuff for Wacom driver
+# TODO: add keyboard shortcuts and change mouse middle button behaviour
+xsetwacom set "Wacom Graphire3 Pen eraser" Mode "Relative"
+xsetwacom set "Wacom Graphire3 Pen eraser" Area 0 0 20416 14848
+xsetwacom set "Wacom Graphire3 Pen stylus" Mode "Relative"
+xsetwacom set "Wacom Graphire3 Pen stylus" Area 0 0 20416 14848
 
 xrandr --output DVI-I-0 --off --output DVI-I-1 --off --output HDMI-0 --primary --mode 1920x1080 --pos 0x623 --rotate normal --output DP-0 --mode 1920x1200 --pos 1920x0 --rotate left --output DP-1 --off --output DVI-D-0 --off &
 fcitx &
