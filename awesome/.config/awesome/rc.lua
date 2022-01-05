@@ -84,21 +84,21 @@ local modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
 awful.layout.suit.tile,
-awful.layout.suit.floating,
---[[awful.layout.suit.tile.left,
-awful.layout.suit.tile.bottom,
-awful.layout.suit.tile.top,
-awful.layout.suit.fair,
-awful.layout.suit.fair.horizontal,
 awful.layout.suit.spiral,
-awful.layout.suit.spiral.dwindle,
-awful.layout.suit.max,
-awful.layout.suit.max.fullscreen,
-awful.layout.suit.magnifier,
-awful.layout.suit.corner.nw,
+-- awful.layout.suit.corner.nw,
+awful.layout.suit.floating,
+-- awful.layout.suit.tile.left,
+-- awful.layout.suit.tile.bottom,
+-- awful.layout.suit.tile.top,
+-- awful.layout.suit.fair,
+-- awful.layout.suit.fair.horizontal,
+-- awful.layout.suit.spiral.dwindle,
+-- awful.layout.suit.max,
+-- awful.layout.suit.max.fullscreen,
+-- awful.layout.suit.magnifier,
 -- awful.layout.suit.corner.ne,
 -- awful.layout.suit.corner.sw,
--- awful.layout.suit.corner.se,--]]
+-- awful.layout.suit.corner.se,
 }
 -- }}}
 
@@ -305,17 +305,6 @@ local globalkeys = gears.table.join(
                 {description = "focus the previous screen", group = "screen"}),
         awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
                 {description = "jump to urgent client", group = "client"}),
-        --awful.key({modkey}, "o", awful.client.movetoscreen, {description="send client to other screen", group="screen"}),
-        --awful.key({ modkey,           }, "Tab",
-        --    function ()
-        --        awful.client.focus.history.previous()
-        --        if client.focus then
-        --            client.focus:raise()
-        --        end
-        --    end,
-        --    {description = "go back", group = "client"}),
-    --
-
 
     -- Standard program
         awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
@@ -325,17 +314,17 @@ local globalkeys = gears.table.join(
         awful.key({ modkey, "Shift"   }, "q", awesome.quit,
                 {description = "quit awesome", group = "awesome"}),
 
-        awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
+        awful.key({ modkey,           }, "u",     function () awful.tag.incmwfact( 0.05)          end,
                 {description = "increase master width factor", group = "layout"}),
-        awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
+        awful.key({ modkey,           }, "i",     function () awful.tag.incmwfact(-0.05)          end,
                 {description = "decrease master width factor", group = "layout"}),
-        awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
+        awful.key({ modkey, "Shift"   }, "u",     function () awful.tag.incnmaster( 1, nil, true) end,
                 {description = "increase the number of master clients", group = "layout"}),
-        awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1, nil, true) end,
+        awful.key({ modkey, "Shift"   }, "i",     function () awful.tag.incnmaster(-1, nil, true) end,
                 {description = "decrease the number of master clients", group = "layout"}),
-        awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,
+        awful.key({ modkey, "Control" }, "u",     function () awful.tag.incncol( 1, nil, true)    end,
                 {description = "increase the number of columns", group = "layout"}),
-        awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
+        awful.key({ modkey, "Control" }, "i",     function () awful.tag.incncol(-1, nil, true)    end,
                 {description = "decrease the number of columns", group = "layout"}),
         awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
                 {description = "select next", group = "layout"}),
