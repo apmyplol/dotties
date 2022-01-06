@@ -82,4 +82,4 @@ keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require
 keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 
 -- open current file latex preview
-keymap("n", "<leader>l", "<cmd>lua require'main.smallstuff'.latex()<cr>", opts)
+keymap("n", "<leader>l", "<cmd>lua require'main.keymapfunctions'.latex()<cr>", opts)
