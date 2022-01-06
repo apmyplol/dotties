@@ -1,0 +1,202 @@
+{
+    "math": {
+      "prefix": "math",
+      "body": "$$ $end$ $$"
+    },
+    "frac": {
+      "prefix": "frac",
+      "body": "\\\\frac{$1 }{$2 }$3"
+    },
+    "cdot": {
+      "prefix": "cdot",
+      "body": "\\\\cdot $1"
+    },
+    "sum": {
+      "prefix": "sum",
+      "body": "\\\\sum_{$1 }^{$2 }$3"
+    },
+    "quad": {
+      "prefix": "quad",
+      "body": "\\\\quad$1"
+    },
+    "root": {
+      "prefix": "root",
+      "body": "\\\\sqrt[$1 ]{$2 }$3"
+    },
+    "bar": {
+      "prefix": "bar",
+      "body": "\\\\bar$1"
+    },
+    "text": {
+      "prefix": "text",
+      "body": "\\\\text{$1 }$2"
+    },
+    "choose": {
+      "prefix": "choose",
+      "body": "{$1 \\\\choose $2 } $3"
+    },
+    "epsilon": {
+      "prefix": "epsilon",
+      "body": "\\\\varepsilon"
+    },
+    "exists": {
+      "prefix": "exists",
+      "body": "\\\\exists$1"
+    },
+    "in": {
+      "prefix": "in",
+      "body": "\\\\in$end$"
+    },
+    "natnum": {
+      "prefix": "natnum",
+      "body": "\\\\mathbb{N}$1"
+    },
+    "bold": {
+      "prefix": "bold",
+      "body": "\\\\mathbb{$1 }$2"
+    },
+    "lim": {
+      "prefix": "lim",
+      "body": "\\\\lim_{$1 \\\\rightarrow \\\\infty$2 } $3"
+    },
+    "nin": {
+      "prefix": "nin",
+      "body": "\\\\notin $end$"
+    },
+    "inf": {
+      "prefix": "inf",
+      "body": "\\\\infty $end$"
+    },
+    "begin": {
+      "prefix": "begin",
+      "body": "\\\\begin{$1} $2 \\\\end{$3}"
+    },
+    "cases": {
+      "prefix": "cases",
+      "body": "\\\\begin{cases}  $1 \\\\\\\\ $2 \\\\end{cases}"
+    },
+    "abs": {
+      "prefix": "abs",
+      "body": "\\\\Big | $1 \\\\Big |$2"
+    },
+    "cup": {
+      "prefix": "cup",
+      "body": "\\\\cup $1"
+    },
+    "cap": {
+      "prefix": "cap",
+      "body": "\\\\cap $1"
+    },
+    "align": {
+      "prefix": "align",
+      "body": "$$ \\\\n\\\\begin{align*}\\\\n $1\\\\n\\\\end{align*}\\\\n $$"
+    },
+    "big": {
+      "prefix": "big",
+      "body": "\\\\Big$1 $2 \\\\Big$3"
+    },
+    "gleich": {
+      "prefix": "gleich",
+      "body": "\\\\Leftrightarrow$end$"
+    },
+    "nach": {
+      "prefix": "nach",
+      "body": "\\\\rightarrow$end$"
+    },
+    "partial": {
+      "prefix": "partial",
+      "body": "\\\\partial$end$"
+    },
+    "rot": {
+      "prefix": "rot",
+      "body": "<font color=red>$1</font>$2"
+    },
+    "farbe": {
+      "prefix": "farbe",
+      "body": "<font color=$1>$2</font>$3"
+    },
+    "color": {
+      "prefix": "color",
+      "body": "\\\\textcolor{$1 }{$2 }"
+    },
+    "teil": {
+      "prefix": "teil",
+      "body": "\\\\subset$end$"
+    },
+    "kleiner": {
+      "prefix": "kleiner",
+      "body": "\\\\leq $end$"
+    },
+    "größer": {
+      "prefix": "größer",
+      "body": "\\\\geq $end$"
+    },
+    "overline": {
+      "prefix": "overline",
+      "body": "\\\\overline{$1 } $2"
+    },
+    "xi": {
+      "prefix": "xi",
+      "body": "\\\\xi$end$"
+    },
+    "r": {
+      "prefix": "r",
+      "body": "\\\\mathbb{R}^{$1 }$2"
+    },
+    "alf": {
+      "prefix": "alf",
+      "body": "\\\\alpha $end$"
+    },
+    "bet": {
+      "prefix": "bet",
+      "body": "\\\\beta $end$"
+    },
+    "also": {
+      "prefix": "also",
+      "body": "\\\\Rightarrow $end$"
+    },
+    "unten": {
+      "prefix": "unten",
+      "body": "\\\\underset{$1 }{$2 } $3"
+    },
+    "oben": {
+      "prefix": "oben",
+      "body": "\\\\overset{$1 }{$2 } $3"
+    },
+    "phi": {
+      "prefix": "phi",
+      "body": "\\\\phi $1"
+    },
+    "gamma": {
+      "prefix": "gamma",
+      "body": "\\\\gamma $1"
+    },
+    "psi": {
+      "prefix": "psi",
+      "body": "\\\\psi $1"
+    },
+    "kla": {
+      "prefix": "kla",
+      "body": "{ $1 } $2"
+    },
+    "ind": {
+      "prefix": "ind",
+      "body": "_{ $1 } $2"
+    },
+    "hoch": {
+      "prefix": "hoch",
+      "body": "^{  $1  } $2"
+    },
+    "tilde": {
+      "prefix": "tilde",
+      "body": "\\\\tilde $1"
+    },
+    "z0": {
+      "prefix": "z0",
+      "body": "z_{0 $1 } $2"
+    },
+    "int": {
+      "prefix": "int",
+      "body": "\\\\int_{ $1 }^{$2 } $3 \\\\,$4"
+    }
+}
