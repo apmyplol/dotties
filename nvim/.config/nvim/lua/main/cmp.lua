@@ -10,6 +10,8 @@ end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
+require("luasnip.loaders.from_vscode").load({paths = "~/.config/nvim/snippets/"})
+
 local check_backspace = function()
   local col = vim.fn.col "." - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
