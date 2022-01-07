@@ -1,4 +1,10 @@
-require'colorizer'.setup(
+local cmp_status_ok, colorizer = pcall(require, "colorizer")
+if not cmp_status_ok then
+  return
+end
+
+
+colorizer.setup(
   {'*';},
   {
     RGB      = true;         -- #RGB hex codes
