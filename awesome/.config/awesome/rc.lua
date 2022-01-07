@@ -16,7 +16,7 @@ local beautiful = require("beautiful")
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 -- TODO: replace path with relative path 
-beautiful.init("/home/afa/.config/awesome/themes/evatheme.lua")
+beautiful.init("/home/afa/.config/awesome/evatheme/evatheme.lua")
 
 
 
@@ -208,7 +208,7 @@ local taglist_buttons = gears.table.join(
 
 local function set_wallpaper(s)
     -- TODO: copy images to awesome path and replace with relative path
-    awful.spawn.with_shell("feh --bg-fill --randomize /home/afa/SynologyDrive/BG/*")
+    awful.spawn.with_shell("feh --bg-fill $HOME/.config/awesome/evatheme/evaunit01.jpg")
 end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
