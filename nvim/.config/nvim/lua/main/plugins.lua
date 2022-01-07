@@ -88,7 +88,9 @@ return packer.startup(function(use)
 
   use "lewis6991/gitsigns.nvim" -- for git information, added/deleted stuff and see changes while file is opened
 
-  use { 'donRaphaco/neotex', ft =  {'tex' }} -- latex support
+  use { 'lervag/vimtex', ft =  {'tex' }} -- latex support
+
+  use "akinsho/toggleterm.nvim"  -- toggle terminal for nvim
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
