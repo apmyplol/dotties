@@ -8,7 +8,7 @@ if not snip_status_ok then
   return
 end
 
-require("luasnip/loaders/from_vscode").lazy_load()
+-- require("luasnip/loaders/from_vscode").lazy_load()
 
 require("luasnip.loaders.from_vscode").load({paths = "~/.config/nvim/snippets/"})
 
@@ -106,7 +106,7 @@ cmp.setup {
         nvim_lsp = "[LSP]",
         nvim_lua = "[LUA]",
         luasnip = "[Snippet]",
-        buffer = "[Buffer]",
+--        buffer = "[Buffer]",
         path = "[Path]",
       })[entry.source.name]
       return vim_item
@@ -116,7 +116,7 @@ cmp.setup {
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "luasnip" },
-    { name = "buffer" },
+-- --   { name = "buffer" },
     { name = "path" },
   },
   confirm_opts = {
