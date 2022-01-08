@@ -5,4 +5,11 @@ M.latex = function()
   vim.cmd("! zathura " .. file .. " &")
 end
 
+M.luasnipchoose = function(i)
+  local ls = require "luasnip"
+  if ls.choice_active() then
+    ls.change_choice(i)
+  end
+end
+
 return M

@@ -83,3 +83,7 @@ keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 
 -- open current file latex preview
 keymap("n", "<leader>l", "<cmd>lua require'main.keymapfunctions'.latex()<cr>", opts)
+
+-- keymap for chose-nodes in luasnip
+keymap("i", "<C-k>", "<cmd>lua require 'main.keymapfunctions'.luasnipchoose(-1)<cr>", opts)
+keymap("i", "<C-j>", "<cmd>lua require 'main.keymapfunctions'.luasnipchoose(1)<cr>", opts)
