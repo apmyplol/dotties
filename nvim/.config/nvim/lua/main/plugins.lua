@@ -90,6 +90,9 @@ return packer.startup(function(use)
 
   use { 'lervag/vimtex', ft =  {'tex' }} -- latex support
 
+  -- never fotget keybindings again (hopefully)
+  use "folke/which-key.nvim"
+
   use "akinsho/toggleterm.nvim"  -- toggle terminal for nvim
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
