@@ -94,6 +94,11 @@ return packer.startup(function(use)
   use "folke/which-key.nvim"
 
   use "akinsho/toggleterm.nvim"  -- toggle terminal for nvim
+
+  use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate",} -- treeesitter for better syntax highlighting
+  use "p00f/nvim-ts-rainbow" -- color for parenthesis
+  use "nvim-treesitter/playground" -- for developing color scheeemeee yeee
+  use "folke/tokyonight.nvim"
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
