@@ -150,83 +150,41 @@ font:
   #use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
+custom_cursor_colors: true
 draw_bold_text_with_bright_colors: true
-
-# Colors (Tomorrow Night Bright)
-
 # Base16 Eva - alacritty color config
 # kjakapat (https://github.com/kjakapat)
 colors:
   # Default colors
   primary:
-    background: '0x2a3b4d'
-    foreground: '0x9fa2a6'
-
+    background: '#4d427d'   # '#554866'
+    foreground: '#ACACAC'
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x2a3b4d'
-    cursor: '0x9fa2a6'
+    text: '#FFFFFF'
+    cursor: '#00FF00'
 
   # Normal colors
   normal:
-    black:   '0x2a3b4d'
-    red:     '0xc4676c'
-    green:   '0x66ff66'
-    yellow:  '0xffff66'
-    blue:    '0x15f4ee'
-    magenta: '0x9c6cd3'
-    cyan:    '0x4b8f77'
-    white:   '0x9fa2a6'
+    black:   '#2a3b4d'
+    red:     '#FF0000'
+    green:   '#00ff00'
+    yellow:  '#FFFF66'
+    blue:    '#A462FA'
+    magenta: '#FFFFFF'
+    cyan:    '#ff8c28'
+    white:   '#FFFFFF' 
 
   # Bright colors
   bright:
-    black:   '0x55799c'
-    red:     '0xff9966'
-    green:   '0x3d566f'
-    yellow:  '0x4b6988'
-    blue:    '0x7e90a3'
-    magenta: '0xd6d7d9'
-    cyan:    '0xbb64a9'
-    white:   '0xffffff'
-
-draw_bold_text_with_bright_colors: false
-
-# Base16 Eva - alacritty color config
-# kjakapat (https://github.com/kjakapat)
-colors:
-  # Default colors
-  primary:
-    background: '0x2a3b4d'
-    foreground: '0x9fa2a6'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x2a3b4d'
-    cursor: '0x9fa2a6'
-
-  # Normal colors
-  normal:
-    black:   '0x2a3b4d'
-    red:     '0xc4676c'
-    green:   '0x66ff66'
-    yellow:  '0xffff66'
-    blue:    '0x15f4ee'
-    magenta: '0x9c6cd3'
-    cyan:    '0x4b8f77'
-    white:   '0x9fa2a6'
-
-  # Bright colors
-  bright:
-    black:   '0x55799c'
-    red:     '0xff9966'
-    green:   '0x3d566f'
-    yellow:  '0x4b6988'
-    blue:    '0x7e90a3'
-    magenta: '0xd6d7d9'
-    cyan:    '0xbb64a9'
-    white:   '0xffffff'
-
-draw_bold_text_with_bright_colors: false  
+    black:   '#FF00f2'
+    red:     '#FF0000'
+    green:   '#00ff00'
+    yellow:  '#FFFF66'
+    blue:    '#A462FA'
+    magenta: '#FFFFFF'
+    cyan:    '#ff8c28'
+    white:   '#FFFFFF' 
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
@@ -251,14 +209,13 @@ draw_bold_text_with_bright_colors: false
 #visual_bell:
 #  animation: EaseOutExpo
 #  duration: 0
-#  color: '0xffffff'
+#  color: '#ffffff'
 
 # Background opacity
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
 background_opacity: 0.8
-# background_opacity: 0.80
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -269,18 +226,18 @@ background_opacity: 0.8
 # Allow terminal applications to change Alacritty's window title.
 #dynamic_title: true
 
-#cursor:
+cursor:
   # Cursor style
   #
   # Values for `style`:
   #   - ▇ Block
   #   - _ Underline
   #   - | Beam
-  #style: Block
+  style: Block
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
-  #unfocused_hollow: true
+  unfocused_hollow: true
 
 # Live config reload (changes require restart)
 #live_config_reload: true
@@ -502,11 +459,8 @@ key_bindings:
     # (Windows, Linux, and BSD only)
   - { key: V,         mods: Control|Shift, action: Paste                       }
   - { key: C,         mods: Control|Shift, action: Copy                        }
-  - { key: Insert,    mods: Shift,         action: PasteSelection              }
   - { key: Key0,      mods: Control,       action: ResetFontSize               }
-  - { key: Equals,    mods: Control,       action: IncreaseFontSize            }
   - { key: Plus,      mods: Control,       action: IncreaseFontSize            }
-  - { key: Minus,     mods: Control,       action: DecreaseFontSize            }
   - { key: Minus,     mods: Control,       action: DecreaseFontSize            }
   - { key: F11,       mods: None,          action: ToggleFullscreen            }
   - { key: Paste,     mods: None,          action: Paste                       }
