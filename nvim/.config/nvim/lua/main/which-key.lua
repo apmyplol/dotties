@@ -128,7 +128,10 @@ local mappings = {
       "Diff",
     },
   },
-
+  L = {
+    name = "Latex",
+    l = {"<plug>(vimtex-compile)", "Start latex compile"}
+  },
   l = {
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },

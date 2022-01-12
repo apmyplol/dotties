@@ -71,14 +71,6 @@
       "prefix": "begin",
       "body": "\\begin{$1}\n$0\n\\end{$1}"
     },
-    "cases": {
-      "prefix": "cases",
-      "body": "\\begin{cases}  $1 \\ $2 \\end{cases}"
-    },
-    "abs": {
-      "prefix": "abs",
-      "body": "\\Big | $1 \\Big |$2"
-    },
     "cup": {
       "prefix": "cup",
       "body": "\\cup $1"
@@ -90,10 +82,6 @@
     "align": {
       "prefix": "align",
       "body": "\n\\begin{align*}\n$1\n\\end{align*}\n"
-    },
-    "big": {
-      "prefix": "big",
-      "body": "\\Big$1 $2 \\Big$3"
     },
     "gleich": {
       "prefix": "gleich",
@@ -194,9 +182,4 @@
     "z0": {
       "prefix": "z0",
       "body": "z_{0 $1 } $2"
-    },
-    "int": {
-      "prefix": "int",
-      "body": "\\int_{ $1 }^{$2 } $3 \\,$4"
-    }
-}
+    }}
