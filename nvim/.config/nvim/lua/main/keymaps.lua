@@ -87,3 +87,6 @@ keymap("n", "<leader>l", "<cmd>lua require'main.keymapfunctions'.latex()<cr>", o
 -- keymap for chose-nodes in luasnip
 keymap("i", "<C-k>", "<cmd>lua require 'main.keymapfunctions'.luasnipchoose(-1)<cr>", opts)
 keymap("i", "<C-j>", "<cmd>lua require 'main.keymapfunctions'.luasnipchoose(1)<cr>", opts)
+
+-- vimtex
+keymap("n", "<leader>ll", "<plug>(vimtex-compile)", opts)
