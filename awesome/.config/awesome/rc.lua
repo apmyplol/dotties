@@ -44,6 +44,10 @@ require("awful.hotkeys_popup.keys")
         height = 25,
     })
 
+-- numbers for the taglist
+--local numbers = { "壹", "貳", "參", "肆", "伍", "陸", "漆", "捌", "玖" }
+-- local numbers = { "壱", "弐", "参", "四", "伍", "六", "七", "八", "九" }
+local numbers = { "壱", "弐", "参", "肆", "伍", "陸", "漆", "捌", "玖" }
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -197,7 +201,7 @@ awful.screen.connect_for_each_screen(function(s)
 
 
     -- Each screen has its own tag table.
-    awful.tag({ "壹", "貳", "參", "肆", "伍", "陸", "漆", "捌", "玖" }, s, awful.layout.layouts[1])
+    awful.tag(numbers , s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     -- s.mypromptbox = awful.widget.prompt()
@@ -411,7 +415,14 @@ local globalkeys = gears.table.join(
         {description="next", group="media"}),
     awful.key({}, "XF86AudioPrev",
         function () awful.spawn("playerctl previous") end,
-        {description="previous", group="media"})
+        {description="previous", group="media"}),
+    awful.key({}, "XF86Tools",
+        function () awful.spawn("mpv --player-operation-mode=pseudo-gui") end,
+        {description="run mpv", group="media"}),
+    awful.key({modkey}, "XF86Tools",
+        function () awful.spawn("brave --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod") end,
+        {description="run youtube music", group="media"})
+
 
 )
 
@@ -582,7 +593,9 @@ awful.rules.rules = {
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
      { rule = { class = "discord" },
-       properties = { screen = 1, tag = "玖" } },
+       properties = { screen = 1, tag = numbers[9] } },
+     { rule = { name = "YouTube Music" },
+       properties = { screen = 2, tag = numbers[1], floating = false } },
 }
 -- }}}
 
