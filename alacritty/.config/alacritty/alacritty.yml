@@ -161,7 +161,7 @@ colors:
     foreground: '#ACACAC'
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '#FFFFFF'
+    text: '#000000'
     cursor: '#00FF00'
 
   # Normal colors
