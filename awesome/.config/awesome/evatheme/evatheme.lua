@@ -48,7 +48,7 @@ theme.wibox = 30
 
 theme.useless_gap   = 5
 theme.border_width  = 3
-theme.border_normal = theme.standart_on  -- normal state is purple
+theme.border_normal = "#00000000"  -- normal state is purple
 theme.border_focus  = theme.eva_green--"#AEF359" focused window is green
 theme.border_marked = "#91231c" -- Keine Ahnung
 
