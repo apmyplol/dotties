@@ -1,0 +1,6 @@
+# TODO: add keyboard shortcuts 
+
+xsetwacom set "Wacom Graphire3 Pen stylus" Mode "Relative"
+xsetwacom set "Wacom Graphire3 Pen stylus" Area 0 0 40832 29692
+xsetwacom set "Wacom Graphire3 Pen eraser" Mode "Relative"
+xsetwacom set "Wacom Graphire3 Pen eraser" Area 0 0 40832 29692
