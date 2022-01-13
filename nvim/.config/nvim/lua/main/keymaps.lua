@@ -50,6 +50,7 @@ keymap("i", "jk", "<ESC>", opts)
 
 -- W um word zurück zu springen
 keymap("n", "W", "b", opts)
+keymap("v", "W", "b", opts)
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
