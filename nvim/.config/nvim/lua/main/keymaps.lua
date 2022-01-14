@@ -50,6 +50,7 @@ keymap("i", "jk", "<ESC>", opts)
 
 -- W um word zurück zu springen
 keymap("n", "W", "b", opts)
+keymap("v", "W", "b", opts)
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
@@ -83,3 +84,10 @@ keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 
 -- open current file latex preview
 keymap("n", "<leader>l", "<cmd>lua require'main.keymapfunctions'.latex()<cr>", opts)
+
+-- keymap for chose-nodes in luasnip
+keymap("i", "<C-k>", "<cmd>lua require 'main.keymapfunctions'.luasnipchoose(-1)<cr>", opts)
+keymap("i", "<C-j>", "<cmd>lua require 'main.keymapfunctions'.luasnipchoose(1)<cr>", opts)
+
+-- vimtex
+keymap("n", "<leader>ll", "<plug>(vimtex-compile)", opts)

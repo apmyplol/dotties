@@ -90,7 +90,18 @@ return packer.startup(function(use)
 
   use { 'lervag/vimtex', ft =  {'tex' }} -- latex support
 
+  -- never fotget keybindings again (hopefully)
+  use "folke/which-key.nvim"
+
   use "akinsho/toggleterm.nvim"  -- toggle terminal for nvim
+
+  use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate",} -- treeesitter for better syntax highlighting
+  use "p00f/nvim-ts-rainbow" -- color for parenthesis
+  use "nvim-treesitter/playground" -- for developing color scheeemeee yeee
+  use "folke/tokyonight.nvim"
+
+  -- use {"vimwiki/vimwiki", ft = {"markdown"}}
+  -- use "junegunn/goyo.vim"
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

@@ -44,28 +44,10 @@ require("awful.hotkeys_popup.keys")
         height = 25,
     })
 
-    local batteryarc = mystuff.battery_widget({
-        show_current_level = true,
-        arc_thickness = 2,
-        size = beautiful.wibox,
-        timeout = 10,
-        --main stuff
-        arc_main_color = beautiful.standart_on,
-        main_background = beautiful.black,
-        main_text = beautiful.white,
-        -- chargin stuff
-        charging_background = beautiful.black,
-        charging_text = beautiful.white,
-        arc_charging_color = beautiful.eva_green,
-        get_bat_cmd = "cat /sys/class/power_supply/BAT1/capacity /sys/class/power_supply/BAT1/status"
-      })
-
-    local bluetooth = wibox.widget {
-        image  = beautiful.bluetooth_pic,
-        widget = wibox.widget.imagebox
-    }
-      --
-
+-- numbers for the taglist
+--local numbers = { "壹", "貳", "參", "肆", "伍", "陸", "漆", "捌", "玖" }
+-- local numbers = { "壱", "弐", "参", "四", "伍", "六", "七", "八", "九" }
+local numbers = { "壱", "弐", "参", "肆", "伍", "陸", "漆", "捌", "玖" }
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -205,7 +187,6 @@ local taglist_buttons = gears.table.join(
 
 ]]--
 
-
 local function set_wallpaper(s)
     -- TODO: copy images to awesome path and replace with relative path
     awful.spawn.with_shell("feh --bg-fill $HOME/.config/awesome/evatheme/evaunit01.jpg")
@@ -220,7 +201,7 @@ awful.screen.connect_for_each_screen(function(s)
 
 
     -- Each screen has its own tag table.
-    awful.tag({ "壹", "貳", "參", "肆", "伍", "陸", "漆", "捌", "玖" }, s, awful.layout.layouts[1])
+    awful.tag(numbers , s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     -- s.mypromptbox = awful.widget.prompt()
@@ -271,11 +252,9 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             volumearc,
-            bluetooth,
             --mykeyboardlayout,
             -- TODO something with systray
             wibox.widget.systray(),
-            batteryarc,
             --s.mylayoutbox,
         },
     }
@@ -436,7 +415,14 @@ local globalkeys = gears.table.join(
         {description="next", group="media"}),
     awful.key({}, "XF86AudioPrev",
         function () awful.spawn("playerctl previous") end,
-        {description="previous", group="media"})
+        {description="previous", group="media"}),
+    awful.key({}, "XF86Tools",
+        function () awful.spawn("mpv --player-operation-mode=pseudo-gui") end,
+        {description="run mpv", group="media"}),
+    awful.key({modkey}, "XF86Tools",
+        function () awful.spawn("brave --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod") end,
+        {description="run youtube music", group="media"})
+
 
 )
 
