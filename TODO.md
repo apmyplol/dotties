@@ -3,13 +3,8 @@
 + Set nvim keybindings
 
 #  Snippets todo
-+ add i,k,n to exponent/subscript choose block
-+ add "something h bla" as regex for $something^{bla}$ and same for "something s bla"
++ <font color=red>fix bug which causes single numbers to disappear, e.g. "3<Tab>"</font>
 + add choose node for intervals where I should be able to choose from [], [), (], () and regex could be "i bla bla"
-+ add \mathcal
-+ add / for fractions
-+ add _ for longer subscripts and ^ for longer superscripts
-+ add \prod
 + add greek letters
 + add hotkey for todo for links in obsidian or find plugin for linking
 + add \backslash
