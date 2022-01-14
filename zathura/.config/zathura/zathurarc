@@ -1,0 +1,6 @@
+set default-bg "#4D427D"
+set recolor true
+set recolor-lightcolor "#4D427D"
+set recolor-darkcolor "#ACACAC"
+fadf
+set show-hidden true
