@@ -26,16 +26,16 @@ local conds = require("luasnip.extras.expand_conditions")
 
 -- helper functions for defining snippets
 local h = {}
-h.testcs = function()
-  if h.amount == nil then return t("hmm") end
+h.alignsnippet = function()
+  if h.aligncount == nil then return t("hmm") end
   local args = {t("\t")}
-  for k = 1, h.amount-1, 1 do
+  for k = 1, h.aligncount-1, 1 do
     args[#args+1] = i(k)
     args[#args+1] = t(" & ")
   end
-  args[#args+1] = i(h.amount)
+  args[#args+1] = i(h.aligncount)
   args[#args+1] =t({"\\\\", ""})
-  args[#args+1]=d(h.amount+1, h.testcs, {})
+  args[#args+1]=d(h.aligncount+1, h.alignsnippet, {})
 	return sn(
 		nil,
 		c(1, {
@@ -67,13 +67,6 @@ rec_ls = function()
 	});
 end
 ls.snippets = {
-	-- When trying to expand a snippet, luasnip first searches the tables for
-	-- each filetype specified in 'filetype' followed by 'all'.
-	-- If ie. the filetype is 'lua.c'
-	--     - luasnip.lua
-	--     - luasnip.c
-	--     - luasnip.all
-	-- are searched in that order.
     -- snippet to create snippets lol
    lua ={
         ls.parser.parse_snippet({trig="regsnippet", name="regex snippet", dscr="snippet to create regex snippets"},
@@ -93,15 +86,25 @@ ls.snippets = {
           end, {})
       ),
   },
+
+  -- tex snippets
 	tex = {
       s(
           { trig = "--(%d)--", name = "& expandor", dscr = "create snippet that expands the right amount of & infinetely", regTrig = true },
       {f(function(_, snip)
-            h.amount = tonumber(snip.captures[1])
+            h.aligncount = tonumber(snip.captures[1])
            return ""
       end, {}),
-     d(1, h.testcs, {}), i(0)
+     d(1, h.alignsnippet, {}), i(0)
     }),
+
+      -- Snippets for math text
+      s(
+          { trig = "fancy([a-z])", name = "fancy math text", dscr = "expands 'fancy a' to \\mathcal{A}", regTrig = true },
+          f(function(_, snip)
+            return "\\mathcal{ "   .. snip.captures[1]:upper() .. "}"
+          end, {})
+      ),
       s(
           { trig = "Bo([a-z])", name = "Bold math text", dscr = "Snippet for creating bold math text", regTrig = true },
           f(function(_, snip)
@@ -114,7 +117,7 @@ ls.snippets = {
             return "| " .. snip.captures[1] .. " |"
           end, {})
       ),
-       s(
+      s(
           { trig = "norm%s(%S+)%snorm", name = "norm", dscr ="replaces norm with |" , regTrig = true },
           f(function(_, snip)
             return "\\| " .. snip.captures[1] .. " \\|"
@@ -127,8 +130,16 @@ ls.snippets = {
             return size .. snip.captures[2] .." " .. size
           end, {})
       ),
+
+      -- product, integral, limes
       s(
-          { trig = "int%s(%S+)%s(.*)", name = "integral", dscr = "creates integral based on expression seperanted by spaces", regTrig = true },
+          { trig = "prod%s(%S+)%s(%S+)", name = "product", dscr = "Creates big product", regTrig = true },
+          f(function(_, snip)
+            return "\\prod_{" .. snip.captures[1] .. "}^{" .. snip.captures[2] .. "}"
+          end, {})
+      ),
+      s(
+          { trig = "int%s(%S+)%s(%S+)", name = "integral", dscr = "creates integral based on expression seperanted by spaces", regTrig = true },
           f(function(_, snip)
             return "\\int_{" .. snip.captures[1] .. "}^{" .. snip.captures[2] .. "}"
           end, {})
@@ -145,9 +156,35 @@ ls.snippets = {
             return "\\sqrt[" .. snip.captures[1] .. "]{" .. snip.captures[2] .. "}"
           end, {})
       ),
-        -- snippet for ^{} in latex.
+
+      -- Fraction snippets
       s(
-        { trig = "(%S+)(%d%d?)", name = "subscript and superscript", dscr = "expands superscript or subscript numbers, depending on choice",  regTrig = true },
+          { trig = "(%S)/(%S)", name = "fraction easy mode", dscr = "expands (a/b) to a divided by b, a and b can both be numbers and letters", regTrig = true },
+          f(function(_, snip)
+            return "\\frac{" .. snip.captures[1] .. "}{" .. snip.captures[2] .. "}"
+          end, {})
+      ),
+      s(
+          { trig = "(%S)%s/%s(%S)", name = "fraction hard mode", dscr = "expands 'something / something' to according fraction", regTrig = true },
+          f(function(_, snip)
+            return "\\frac{" .. snip.captures[1] .. "}{" .. snip.captures[2] .. "}"
+          end, {})
+      ),
+
+      -- snippets for sub and superscript for single letters and longer expressions
+      s(
+        { trig = "(%S+)%ss%s(%S+)", name = "sub/superscript in general", dscr = "expands superscript or subscript expressions",  regTrig = true },
+          c(1,{
+            f(function(_, snip)
+              return snip.captures[1] .. "^{" .. snip.captures[2] .. "}"
+            end, {}),
+            f(function(_, snip)
+              return snip.captures[1] .. "_{" .. snip.captures[2] .. "}"
+            end, {})
+        })
+      ),
+      s(
+        { trig = "(%S+)([%dikn])", name = "subscript and superscript", dscr = "expands superscript or subscript numbers, depending on choice",  regTrig = true },
           c(1,{
             f(function(_, snip)
               return snip.captures[1] .. "^{" .. snip.captures[2] .. "}"
