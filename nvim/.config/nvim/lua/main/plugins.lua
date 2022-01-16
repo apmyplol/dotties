@@ -95,13 +95,18 @@ return packer.startup(function(use)
 
   use "akinsho/toggleterm.nvim"  -- toggle terminal for nvim
 
-  use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate",} -- treeesitter for better syntax highlighting
+  use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"} -- treeesitter for better syntax highlighting
   use "p00f/nvim-ts-rainbow" -- color for parenthesis
   use "nvim-treesitter/playground" -- for developing color scheeemeee yeee
   use "folke/tokyonight.nvim"
 
+  -- aahh ich mag das plugin iwie nicht
+  -- use {'iamcco/markdown-preview.nvim', run=":call mkdp#util#install()" , ft={'markdown'}}
   -- use {"vimwiki/vimwiki", ft = {"markdown"}}
   -- use "junegunn/goyo.vim"
+  use "tanvirtin/vgit.nvim"
+
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
