@@ -85,6 +85,7 @@ return packer.startup(function(use)
   -- LSP for code completion and definitions etc
   use "neovim/nvim-lspconfig"
   use "williamboman/nvim-lsp-installer"
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
   use "lewis6991/gitsigns.nvim" -- for git information, added/deleted stuff and see changes while file is opened
 
