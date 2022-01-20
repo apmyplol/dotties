@@ -318,9 +318,9 @@ local globalkeys = gears.table.join(
         awful.key({ modkey, "Shift"   }, "q", awesome.quit,
                 {description = "quit awesome", group = "awesome"}),
 
-        awful.key({ modkey,           }, "u",     function () awful.tag.incmwfact( 0.05)          end,
+        awful.key({ modkey,           }, "i",     function () awful.tag.incmwfact( 0.05)          end,
                 {description = "increase master width factor", group = "layout"}),
-        awful.key({ modkey,           }, "i",     function () awful.tag.incmwfact(-0.05)          end,
+        awful.key({ modkey,           }, "u",     function () awful.tag.incmwfact(-0.05)          end,
                 {description = "decrease master width factor", group = "layout"}),
         awful.key({ modkey, "Shift"   }, "u",     function () awful.tag.incnmaster( 1, nil, true) end,
                 {description = "increase the number of master clients", group = "layout"}),
