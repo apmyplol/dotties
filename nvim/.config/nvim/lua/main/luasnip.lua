@@ -210,7 +210,7 @@ ls.snippets = {
         })
       ),
       s(
-        { trig = "(%S)([%dikn])", name = "subscript and superscript", dscr = "expands superscript or subscript numbers, depending on choice",  regTrig = true, hidden = true },
+        { trig = "([^%si])([%dikn])", name = "subscript and superscript", dscr = "expands superscript or subscript numbers, depending on choice",  regTrig = true, hidden = true },
           c(1,{
             f(function(_, snip)
               return snip.captures[1] .. "^{" .. snip.captures[2] .. "}"
@@ -240,7 +240,15 @@ ls.snippets = {
             end, {})
         })
       ),
-
+		s("ct", {
+			t({"---",
+				"tags: ana/complex",
+				"date: " .. os.date("%d-%m-%Y"),
+				"vorlesung: 11",
+			"kapitel: "}), i(1),
+			t({"", "aliases:"}), i(2),
+			t({"", "---", "", "#"}), i(0)
+		}),
 
 }
 
@@ -248,3 +256,4 @@ ls.snippets = {
 
 ls.filetype_set("latex", {"tex"})
 ls.filetype_set("markdown", {"tex"})
+ls.filetype_set("vimwiki", {"tex"})
