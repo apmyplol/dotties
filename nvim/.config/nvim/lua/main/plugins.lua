@@ -103,9 +103,12 @@ return packer.startup(function(use)
 
   -- aahh ich mag das plugin iwie nicht
   -- use {'iamcco/markdown-preview.nvim', run=":call mkdp#util#install()" , ft={'markdown'}}
-  -- use {"vimwiki/vimwiki", ft = {"markdown"}}
+  --use "plasticboy/vim-markdown"
+  use {"vimwiki/vimwiki", ft = {"markdown"}}
   -- use "junegunn/goyo.vim"
   use "tanvirtin/vgit.nvim"
+  use "numToStr/Comment.nvim"
+  use "JoosepAlviste/nvim-ts-context-commentstring"
 
 
   -- Automatically set up your configuration after cloning packer.nvim

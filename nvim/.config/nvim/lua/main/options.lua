@@ -43,6 +43,7 @@ vim.opt.shortmess:append "c"
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
-
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
+vim.cmd[[autocmd FileType vimwiki,markdown setlocal foldexpr=MarkdownFold() foldmethod=expr]]
+vim.cmd("set nofoldenable")
