@@ -1,185 +1,214 @@
 {
-    "math": {
-      "prefix": "math",
-      "body": "$$ $0 $$"
-    },
-    "frac": {
-      "prefix": "frac",
-      "body": "\\frac{$1 }{$2 }$3"
-    },
-    "cdot": {
-      "prefix": "cdot",
-      "body": "\\cdot $1"
-    },
-    "sum": {
-      "prefix": "sum",
-      "body": "\\sum_{$1 }^{$2 }$3"
-    },
-    "quad": {
-      "prefix": "quad",
-      "body": "\\quad$1"
-    },
-    "root": {
-      "prefix": "root",
-      "body": "\\sqrt[$1 ]{$2 }$3"
-    },
-    "bar": {
-      "prefix": "bar",
-      "body": "\\bar$1"
-    },
-    "text": {
-      "prefix": "text",
-      "body": "\\text{$1 }$2"
-    },
-    "choose": {
-      "prefix": "choose",
-      "body": "{$1 \\choose $2 } $3"
-    },
-    "epsilon": {
-      "prefix": "epsilon",
-      "body": "\\varepsilon"
-    },
-    "exists": {
-      "prefix": "exists",
-      "body": "\\exists$1"
-    },
-    "in": {
-      "prefix": "in",
-      "body": "\\in$0"
-    },
-    "natnum": {
-      "prefix": "natnum",
-      "body": "\\mathbb{N}$1"
-    },
-    "bold": {
-      "prefix": "bold",
-      "body": "\\mathbb{$1 }$2"
-    },
-    "lim": {
-      "prefix": "lim",
-      "body": "\\lim_{$1 \\rightarrow \\infty$2 } $3"
-    },
-    "nin": {
-      "prefix": "nin",
-      "body": "\\notin $0"
-    },
-    "inf": {
-      "prefix": "inf",
-      "body": "\\infty $0"
-    },
-    "begin": {
-      "prefix": "begin",
-      "body": "\\begin{$1}\n$0\n\\end{$1}"
-    },
-    "cup": {
-      "prefix": "cup",
-      "body": "\\cup $1"
-    },
-    "cap": {
-      "prefix": "cap",
-      "body": "\\cap $1"
-    },
-    "align": {
-      "prefix": "align",
-      "body": "\n\\begin{align*}\n$1\n\\end{align*}\n"
-    },
-    "gleich": {
-      "prefix": "gleich",
-      "body": "\\Leftrightarrow$0"
-    },
-    "nach": {
-      "prefix": "nach",
-      "body": "\\rightarrow$0"
-    },
-    "partial": {
-      "prefix": "partial",
-      "body": "\\partial$0"
-    },
-    "rot": {
-      "prefix": "rot",
-      "body": "<font color=red>$1</font>$2"
-    },
-    "farbe": {
-      "prefix": "farbe",
-      "body": "<font color=$1>$2</font>$3"
-    },
-    "color": {
-      "prefix": "color",
-      "body": "\\textcolor{$1 }{$2 }"
-    },
-    "teil": {
-      "prefix": "teil",
-      "body": "\\subset$0"
-    },
-    "kleiner": {
-      "prefix": "kleiner",
-      "body": "\\leq $0"
-    },
-    "größer": {
-      "prefix": "größer",
-      "body": "\\geq $0"
-    },
-    "overline": {
-      "prefix": "overline",
-      "body": "\\overline{$1 } $2"
-    },
-    "xi": {
-      "prefix": "xi",
-      "body": "\\xi$0"
-    },
-    "r": {
-      "prefix": "r",
-      "body": "\\mathbb{R}^{$1 }$2"
-    },
-    "alf": {
-      "prefix": "alf",
-      "body": "\\alpha $0"
-    },
-    "bet": {
-      "prefix": "bet",
-      "body": "\\beta $0"
-    },
-    "also": {
-      "prefix": "also",
-      "body": "\\Rightarrow $0"
-    },
-    "unten": {
-      "prefix": "unten",
-      "body": "\\underset{$1 }{$2 } $3"
-    },
-    "oben": {
-      "prefix": "oben",
-      "body": "\\overset{$1 }{$2 } $3"
-    },
-    "phi": {
-      "prefix": "phi",
-      "body": "\\phi $1"
-    },
-    "gamma": {
-      "prefix": "gamma",
-      "body": "\\gamma $1"
-    },
-    "psi": {
-      "prefix": "psi",
-      "body": "\\psi $1"
-    },
-    "kla": {
-      "prefix": "kla",
-      "body": "{ $1 } $2"
-    },
-    "ind": {
-      "prefix": "ind",
-      "body": "_{ $1 } $2"
-    },
-    "hoch": {
-      "prefix": "hoch",
-      "body": "^{  $1  } $2"
-    },
-    "tilde": {
-      "prefix": "tilde",
-      "body": "\\tilde $1"
-    },
-    "z0": {
-      "prefix": "z0",
-      "body": "z_{0 $1 } $2"
-    }}
+  "math": {
+    "prefix": "math",
+    "body": "\\$$\n$0\n\\$$"
+  },
+  "frac": {
+    "prefix": "frac",
+    "body": "\\frac{$1}{$2}$3"
+  },
+  "cdot": {
+    "prefix": "cdot",
+    "body": "\\cdot "
+  },
+  "sum": {
+    "prefix": "sum",
+    "body": "\\sum_{$1}^{$2}$3"
+  },
+  "quad": {
+    "prefix": "quad",
+    "body": "\\quad "
+  },
+  "root": {
+    "prefix": "root",
+    "body": "\\sqrt[$1]{$2}$3"
+  },
+  "bar": {
+    "prefix": "bar",
+    "body": "\\bar "
+  },
+  "text": {
+    "prefix": "text",
+    "body": "\\text{$1}$2"
+  },
+  "choose": {
+    "prefix": "choose",
+    "body": "{$1 \\choose $2}$3"
+  },
+  "epsilon": {
+    "prefix": "epsilon",
+    "body": "\\varepsilon "
+  },
+  "exists": {
+    "prefix": "exists",
+    "body": "\\exists "
+  },
+  "in": {
+    "prefix": "in",
+    "body": "\\in "
+  },
+  "lim": {
+    "prefix": "lim",
+    "body": "\\lim_{$1 \\rightarrow \\infty$2 } $3"
+  },
+  "nin": {
+    "prefix": "nin",
+    "body": "\\notin "
+  },
+  "inf": {
+    "prefix": "inf",
+    "body": "\\infty "
+  },
+  "begin": {
+    "prefix": "begin",
+    "body": "\\begin{$1}\n$0\n\\end{$1}"
+  },
+  "cup": {
+    "prefix": "cup",
+    "body": "\\cup "
+  },
+  "cap": {
+    "prefix": "cap",
+    "body": "\\cap "
+  },
+  "align": {
+    "prefix": "align",
+    "body": "\n\\begin{align*}\n$1\n\\end{align*}\n"
+  },
+  "gleich": {
+    "prefix": "gleich",
+    "body": "\\Leftrightarrow "
+  },
+  "nach": {
+    "prefix": "nach",
+    "body": "\\rightarrow "
+  },
+  "partial": {
+    "prefix": "partial",
+    "body": "\\partial "
+  },
+  "rot": {
+    "prefix": "rot",
+    "body": "<font color=red>$1</font>$2"
+  },
+  "farbe": {
+    "prefix": "farbe",
+    "body": "<font color=$1>$2</font>$3"
+  },
+  "color": {
+    "prefix": "color",
+    "body": "\\textcolor{$1}{$2}"
+  },
+  "teil": {
+    "prefix": "teil",
+    "body": "\\subset "
+  },
+  "kleiner": {
+    "prefix": "kleiner",
+    "body": "\\leq "
+  },
+  "größer": {
+    "prefix": "größer",
+    "body": "\\geq "
+  },
+  "overline": {
+    "prefix": "overline",
+    "body": "\\overline{$1}$2"
+  },
+  "xi": {
+    "prefix": "xi",
+    "body": "\\xi "
+  },
+  "also": {
+    "prefix": "also",
+    "body": "\\Rightarrow "
+  },
+  "unten": {
+    "prefix": "unten",
+    "body": "\\underset{$1}{$2}$3"
+  },
+  "oben": {
+    "prefix": "oben",
+    "body": "\\overset{$1}{$2}$3"
+  },
+  "kla": {
+    "prefix": "kla",
+    "body": "{ $1 } $2"
+  },
+  "tilde": {
+    "prefix": "tilde",
+    "body": "\\tilde "
+  },
+  "alf": {
+    "prefix": "alf",
+    "body": "\\alpha "
+  },
+  "bet": {
+    "prefix": "bet",
+    "body": "\\beta "
+  },
+  "gamma": {
+    "prefix": "gamma",
+    "body": "\\gamma "
+  },
+  "delta": {
+    "prefix": "delta",
+    "body": "\\delta "
+  },
+  "phi": {
+    "prefix": "phi",
+    "body": "\\phi "
+  },
+  "psi": {
+    "prefix": "psi",
+    "body": "\\psi "
+  },
+  "sigma": {
+    "prefix": "sigma",
+    "body": "\\sigma "
+  },
+  "omega": {
+    "prefix": "omega",
+    "body": "\\omega "
+  },
+  "kappa": {
+    "prefix": "kappa",
+    "body": "\\kappa "
+  },
+  "sinus": {
+    "prefix": "sin",
+    "body": "\\sin "
+  },
+  "cosinus": {
+    "prefix": "cos",
+    "body": "\\cos "
+  },
+  "tangens": {
+    "prefix": "tan",
+    "body": "\\tan "
+  },
+  "arcsin": {
+    "prefix": "asin",
+    "body": "\\arcsin "
+  },
+  "arccos": {
+    "prefix": "acos",
+    "body": "\\arccos "
+  },
+  "arctan": {
+    "prefix": "atan",
+    "body": "\\arctan "
+  },
+  "cosinus hyperbolicus": {
+    "prefix": "cosh",
+    "body": "\\cosh "
+  },
+  "sinus hyperbolicus": {
+    "prefix": "sinh",
+    "body": "\\sinh "
+  },
+  "tangens hyperbolicus": {
+    "prefix": "tanh",
+    "body": "\\tanh "
+  }
+}

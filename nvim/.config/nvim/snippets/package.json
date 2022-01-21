@@ -7,8 +7,6 @@
     "snippets": [
       {
         "language": [
-          "plaintext",
-          "markdown",
           "tex"
         ],
         "path": "./tex.json"
