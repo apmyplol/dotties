@@ -40,14 +40,8 @@ export XMODIFIERS=@im=fcitx
 
 picom --experimental-backends --config $HOME/.config/picom.conf &
 nm-applet &
-# Set stuff for Wacom driver
 # TODO: add keyboard shortcuts and change mouse middle button behaviour
-xsetwacom set "Wacom Graphire3 Pen eraser" Mode "Relative"
-xsetwacom set "Wacom Graphire3 Pen eraser" Area 0 0 20416 14848
-xsetwacom set "Wacom Graphire3 Pen stylus" Mode "Relative"
-xsetwacom set "Wacom Graphire3 Pen stylus" Area 0 0 20416 14848
 
-fcitx &
-redshift &
+fcitx5 &
 anki &
 exec awesome
