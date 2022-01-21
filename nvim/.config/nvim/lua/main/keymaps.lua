@@ -91,3 +91,5 @@ keymap("i", "<C-j>", "<cmd>lua require 'main.keymapfunctions'.luasnipchoose(1)<c
 
 -- vimtex
 keymap("n", "<leader>ll", "<plug>(vimtex-compile)", opts)
+keymap("n", "F", "zi", opts)
+keymap("n", "f", "za", opts)

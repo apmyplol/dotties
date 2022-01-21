@@ -3,6 +3,11 @@ if not status_ok then
   return
 end
 
+local status_ok, vsloader = pcall(require, "luasnip.loaders.from_vscode")
+if not status_ok then
+  return
+end
+vsloader.load({paths = "~/.config/nvim/snippets/"})
 local s = ls.snippet
 local sn = ls.snippet_node
 local t = ls.text_node
@@ -22,6 +27,28 @@ local fmta = require("luasnip.extras.fmt").fmta
 local types = require("luasnip.util.types")
 local conds = require("luasnip.extras.expand_conditions")
 
+vim.api.nvim_command("hi LuasnipChoiceNodePassive cterm=italic")
+ls.config.setup({
+	ext_opts = {
+		[types.insertNode] = {
+			passive = {
+				hl_group = "GruvboxRed"
+			}
+		},
+		[types.choiceNode] = {
+			active = {
+				virt_text = {{"choiceNode", "GruvboxOrange"}}
+			}
+		},
+		[types.textNode] = {
+			snippet_passive = {
+				hl_group = "GruvboxGreen"
+			}
+		},
+	},
+	ext_base_prio = 200,
+	ext_prio_increase = 3,
+})
 -- 'recursive' dynamic snippet. Expands to some text followed by itself.
 
 -- helper functions for defining snippets
@@ -72,7 +99,7 @@ ls.snippets = {
         ls.parser.parse_snippet({trig="regsnippet", name="regex snippet", dscr="snippet to create regex snippets"},
         [[
       s(
-          { trig = "$1", name = "$2", dscr = "$3", regTrig = true },
+          { trig = "$1", name = "$2", dscr = "$3", regTrig = true, hidden = true },
           f(function(_, snip)
             return $4
           end, {})
@@ -80,17 +107,16 @@ ls.snippets = {
       $0]]
       ),
       s(
-          { trig = "sc(%d)", name = "snippet capture regex", dscr = "snippet for creating regex snippets", regTrig = true },
+          { trig = "sc(%d)", name = "snippet capture regex", dscr = "snippet for creating regex snippets", regTrig = true, hidden = true },
           f(function(_, snip)
             return "snip.captures[" .. snip.captures[1] .. "]"
           end, {})
       ),
   },
-
   -- tex snippets
 	tex = {
       s(
-          { trig = "--(%d)--", name = "& expandor", dscr = "create snippet that expands the right amount of & infinetely", regTrig = true },
+          { trig = "%-%-(%d)%-%-", name = "& expandor", dscr = "create snippet that expands the right amount of & infinetely", regTrig = true, hidden = true },
       {f(function(_, snip)
             h.aligncount = tonumber(snip.captures[1])
            return ""
@@ -100,30 +126,30 @@ ls.snippets = {
 
       -- Snippets for math text
       s(
-          { trig = "fancy([a-z])", name = "fancy math text", dscr = "expands 'fancy a' to \\mathcal{A}", regTrig = true },
+          { trig = "fancy([a-z])", name = "fancy math text", dscr = "expands 'fancy a' to \\mathcal{A}", regTrig = true, hidden = true },
           f(function(_, snip)
             return "\\mathcal{ "   .. snip.captures[1]:upper() .. "}"
           end, {})
       ),
       s(
-          { trig = "Bo([a-z])", name = "Bold math text", dscr = "Snippet for creating bold math text", regTrig = true },
+          { trig = "bo([a-z])", name = "Bold math text", dscr = "Snippet for creating bold math text", regTrig = true, hidden = true },
           f(function(_, snip)
             return [[\mathbb{]] .. snip.captures[1]:upper() .. "}"
           end, {})
       ),
-      s(
-          { trig = "abs%s(%S+)%sabs", name = "absolute values", dscr ="replaces abs with |" , regTrig = true },
+      s( -- TODO: add (?s) too abs snippet to use \| as the abs
+          { trig = "abs%s%((.+)%)%sabs", name = "absolute values", dscr ="replaces abs with |" , regTrig = true, hidden = true },
           f(function(_, snip)
             return "| " .. snip.captures[1] .. " |"
           end, {})
       ),
       s(
-          { trig = "norm%s(%S+)%snorm", name = "norm", dscr ="replaces norm with |" , regTrig = true },
+          { trig = "norm%s(%S+)%snorm", name = "norm", dscr ="replaces norm with |" , regTrig = true, hidden = true },
           f(function(_, snip)
             return "\\| " .. snip.captures[1] .. " \\|"
           end, {})
       ),     s(
-          { trig = "bi(g+)%s(.*)%sbi(g+)", name = "Bigg Thicc", dscr = "depending on how many g's, replaces the text with latex \\Big command, the more g's the bigger the text" ,regTrig = true },
+          { trig = "bi(g+)%s(.+)%sbi(g+)", name = "Bigg Thicc", dscr = "depending on how many g's, replaces the text with latex \\Big command, the more g's the bigger the text", regTrig = true, hidden = true },
           f(function(_, snip)
             local outs = { [1] = [[\big ]], [2] = [[\Big ]], [3] = [[\bigg ]], [4] = [[\Bigg ]] }
             local size = outs[snip.captures[1]:len()]
@@ -133,25 +159,25 @@ ls.snippets = {
 
       -- product, integral, limes
       s(
-          { trig = "prod%s(%S+)%s(%S+)", name = "product", dscr = "Creates big product", regTrig = true },
+          { trig = "prod%s(%S+)%s(%S+)", name = "product", dscr = "Creates big product", regTrig = true, hidden = true },
           f(function(_, snip)
             return "\\prod_{" .. snip.captures[1] .. "}^{" .. snip.captures[2] .. "}"
           end, {})
       ),
       s(
-          { trig = "int%s(%S+)%s(%S+)", name = "integral", dscr = "creates integral based on expression seperanted by spaces", regTrig = true },
+          { trig = "int%s(%S+)%s(%S+)", name = "integral", dscr = "creates integral based on expression seperanted by spaces", regTrig = true, hidden = true},
           f(function(_, snip)
             return "\\int_{" .. snip.captures[1] .. "}^{" .. snip.captures[2] .. "}"
           end, {})
       ),
       s(
-          { trig = "lim%s(%S+)%s(%S+)", name = "limes", dscr = "creates limit sign based on expression seperated by spaces", regTrig = true },
+          { trig = "lim%s(%S+)%s(%S+)", name = "limes", dscr = "creates limit sign based on expression seperated by spaces", regTrig = true, hidden = true},
           f(function(_, snip)
             return "\\lim_{" .. snip.captures[1] .. " \\rightarrow " .. snip.captures[2] .. "}"
           end, {})
       ),
       s(
-          { trig = "(%d)r(%S+)", name = "n-th root", dscr = "creates n-th root based on expression seperated by the letter r",  regTrig = true },
+          { trig = "(%d)r(%S+)", name = "n-th root", dscr = "creates n-th root based on expression seperated by the letter r",  regTrig = true, hidden = true},
           f(function(_, snip)
             return "\\sqrt[" .. snip.captures[1] .. "]{" .. snip.captures[2] .. "}"
           end, {})
@@ -159,13 +185,13 @@ ls.snippets = {
 
       -- Fraction snippets
       s(
-          { trig = "(%S)/(%S)", name = "fraction easy mode", dscr = "expands (a/b) to a divided by b, a and b can both be numbers and letters", regTrig = true },
+          { trig = "(%S)/(%S)", name = "fraction easy mode", dscr = "expands (a/b) to a divided by b, a and b can both be numbers and letters", regTrig = true, hidden = true },
           f(function(_, snip)
             return "\\frac{" .. snip.captures[1] .. "}{" .. snip.captures[2] .. "}"
           end, {})
       ),
       s(
-          { trig = "(%S)%s/%s(%S)", name = "fraction hard mode", dscr = "expands 'something / something' to according fraction", regTrig = true },
+          { trig = "(%S)%s/%s(%S)", name = "fraction hard mode", dscr = "expands 'something / something' to according fraction", regTrig = true, hidden = true },
           f(function(_, snip)
             return "\\frac{" .. snip.captures[1] .. "}{" .. snip.captures[2] .. "}"
           end, {})
@@ -173,7 +199,7 @@ ls.snippets = {
 
       -- snippets for sub and superscript for single letters and longer expressions
       s(
-        { trig = "(%S+)%ss%s(%S+)", name = "sub/superscript in general", dscr = "expands superscript or subscript expressions",  regTrig = true },
+        { trig = "(%S+)%ss%s(%S+)", name = "sub/superscript in general", dscr = "expands superscript or subscript expressions",  regTrig = true, hidden = true },
           c(1,{
             f(function(_, snip)
               return snip.captures[1] .. "^{" .. snip.captures[2] .. "}"
@@ -184,7 +210,7 @@ ls.snippets = {
         })
       ),
       s(
-        { trig = "(%S+)([%dikn])", name = "subscript and superscript", dscr = "expands superscript or subscript numbers, depending on choice",  regTrig = true },
+        { trig = "(%S)([%dikn])", name = "subscript and superscript", dscr = "expands superscript or subscript numbers, depending on choice",  regTrig = true, hidden = true },
           c(1,{
             f(function(_, snip)
               return snip.captures[1] .. "^{" .. snip.captures[2] .. "}"
@@ -195,13 +221,30 @@ ls.snippets = {
         })
       ),
       s(
-          { trig = "(%S+)(%d)", regTrig = true },
+          { trig = "i(o?)%s(%S+)%s(%S+)", name = "interval", dscr = "expands 'i bla bla' to '[bla,bla]' and 'io bla bla' to '(bla, bla)'", regTrig = true, hidden = true },
           f(function(_, snip)
-            return snip.captures[1] .. "^" .. snip.captures[2]
+						local mid = snip.captures[2] .. "," .. snip.captures[3]
+            if snip.captures[1] == "o" then return "("  .. mid .. ")"
+						else return "[" .. mid .. "]"
+					end
           end, {})
       ),
+      s(
+        { trig = "ih%s(%S+)%s(%S+)", name = "half opened interval choice node", dscr = "expands 'ih bla bla' to choice node '(bla, bla] OR [bla, bla)'",  regTrig = true, hidden = true },
+          c(1,{
+            f(function(_, snip)
+              return "(" .. snip.captures[1] .. "," .. snip.captures[2] .. "]"
+            end, {}),
+            f(function(_, snip)
+              return "[" .. snip.captures[1] .. "," .. snip.captures[2] .. ")"
+            end, {})
+        })
+      ),
+
 
 }
+
 }
+
 ls.filetype_set("latex", {"tex"})
 ls.filetype_set("markdown", {"tex"})

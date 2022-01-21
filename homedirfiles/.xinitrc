@@ -49,4 +49,5 @@ xsetwacom set "Wacom Graphire3 Pen stylus" Area 0 0 20416 14848
 
 fcitx &
 redshift &
+anki &
 exec awesome

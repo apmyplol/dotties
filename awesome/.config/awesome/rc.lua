@@ -43,7 +43,26 @@ require("awful.hotkeys_popup.keys")
         thickness = 12.5,
         height = 25,
     })
+local batteryarc = mystuff.battery_widget({
+    show_current_level = true,
+    arc_thickness = 2,
+    size = beautiful.wibox,
+    timeout = 10,
+    --main stuff
+    arc_main_color = beautiful.standart_on,
+    main_background = beautiful.black,
+    main_text = beautiful.white,
+    -- chargin stuff
+    charging_background = beautiful.black,
+    charging_text = beautiful.white,
+    arc_charging_color = beautiful.eva_green,
+    get_bat_cmd = "cat /sys/class/power_supply/BAT1/capacity /sys/class/power_supply/BAT1/status"
+  })
 
+local bluetooth = wibox.widget {
+    image  = beautiful.bluetooth_pic,
+    widget = wibox.widget.imagebox
+}
 -- numbers for the taglist
 --local numbers = { "壹", "貳", "參", "肆", "伍", "陸", "漆", "捌", "玖" }
 -- local numbers = { "壱", "弐", "参", "四", "伍", "六", "七", "八", "九" }
@@ -255,6 +274,7 @@ awful.screen.connect_for_each_screen(function(s)
             --mykeyboardlayout,
             -- TODO something with systray
             wibox.widget.systray(),
+            batteryarc
             --s.mylayoutbox,
         },
     }
@@ -318,9 +338,9 @@ local globalkeys = gears.table.join(
         awful.key({ modkey, "Shift"   }, "q", awesome.quit,
                 {description = "quit awesome", group = "awesome"}),
 
-        awful.key({ modkey,           }, "u",     function () awful.tag.incmwfact( 0.05)          end,
+        awful.key({ modkey,           }, "i",     function () awful.tag.incmwfact( 0.05)          end,
                 {description = "increase master width factor", group = "layout"}),
-        awful.key({ modkey,           }, "i",     function () awful.tag.incmwfact(-0.05)          end,
+        awful.key({ modkey,           }, "u",     function () awful.tag.incmwfact(-0.05)          end,
                 {description = "decrease master width factor", group = "layout"}),
         awful.key({ modkey, "Shift"   }, "u",     function () awful.tag.incnmaster( 1, nil, true) end,
                 {description = "increase the number of master clients", group = "layout"}),
