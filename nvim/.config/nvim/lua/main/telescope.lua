@@ -11,6 +11,7 @@ local actions = require "telescope.actions"
 
 telescope.setup {
   defaults = {
+    file_ignore_patterns = {"obsidian/"},
 
     prompt_prefix = " ",
     selection_caret = " ",
@@ -30,7 +31,7 @@ telescope.setup {
         ["<Up>"] = actions.move_selection_previous,
 
         ["<CR>"] = actions.select_default,
-        ["<C-x>"] = actions.select_horizontal,
+        ["<C-h>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
         ["<C-t>"] = actions.select_tab,
 
@@ -51,7 +52,7 @@ telescope.setup {
       n = {
         ["<esc>"] = actions.close,
         ["<CR>"] = actions.select_default,
-        ["<C-x>"] = actions.select_horizontal,
+        ["<C-h>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
         ["<C-t>"] = actions.select_tab,
 
@@ -82,6 +83,7 @@ telescope.setup {
     },
   },
   pickers = {
+    find_files = {hidden = true, recurse = true}
     -- Default configuration for builtin pickers goes here:
     -- picker_name = {
     --   picker_config_key = value,

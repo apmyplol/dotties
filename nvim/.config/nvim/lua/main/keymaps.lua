@@ -43,9 +43,6 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-k>", ":bnext<CR>", opts)
 keymap("n", "<S-j>", ":bprevious<CR>", opts)
 keymap("n", "<C-w>", ":Bdelete<CR>", opts)
--- Insert --
--- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
 
 
 -- W um word zurück zu springen
@@ -93,3 +90,8 @@ keymap("i", "<C-j>", "<cmd>lua require 'main.keymapfunctions'.luasnipchoose(1)<c
 keymap("n", "<leader>ll", "<plug>(vimtex-compile)", opts)
 keymap("n", "F", "zi", opts)
 keymap("n", "f", "za", opts)
+
+-- autocomplete for files
+--keymap('i', '<C-i>', [[<cmd>lua require 'main.keymapfunctions'.test_grep_filename()<CR>]], opts)
+keymap('i', '<C-u>', [[<cmd>lua require 'main.keymapfunctions'.test_grep_filename()<CR>]], opts)
+keymap("i", "<C-o>", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown())<cr>", opts)
