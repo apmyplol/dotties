@@ -15,6 +15,9 @@ treesitter.setup {
 
   },
   indent = { enable = true, disable = { "yaml" } },
+  
+  -- fancy rainbow braces
+
   rainbow = {
     enable = true,
     -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
@@ -23,6 +26,14 @@ treesitter.setup {
     -- colors = {}, -- table of hex strings
     -- termcolors = {} -- table of colour name strings
   },
+
+  -- plugin for commenting out based on file and language
+    context_commentstring = {
+    enable = true,
+    enable_autocmd = false
+  },
+
+  -- playground for creating themes
   playground = {
     enable = true,
     disable = {},
