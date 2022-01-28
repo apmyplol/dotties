@@ -81,7 +81,7 @@
   },
   "nach": {
     "prefix": "nach",
-    "body": "\\rightarrow "
+    "body": "\\mapsto "
   },
   "partial": {
     "prefix": "partial",
@@ -151,6 +151,10 @@
     "prefix": "gamma",
     "body": "\\gamma "
   },
+  "Gamma": {
+    "prefix": "Gamma",
+    "body": "\\Gamma "
+  },
   "delta": {
     "prefix": "delta",
     "body": "\\delta "
@@ -210,5 +214,29 @@
   "tangens hyperbolicus": {
     "prefix": "tanh",
     "body": "\\tanh "
-  }
+  },
+  "Set": {
+    "prefix": "men",
+    "body": "\\{$1\\}$0"
+  }, 
+  "set": {
+    "prefix": "set",
+    "body": "\\{$1\\}$0"
+  }, 
+  "Setminus": {
+    "prefix": "sm",
+    "body": "\\setminus $1 \\{$2\\}$0"
+  }, 
+  "Ohne=Setminus": {
+    "prefix": "ohne",
+    "body": "\\setminus $1 \\{$2\\}$0"
+  }, 
+  "pi": {
+    "prefix": "pi",
+    "body": "\\pi"
+  }, 
+  "Pi": {
+    "prefix": "Pi",
+    "body": "\\Pi"
+  } 
 }

@@ -1,8 +1,13 @@
 local M = {}
 M.latex = function()
   local file = vim.fn.expand("%")
-  file = file:gsub("tex", "pdf")
-  vim.cmd("! zathura " .. file .. " &")
+  local ending = file:match("[^%.]*%.(.*)")
+  if ending == "tex" then
+    file = file:gsub("tex", "pdf")
+    vim.cmd("! zathura " .. file .. " &")
+  elseif ending == "md" then
+    vim.cmd("! brave '" .. file .. "' &")
+  end
 end
 
 M.luasnipchoose = function(i)
