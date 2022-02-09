@@ -35,7 +35,8 @@ local options = {
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
-  foldmethod = "syntax"
+  foldmethod = "expr",
+  foldexpr = "nvim_treesitter#foldexpr()"
 }
 
 vim.opt.shortmess:append "c"
@@ -47,3 +48,5 @@ vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd[[autocmd FileType vimwiki,markdown setlocal foldexpr=MarkdownFold() foldmethod=expr]]
 vim.cmd("set nofoldenable")
+vim.cmd("let g:polyglot_disabled = ['vue']")
+vim.cmd('autocmd BufRead,BufNewFile,BufWrite,BufWritePost *.m set filetype=matlab foldmethod=manual')
