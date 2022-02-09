@@ -29,20 +29,20 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
 -- some widgets
-    local GET_VOLUME = 'amixer -D default sget Master'
-    local INC_VOLUME = 'amixer -q -D default sset Master 2%+'
-    local DEC_VOLUME = 'amixer -q -D default sset Master 2%-'
-    local TOG_VOLUME = 'amixer -q -D default sset Master toggle'
-    local volumearc, volume_update = mystuff.volumearc({
-        main_color = beautiful.eva_green,
-        mute_color = beautiful.standart_on,
-        get_volume_cmd=GET_VOLUME,
-        inc_volume_cmd=INC_VOLUME,
-        dec_volume_cmd=DEC_VOLUME,
-        tog_volume_cmd=TOG_VOLUME,
-        thickness = 12.5,
-        height = 25,
-    })
+local GET_VOLUME = 'amixer -D default sget Master'
+local INC_VOLUME = 'amixer -q -D default sset Master 2%+'
+local DEC_VOLUME = 'amixer -q -D default sset Master 2%-'
+local TOG_VOLUME = 'amixer -q -D default sset Master toggle'
+local volumearc, volume_update = mystuff.volumearc({
+    main_color = beautiful.eva_green,
+    mute_color = beautiful.standart_on,
+    get_volume_cmd=GET_VOLUME,
+    inc_volume_cmd=INC_VOLUME,
+    dec_volume_cmd=DEC_VOLUME,
+    tog_volume_cmd=TOG_VOLUME,
+    thickness = 12.5,
+    height = 25,
+})
 
 -- numbers for the taglist
 --local numbers = { "壹", "貳", "參", "肆", "伍", "陸", "漆", "捌", "玖" }
@@ -52,24 +52,24 @@ local numbers = { "壱", "弐", "参", "肆", "伍", "陸", "漆", "捌", "玖" 
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-naughty.notify({ preset = naughty.config.presets.critical,
-	     title = "Oops, there were errors during startup!",
-	     text = awesome.startup_errors })
+    naughty.notify({ preset = naughty.config.presets.critical,
+           title = "Oops, there were errors during startup!",
+           text = awesome.startup_errors })
 end
 
 -- Handle runtime errors after startup
 do
-local in_error = false
-awesome.connect_signal("debug::error", function (err)
--- Make sure we don't go into an endless error loop
-if in_error then return end
-in_error = true
+    local in_error = false
+    awesome.connect_signal("debug::error", function (err)
+        -- Make sure we don't go into an endless error loop
+        if in_error then return end
+        in_error = true
 
-naughty.notify({ preset = naughty.config.presets.critical,
-		 title = "Oops, an error happened!",
-		 text = tostring(err) })
-in_error = false
-end)
+        naughty.notify({ preset = naughty.config.presets.critical,
+             title = "Oops, an error happened!",
+             text = tostring(err) })
+        in_error = false
+    end)
 end
 -- }}}
 
@@ -204,7 +204,7 @@ awful.screen.connect_for_each_screen(function(s)
     awful.tag(numbers , s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
-    -- s.mypromptbox = awful.widget.prompt()
+    s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     --[[s.mylayoutbox = awful.widget.layoutbox(s)
@@ -244,7 +244,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
         --    mylauncher,
             s.mytaglist,
-            --s.mypromptbox,
+            s.mypromptbox,
         },
         --s.mytasklist,
           mytextclock,
@@ -364,10 +364,10 @@ local globalkeys = gears.table.join(
     {description = "run prompt", group = "launcher"}),
 
         -- TODO: replace with relative path
-            awful.key({ modkey },            "r",     function () awful.util.spawn("/home/afa/.config/rofi/evaribbon/launcher.sh") end,
+            awful.key({ modkey },            "d",     function () awful.util.spawn("/home/afa/.config/rofi/evaribbon/launcher.sh") end,
                     {description = "run application prompt", group = "launcher"}),
 
-    --[[      awful.key({ modkey }, "x",
+          awful.key({ modkey }, "x",
                     function ()
                         awful.prompt.run {
                             prompt       = "Run Lua code: ",
@@ -379,7 +379,7 @@ local globalkeys = gears.table.join(
                   {description = "lua execute prompt", group = "awesome"}),
 
 
-    -- Menubar
+    --[[ Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
     --]]
@@ -433,7 +433,7 @@ local clientkeys = gears.table.join(
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
+    awful.key({ modkey}, "q",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
@@ -592,10 +592,14 @@ awful.rules.rules = {
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
+     { rule = { name = "Google Podcasts - Brave" },
+       properties = { screen = 2, tag = numbers[9], floating = false } },
      { rule = { class = "discord" },
        properties = { screen = 1, tag = numbers[9] } },
+     { rule = { class = "obsidian" },
+       properties = { screen = 1, tag = numbers[2] } },
      { rule = { name = "YouTube Music" },
-       properties = { screen = 2, tag = numbers[1], floating = false } },
+       properties = { screen = 2, tag = numbers[9], floating = false } },
 }
 -- }}}
 
@@ -664,11 +668,17 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 
+awful.spawn.with_shell(
+   'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' ..
+   'xrdb -merge <<< "awesome.started:true";' ..
+   -- list each of your autostart commands, followed by ; inside single quotes, followed by ..
+   'dex --environment Awesome --autostart' -- hab das hier weggemacht, hat iwien icht geklappt --search-paths "$XDG_CONFIG_DIRS/autostart:$XDG_CONFIG_HOME/autostart"' -- https://github.com/jceb/dex
+   )
 
 --autostart apps
-awful.spawn.with_shell("pgrep -l cloud || synology-drive")
+-- awful.spawn.with_shell("pgrep -l cloud || synology-drive")
 -- TODO: replace with relative path
-awful.spawn.with_shell("pgrep -l picom || picom --experimental-backends --config /home/afa/.config/picom.conf")
+awful.spawn.with_shell("pgrep -l picom || picom --experimental-backends --xrender-sync-fence --config /home/afa/.config/picom.conf") -- für logs --log-level info --log-file /home/afa/picom.log")
 --awful.spawn.with_shell("nitrogen --random /home/afa/BG")
 --awful.spawn.with_shell("nm-applet")
 --awful.spawn.with_shell("volumeicon")
