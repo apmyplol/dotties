@@ -13,6 +13,7 @@ env:
   TERM: xterm-256color
 
 window:
+  opacity: 0.8
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -34,8 +35,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 6
-    y: 6
+    x: 0
+    y: 0
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -158,7 +159,7 @@ colors:
   # Default colors
   primary:
     background: '#4d427d'   # '#554866'
-    foreground: '#ACACAC'
+    foreground: '#B3ACD8'
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
     text: '#000000'
@@ -166,24 +167,24 @@ colors:
 
   # Normal colors
   normal:
-    black:   '#2a3b4d'
+    black:   '#000000'
     red:     '#FF0000'
-    green:   '#00ff00'
-    yellow:  '#FFFF66'
-    blue:    '#A462FA'
-    magenta: '#FFFFFF'
-    cyan:    '#ff8c28'
+    green:   '#A462FA'
+    yellow:  '#523874'
+    blue:    '#ff8c28'
+    magenta: '#7999f2'
+    cyan:    '#00FF00'
     white:   '#FFFFFF' 
 
   # Bright colors
   bright:
-    black:   '#FF00f2'
+    black:   '#ff8c28'
     red:     '#FF0000'
     green:   '#00ff00'
     yellow:  '#FFFF66'
     blue:    '#A462FA'
     magenta: '#FFFFFF'
-    cyan:    '#ff8c28'
+    cyan:    '#dbb0f5'
     white:   '#FFFFFF' 
 # Visual Bell
 #
@@ -215,7 +216,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.8
+#window.opacity: 0.8
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

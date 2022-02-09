@@ -8,11 +8,12 @@
  */
 
 * {
-    background:                     #916cadff;
-    background-alt:                 #00ff00ff;
-    foreground:                     #FEFFF1ff;
-    border:               			#c500f7ff;
-    border-alt:               		#00ff00ff;
-    selected:               		#00000055;
-    urgent:                         #ff0000ff;
+    background:                     #775899;
+    background-alt:                 #0A200f;
+    foreground:                     #FEFFF1;
+    border:               			    #ff8C28;
+    border-alt:               		  #54CF51;
+    selected:               		    #7573A3; 
+    URGENT:                         #ff0000;
+    searchtxt:                      "検索";
 }
