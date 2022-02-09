@@ -39,6 +39,10 @@
     "prefix": "epsilon",
     "body": "\\varepsilon "
   },
+  "exists2": {
+    "prefix": "ex",
+    "body": "\\exists "
+  },
   "exists": {
     "prefix": "exists",
     "body": "\\exists "
@@ -217,7 +221,7 @@
   },
   "Set": {
     "prefix": "men",
-    "body": "\\{$1\\}$0"
+    "body": "\\{$1 \\}$0"
   }, 
   "set": {
     "prefix": "set",
@@ -225,11 +229,11 @@
   }, 
   "Setminus": {
     "prefix": "sm",
-    "body": "\\setminus $1 \\{$2\\}$0"
+    "body": "\\setminus "
   }, 
   "Ohne=Setminus": {
     "prefix": "ohne",
-    "body": "\\setminus $1 \\{$2\\}$0"
+    "body": "\\setminus $0"
   }, 
   "pi": {
     "prefix": "pi",
@@ -238,5 +242,9 @@
   "Pi": {
     "prefix": "Pi",
     "body": "\\Pi"
+  },
+  "forall": {
+    "prefix": "fall",
+    "body": "\\forall "
   } 
 }

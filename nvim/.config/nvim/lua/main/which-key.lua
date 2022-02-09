@@ -26,6 +26,9 @@ local setup = {
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
   -- operators = { gc = "Comments" },
+  presets = {
+    z = true,
+  },
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
     -- For example:
@@ -172,6 +175,12 @@ local mappings = {
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
   },
   -- TODO: Add telescope for "t"
+
+  z = {
+    name = "random stuff?",
+    M = {"zM", "close all folds"},
+    n = {"zn", "open all folds"}
+  }
 }
 
 local vopts = {
@@ -184,6 +193,10 @@ local vopts = {
 }
 local vmappings = {
   ["/"] = { "<ESC><CMD>lua require(\"Comment.api\").toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment" },
+  z = {
+    name = "Folds";
+    f = {":'<,'>fold<CR>", "create Fold"},
+  } 
 }
 
 which_key.setup(setup)
