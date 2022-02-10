@@ -44,7 +44,7 @@ entry {
     placeholder-color:              @foreground;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "Search Applications";
+    placeholder:                    @searchtxt;
     padding:                        0.15% 0% 0% 0%;
     blink:                          true;
 }
@@ -66,6 +66,7 @@ listview {
     background-color:               @background;
     columns:                        10;
     spacing:                        1%;
+    cycle:                          false;
     dynamic:                        true;
     layout:                         vertical;
 }

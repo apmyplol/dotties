@@ -3,12 +3,13 @@ return {
 
 		Lua = {
 			diagnostics = {
-				globals = { "vim" },
+				globals = { "vim", "awesome", "client", "root" },
 			},
 			workspace = {
 				library = {
 					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 					[vim.fn.stdpath("config") .. "/lua"] = true,
+					["/usr/share/awesome/lib"] = true
 				},
 			},
 		},

@@ -3,6 +3,13 @@ if not status_ok then
   return
 end
 
+local status_ok, commentft = pcall(require, "Comment.ft")
+if not status_ok then
+  return
+end
+
+--commentft.matlab = {"%%s", "%{\n%s\n%}"}
+
 comment.setup {
   pre_hook = function(ctx)
     local U = require "Comment.utils"

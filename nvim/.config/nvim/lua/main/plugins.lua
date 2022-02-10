@@ -38,7 +38,7 @@ packer.init {
   },
 }
 
--- Install your plugins here
+-- Install your plugins here e
 return packer.startup(function(use)
   -- My plugins here
 
@@ -87,7 +87,7 @@ return packer.startup(function(use)
   use "williamboman/nvim-lsp-installer"
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
-  --use "lewis6991/gitsigns.nvim" -- for git information, added/deleted stuff and see changes while file is opened
+  use "lewis6991/gitsigns.nvim" -- for git information, added/deleted stuff and see changes while file is opened
 
   use { 'lervag/vimtex', ft =  {'tex' }} -- latex support
 
@@ -103,15 +103,13 @@ return packer.startup(function(use)
 
   -- aahh ich mag das plugin iwie nicht
   -- use {'iamcco/markdown-preview.nvim', run=":call mkdp#util#install()" , ft={'markdown'}}
-  --use {"vimwiki/vimwiki", ft = {"markdown"}}
   --use "plasticboy/vim-markdown"
-  use 'lervag/wiki.vim'
-  use 'lervag/wiki-ft.vim'
-  --use {"junegunn/fzf", run = "fzf#install()"}
-  --use "junegunn/fzf"
+  use {"vimwiki/vimwiki", ft = {"markdown"}}
   -- use "junegunn/goyo.vim"
   use "tanvirtin/vgit.nvim"
-
+  use "numToStr/Comment.nvim"
+  use "JoosepAlviste/nvim-ts-context-commentstring"
+  use 'jakelinnzy/autocmd-lua'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
