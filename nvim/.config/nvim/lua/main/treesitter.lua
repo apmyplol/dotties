@@ -3,6 +3,19 @@ if not status_ok then
 	return
 end
 
+local status_ok, treesitterps = pcall(require, "nvim-treesitter.parsers")
+if not status_ok then
+	return
+end
+
+treesitterps.get_parser_configs().matlab = {
+  install_info = {
+      url = "https://github.com/mstanciu552/tree-sitter-matlab.git",
+      files = { "src/parser.c" },
+      branch= 'main'
+    },
+    filetype = "matlab",
+}
 
 treesitter.setup {
   ensure_installed = "maintained",
@@ -10,12 +23,12 @@ treesitter.setup {
   ignore_install = { "" }, -- List of parsers to ignore installing
   highlight = {
     enable = true, -- false will disable the whole extension
-    disable = { "" }, -- list of language that will be disabled
+    disable = { "octave" }, -- list of language that will be disabled
     additional_vim_regex_highlighting = true,
 
   },
   indent = { enable = true, disable = { "yaml" } },
-  
+
   -- fancy rainbow braces
 
   rainbow = {

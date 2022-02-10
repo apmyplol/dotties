@@ -2,5 +2,11 @@ set default-bg "#4D427D"
 set recolor true
 set recolor-lightcolor "#4D427D"
 set recolor-darkcolor "#ACACAC"
-fadf
+set statusbar-bg '#00FF00'
+set inputbar-bg '#00FF00'
+set statusbar-fg '#444444'
+set inputbar-fg '#444444'
+set notification-error-bg '#ff8c28'
 set show-hidden true
+set highlight-active-color '#00FF00'
+set highlight-fg '#000000'
