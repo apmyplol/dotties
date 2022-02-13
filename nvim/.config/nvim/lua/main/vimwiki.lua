@@ -4,13 +4,13 @@ local opts = {
   folding = "expr",
   auto_chdir = 1,
   key_mappings={
-    global = 1,
+    global = 0,
     headers = 0,
     text_objs = 0,
     table_format = 0,
     table_mappings = 0,
     lists = 0,
-    links = 1,
+    links = 0,
     html = 0,
     mouse = 0
   }

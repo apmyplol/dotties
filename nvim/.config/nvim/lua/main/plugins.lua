@@ -89,7 +89,7 @@ return packer.startup(function(use)
 
   use "lewis6991/gitsigns.nvim" -- for git information, added/deleted stuff and see changes while file is opened
 
-  use { 'lervag/vimtex', ft =  {'tex' }} -- latex support
+  use { 'lervag/vimtex', ft =  {'tex', 'vimwiki' }} -- latex support
 
   -- never fotget keybindings again (hopefully)
   use "folke/which-key.nvim"
@@ -107,12 +107,25 @@ return packer.startup(function(use)
   use {"vimwiki/vimwiki", ft = {"markdown"}}
   -- use "junegunn/goyo.vim"
   use "tanvirtin/vgit.nvim"
+
+  -- Block and single line quotes
   use "numToStr/Comment.nvim"
   use "JoosepAlviste/nvim-ts-context-commentstring"
+
+  -- Autocmd lua wrapper
   use 'jakelinnzy/autocmd-lua'
 
+  -- Statusline
+  use 'nvim-lualine/lualine.nvim'
+
+  -- Plugin which extends vim's matchup, i.e. jumping to matching parenthesis
+  use 'andymass/vim-matchup'
+  -- for surrouding editing
+  use 'blackcauldron7/surround.nvim'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
+  --danymat/neogen, ekickx/clipboard-image.nvim
+
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end

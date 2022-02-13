@@ -14,6 +14,7 @@ vim.g.maplocalleader = " "
 -- mapping "h" onto "ö" for better navigation
 
 keymap("n", "ö", "h", opts)
+keymap("n", "i", "a", opts)
 
 -- Modes
 --   normal_mode = "n",
@@ -31,7 +32,7 @@ keymap("n", "<Down>", "<C-w>j", opts)
 keymap("n", "<Left>", "<C-w>h", opts)
 keymap("n", "<Right>", "<C-w>l", opts)
 
-keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+-- keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
@@ -76,18 +77,14 @@ keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Telescope
-keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown())<cr>", opts)
+-- keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown())<cr>", opts)
 keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 
--- open current file latex preview
-keymap("n", "<leader>l", "<cmd>lua require'main.keymapfunctions'.latex()<cr>", opts)
 
 -- keymap for chose-nodes in luasnip
 keymap("i", "<C-k>", "<cmd>lua require 'main.keymapfunctions'.luasnipchoose(-1)<cr>", opts)
 keymap("i", "<C-j>", "<cmd>lua require 'main.keymapfunctions'.luasnipchoose(1)<cr>", opts)
 
--- vimtex
-keymap("n", "<leader>ll", "<plug>(vimtex-compile)", opts)
 keymap("n", "F", "zA", opts)
 keymap("n", "f", "za", opts)
 
