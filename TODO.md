@@ -12,3 +12,11 @@
 + add \rightarrow, maybe choicenode nach?
 + forall
 + verschiedene normen adden
+
++ big does not work
+\frac{1}{6} \big [ h_{i+1} m_{i+1} + 2 (h_{i} + h_{i+1})m_{i} + m_{i} m_{i-1} \big ]
+
++ check out mickael-menu/zk
++ check out ekickx/clipboard-image.nvim
++ danymat/neogen
++ nvim-neorg/neorg

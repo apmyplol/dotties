@@ -43,18 +43,29 @@ clr=$clr":*.md=00:README.md=38;5;226;04"
 
 export EXA_COLORS=$clr
 
-alias ls='exa --icons --git --group-directories-first'
-alias lsa='exa --icons --git -lah'
-alias lst='exa --icons --tree'
-alias lsta='exa --icons --tree --long --git'
-alias n='nvim'
+
+alias ls="ls --color"
 alias pacsyu='sudo pacman -Syu' # update only standard pkgs
 alias pacs='sudo pacman -S'
 alias pacrs='sudo pacman -Rs'
 alias pacown='pacman -Qo'
+alias n='nvim'
 
 alias neofetch='neofetch --colors 4 2 1 2 8 4 --ascii_colors 2 4'
 
 force_color_prompt=yes
-# PS1='[\u@\h \W]\$ '
-PS1='\[\033[1;32m\]シンジくん\[\033[1;30m\]@\[\033[1;34m\]初号機:\[\033[1;36m\]\w\[\033[1;30m\]∮\[\033[0m\] '
+
+PS1='[\u@\h \W]\$ '
+eva='\[\033[1;32m\]シンジくん\[\033[1;30m\]@\[\033[1;34m\]初号機:\[\033[1;36m\]\w\[\033[1;30m\]∮\[\033[0m\] '
+
+case $(tty) in /dev/pts/[0-9]*)
+
+  # If not on tty then change PS1 to シンジくん
+  PS1=$eva
+  
+  # Aliases to use exa instead of ls when not on tty
+  alias ls='exa --icons --git --group-directories-first'
+  alias lsa='exa --icons --git -lah'
+  alias lst='exa --icons --tree'
+  alias lsta='exa --icons --tree --long --git'
+esac

@@ -21,6 +21,7 @@ theme.clock_extra_bg = theme.eva_green
 
 -- mystuff
 theme.standart_on = "#c500f9"
+theme.reb_purple1 = "#775899"
 theme.standart_off = "#000000"
 theme.eva_green = "#00FF00"--"#A2DA5A" --"#AEF359"
 
