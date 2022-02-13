@@ -90,7 +90,7 @@ mainbox {
 }
 
 element {
-    background-color:               @se;
+    background-color:               @bg;
     text-color:                     @fg;
     orientation:                    horizontal;
     border-radius:                  0%;
@@ -98,7 +98,7 @@ element {
 }
 
 element-icon {
-    background-color: 				@al;
+    background-color: 				@bg;
     text-color:       				inherit;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
@@ -116,8 +116,13 @@ element-text {
 }
 
 element selected {
+    background-color:               @se;
     text-color:                     @ac;
-	border:							0% 0% 0% 0.3%;
+      border:							0% 0% 0% 0.3%;
     border-radius:                  0px;
-    border-color:                  	@ac;
+    border-color:                  	@sen;
+}
+element-icon selected {
+  border-color:  @se;
+  background-color: @se;
 }

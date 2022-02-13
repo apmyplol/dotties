@@ -13,7 +13,7 @@
     foreground:                     #FEFFF1;
     border:               			    #ff8C28;
     border-alt:               		  #54CF51;
-    selected:               		    #7573A3; 
+    selected:               		    #A877C8; //#7573A3; 
     URGENT:                         #ff0000;
     searchtxt:                      "検索";
 }
