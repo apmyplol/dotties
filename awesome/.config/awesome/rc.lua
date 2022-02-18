@@ -98,9 +98,9 @@ local modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
 	awful.layout.suit.tile,
-	awful.layout.suit.spiral,
+	-- awful.layout.suit.spiral,
 	-- awful.layout.suit.corner.nw,
-	awful.layout.suit.floating,
+	-- awful.layout.suit.floating,
 	-- awful.layout.suit.tile.left,
 	-- awful.layout.suit.tile.bottom,
 	-- awful.layout.suit.tile.top,
@@ -296,13 +296,20 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 -- }}}
 
+
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-	awful.button({}, 3, function()
-		mymainmenu:toggle()
-	end),
+	-- TODO: add mymainmenu?
+	-- awful.button({}, 3, function()
+	-- 	mymainmenu:toggle()
+	-- end),
 	awful.button({}, 4, awful.tag.viewnext),
-	awful.button({}, 5, awful.tag.viewprev)
+	awful.button({}, 5, awful.tag.viewprev),
+
+	-- my mouse bindings
+	awful.button({modkey}, 4, awful.tag.viewnext),
+	awful.button({modkey}, 5, awful.tag.viewprev),
+	awful.button({modkey}, 2, function() awful.screen.focus_relative(1) end)
 ))
 -- }}}
 
@@ -313,6 +320,8 @@ local globalkeys = gears.table.join(
 	awful.key({ modkey }, "Left", awful.tag.viewprev, { description = "view previous", group = "tag" }),
 	awful.key({ modkey }, "Right", awful.tag.viewnext, { description = "view next", group = "tag" }),
 	awful.key({ modkey }, "Escape", awful.tag.history.restore, { description = "go back", group = "tag" }),
+	-- change clients with mod + mouse
+		-- TODO: replace with relative path
 
 	awful.key({ modkey }, "j", function()
 		awful.client.focus.byidx(1)
@@ -347,6 +356,7 @@ local globalkeys = gears.table.join(
 	awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
 	awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
 
+	-- layout manipulation
 	awful.key({ modkey }, "i", function()
 		awful.tag.incmwfact(0.05)
 	end, { description = "increase master width factor", group = "layout" }),
@@ -365,10 +375,10 @@ local globalkeys = gears.table.join(
 	awful.key({ modkey, "Control" }, "i", function()
 		awful.tag.incncol(-1, nil, true)
 	end, { description = "decrease the number of columns", group = "layout" }),
-	awful.key({ "Mod1" }, "i", function()
+	awful.key({ modkey, "Mod1" }, "i", function()
 		awful.client.incwfact(0.05)
 	end, { description = "increase client width factor", group = "layout" }),
-	awful.key({ "Mod1" }, "u", function()
+	awful.key({ modkey, "Mod1" }, "u", function()
 		awful.client.incwfact(-0.05)
 	end, { description = "decrease client width factor", group = "layout" }),
 	awful.key({ modkey }, "space", function()
@@ -393,6 +403,7 @@ local globalkeys = gears.table.join(
 		-- TODO: replace with relative path
 		awful.util.spawn("/home/afa/.config/rofi/evaswitch/colorful_eva")
 	end, { description = "change tabs", group = "client" }),
+
 	-- awful.key({ "Mod1",           }, "Tab",
 	--   function ()
 	--       switcher.switch( 1, "Mod1", "Alt_L", "Shift", "Tab")
@@ -569,7 +580,13 @@ local clientbuttons = gears.table.join(
 	awful.button({ modkey }, 3, function(c)
 		c:emit_signal("request::activate", "mouse_click", { raise = true })
 		awful.mouse.client.resize(c)
-	end)
+	end),
+
+	-- my mouse bindings: modkey + wheel up/down changes tag and middle mouse click 
+	-- changes screen focus
+	awful.button({modkey}, 4, function(c) awful.tag.viewnext() end),
+	awful.button({modkey}, 5, function(c) awful.tag.viewprev() end),
+	awful.button({modkey}, 2, function(c) awful.screen.focus_relative(1) end)
 )
 
 -- Set keys
@@ -640,6 +657,11 @@ awful.rules.rules = {
 	},
 	{ rule = { class = "discord" }, properties = { screen = 1, tag = numbers[9] } },
 	{ rule = { class = "obsidian" }, properties = { screen = 1, tag = numbers[2] } },
+	{
+		rule = { name = "YouTube" },
+		except = { instance = "YouTube Music" },
+		properties = { screen = 1, tag = numbers[8], floating = false },
+	},
 	{ rule = { name = "YouTube Music" }, properties = { screen = 2, tag = numbers[9], floating = false } },
 }
 -- }}}

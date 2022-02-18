@@ -126,6 +126,11 @@ return packer.startup(function(use)
   -- Put this at the end after all plugins
   --danymat/neogen, ekickx/clipboard-image.nvim
 
+  -- to use neovim in browser
+  -- use {
+  --     'glacambre/firenvim',
+  --     run = function() vim.fn['firenvim#install'](0) end
+  -- }
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
