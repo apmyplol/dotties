@@ -47,7 +47,7 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "sheerun/vim-polyglot" -- better Syntax support
+  -- use "sheerun/vim-polyglot" -- better Syntax support
   use "windwp/nvim-autopairs" -- autocomplete for ( { [
 
   -- File explorer and telescope for search
@@ -74,7 +74,7 @@ return packer.startup(function(use)
 
     -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  -- use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
   use "benfowler/telescope-luasnip.nvim"  -- Luasnip integration for telescope
 
