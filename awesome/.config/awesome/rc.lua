@@ -1,8 +1,8 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
---blingbling = require("blingbling")
-mystuff = require("mystuff")
+
+local mystuff = require("mystuff")
 
 -- Standard awesome library
 local gears = require("gears")
@@ -26,7 +26,7 @@ switcher.settings.preview_box_title_color = { 247 / 155, 186 / 255, 221 / 255, 1
 
 -- Notification library
 local naughty = require("naughty")
-local menubar = require("menubar")
+-- local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
