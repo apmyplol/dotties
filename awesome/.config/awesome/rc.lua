@@ -30,7 +30,7 @@ local naughty = require("naughty")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
-require("awful.hotkeys_popup.keys")
+-- require("awful.hotkeys_popup.keys")
 
 -- some widgets
 local GET_VOLUME = "amixer -D default sget Master"
@@ -481,7 +481,18 @@ local globalkeys = gears.table.join(
 	end, { description = "run mpv", group = "media" }),
 	awful.key({ modkey }, "XF86Tools", function()
 		awful.spawn("brave --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod")
-	end, { description = "run youtube music", group = "media" })
+	end, { description = "run youtube music", group = "media" }),
+
+  -- fancy keys for switching tags and monitors
+	awful.key({modkey}, "XF86AudioPlay", function()
+    awful.screen.focus_relative(1)
+	end, { description = "最高! focus next monitor", group = "layout" }),
+	awful.key({modkey}, "XF86AudioNext", function()
+    awful.tag.viewnext()
+	end, { description = "goto next tag", group = "layout" }),
+	awful.key({modkey}, "XF86AudioPrev", function()
+    awful.tag.viewprev()
+	end, { description = "goto previous tag", group = "layout" })
 )
 
 local clientkeys = gears.table.join(
