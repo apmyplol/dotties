@@ -1,2 +1,4 @@
 /nvim/.config/nvim/plugin/
 /jpinput/
+/ranger/.config/ranger/plugins/__pycache__/
+/ranger/.config/ranger/plugins/ranger_devicons/__pycache__/

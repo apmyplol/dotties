@@ -20,3 +20,10 @@
 + check out ekickx/clipboard-image.nvim
 + danymat/neogen
 + nvim-neorg/neorg
+
+
+# Ranger
++ add lazygit to ranger
++ maximtrp/ranger-archives
++ add neovim integration? https://github.com/ranger/ranger/wiki/Integration-with-other-programs
+
