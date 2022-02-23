@@ -28,6 +28,14 @@ switcher.settings.preview_box_title_color = { 247 / 155, 186 / 255, 221 / 255, 1
 local naughty = require("naughty")
 -- local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+hotkeys_popup.widget.add_group_rules("awesome", {color = beautiful.eva.reb_orange})
+hotkeys_popup.widget.add_group_rules("client", {color = beautiful.eva.reb_orange})
+hotkeys_popup.widget.add_group_rules("launcher", {color = beautiful.eva.reb_orange})
+hotkeys_popup.widget.add_group_rules("media", {color = beautiful.eva.reb_orange})
+hotkeys_popup.widget.add_group_rules("layout", {color = beautiful.eva.reb_orange})
+hotkeys_popup.widget.add_group_rules("random", {color = beautiful.eva.reb_orange})
+hotkeys_popup.widget.add_group_rules("screen", {color = beautiful.eva.reb_orange})
+hotkeys_popup.widget.add_group_rules("tag", {color = beautiful.eva.reb_orange})
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 -- require("awful.hotkeys_popup.keys")
@@ -52,6 +60,7 @@ local volumearc, volume_update = mystuff.volumearc({
 --local numbers = { "壹", "貳", "參", "肆", "伍", "陸", "漆", "捌", "玖" }
 -- local numbers = { "壱", "弐", "参", "四", "伍", "六", "七", "八", "九" }
 local numbers = { "壱", "弐", "参", "肆", "伍", "陸", "漆", "捌", "玖" }
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -85,8 +94,8 @@ end
 
 -- This is used later as the default terminal and editor to run.
 local terminal = "alacritty"
-local editor = os.getenv("nvim") or "editor"
-local editor_cmd = terminal .. " -e " .. editor
+local editor = os.getenv("nvim") or "nvim"
+-- local editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -118,23 +127,23 @@ awful.layout.layouts = {
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-local myawesomemenu = {
-	{
-		"hotkeys",
-		function()
-			hotkeys_popup.show_help(nil, awful.screen.focused())
-		end,
-	},
-	{ "manual", terminal .. " -e man awesome" },
-	{ "edit config", editor_cmd .. " " .. awesome.conffile },
-	{ "restart", awesome.restart },
-	{
-		"quit",
-		function()
-			awesome.quit()
-		end,
-	},
-}
+-- local myawesomemenu = {
+-- 	{
+-- 		"hotkeys",
+-- 		function()
+-- 			hotkeys_popup.show_help(nil, awful.screen.focused())
+-- 		end,
+-- 	},
+-- 	{ "manual", terminal .. " -e man awesome" },
+-- 	{ "edit config", editor_cmd .. " " .. awesome.conffile },
+-- 	{ "restart", awesome.restart },
+-- 	{
+-- 		"quit",
+-- 		function()
+-- 			awesome.quit()
+-- 		end,
+-- 	},
+-- }
 --[[ was unused
 local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
 local menu_terminal = { "open terminal", terminal }
@@ -196,6 +205,48 @@ local taglist_buttons = gears.table.join(
 	end)
 )
 
+local tlist = function(s, styl)
+	return 	-- Create a taglist widget
+awful.widget.taglist({
+		screen = s,
+		filter = awful.widget.taglist.filter.all,
+		buttons = taglist_buttons,
+		style = styl,
+		--- fontsize adden!!!
+	})
+end
+
+-- normal wibar and
+local sbar = function(s)
+	return {
+		layout = wibox.layout.align.horizontal,
+		expand = "outside",
+		nil,
+		tlist(s, { spacing = 10 }),
+	}
+end
+
+-- 集中 wibar
+local nbar = function(s)
+	return {
+		layout = wibox.layout.align.horizontal,
+		expand = "none",
+		{ -- Left widgets
+			layout = wibox.layout.fixed.horizontal,
+			tlist(s),
+		},
+		mytextclock,
+		{ -- Right widgets
+			layout = wibox.layout.fixed.horizontal,
+			volumearc,
+			--mykeyboardlayout,
+			-- TODO something with systray
+			wibox.widget.systray(),
+			--s.mylayoutbox,
+		},
+	}
+end
+
 --[[local tasklist_buttons = gears.table.join(
                      awful.button({ }, 1, function (c)
                                               if c == client.focus then
@@ -251,14 +302,6 @@ awful.screen.connect_for_each_screen(function(s)
 
     --]]
 
-	-- Create a taglist widget
-	s.mytaglist = awful.widget.taglist({
-		screen = s,
-		filter = awful.widget.taglist.filter.all,
-		buttons = taglist_buttons,
-		--- fontsize adden!!!
-	})
-
 	-- Create a tasklist widget
 	--[[s.mytasklist = awful.widget.tasklist {
         screen  = s,
@@ -272,30 +315,11 @@ awful.screen.connect_for_each_screen(function(s)
 
 	-- Add widgets to the wibox
 
-	s.mywibox:setup({
-		layout = wibox.layout.align.horizontal,
-		expand = "none",
-		{ -- Left widgets
-			layout = wibox.layout.fixed.horizontal,
-			--    mylauncher,
-			s.mytaglist,
-			s.mypromptbox,
-		},
-		--s.mytasklist,
-		mytextclock,
-		--s.mytasklist, -- Middle widget
-		{ -- Right widgets
-			layout = wibox.layout.fixed.horizontal,
-			volumearc,
-			--mykeyboardlayout,
-			-- TODO something with systray
-			wibox.widget.systray(),
-			--s.mylayoutbox,
-		},
-	})
+	-- s.mywibox.visible = false
+
+	s.mywibox:setup(nbar(s))
 end)
 -- }}}
-
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
@@ -307,9 +331,11 @@ root.buttons(gears.table.join(
 	awful.button({}, 5, awful.tag.viewprev),
 
 	-- my mouse bindings
-	awful.button({modkey}, 4, awful.tag.viewnext),
-	awful.button({modkey}, 5, awful.tag.viewprev),
-	awful.button({modkey}, 2, function() awful.screen.focus_relative(1) end)
+	awful.button({ modkey }, 4, awful.tag.viewnext),
+	awful.button({ modkey }, 5, awful.tag.viewprev),
+	awful.button({ modkey }, 2, function()
+		awful.screen.focus_relative(1)
+	end)
 ))
 -- }}}
 
@@ -321,7 +347,7 @@ local globalkeys = gears.table.join(
 	awful.key({ modkey }, "Right", awful.tag.viewnext, { description = "view next", group = "tag" }),
 	awful.key({ modkey }, "Escape", awful.tag.history.restore, { description = "go back", group = "tag" }),
 	-- change clients with mod + mouse
-		-- TODO: replace with relative path
+	-- TODO: replace with relative path
 
 	awful.key({ modkey }, "j", function()
 		awful.client.focus.byidx(1)
@@ -329,9 +355,9 @@ local globalkeys = gears.table.join(
 	awful.key({ modkey }, "k", function()
 		awful.client.focus.byidx(-1)
 	end, { description = "focus previous by index", group = "client" }),
-	awful.key({ modkey }, "w", function()
-		mymainmenu:show()
-	end, { description = "show main menu", group = "awesome" }),
+	-- awful.key({ modkey }, "w", function()
+	-- 	mymainmenu:show()
+	-- end, { description = "show main menu", group = "awesome" }),
 	--
 
 	-- Layout manipulation
@@ -483,16 +509,34 @@ local globalkeys = gears.table.join(
 		awful.spawn("brave --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod")
 	end, { description = "run youtube music", group = "media" }),
 
-  -- fancy keys for switching tags and monitors
-	awful.key({modkey}, "XF86AudioPlay", function()
-    awful.screen.focus_relative(1)
+	-- fancy keys for switching tags and monitors
+	awful.key({ modkey }, "XF86AudioPlay", function()
+		awful.screen.focus_relative(1)
 	end, { description = "最高! focus next monitor", group = "layout" }),
-	awful.key({modkey}, "XF86AudioNext", function()
-    awful.tag.viewnext()
+	awful.key({ modkey }, "XF86AudioNext", function()
+		awful.tag.viewnext()
 	end, { description = "goto next tag", group = "layout" }),
-	awful.key({modkey}, "XF86AudioPrev", function()
-    awful.tag.viewprev()
-	end, { description = "goto previous tag", group = "layout" })
+	awful.key({ modkey }, "XF86AudioPrev", function()
+		awful.tag.viewprev()
+	end, { description = "goto previous tag", group = "layout" }),
+
+	-- random stuff
+	awful.key({ modkey, "Control" }, "s", function()
+		awful.screen.connect_for_each_screen(function(s)
+			if s.mywibox.position == "top" then
+				s.mywibox.position = "bottom"
+				beautiful.taglist_spacing = 10
+				s.mywibox:setup(sbar(s))
+			elseif s.mywibox.position == "bottom" then
+				s.mywibox.position = "top"
+				beautiful.taglist_spacing = 1
+				s.mywibox:setup(nbar(s))
+			end
+		end)
+	end, { description = "集中モード", group = "random" }),
+	awful.key({ modkey, "Control" }, "c", function()
+    awful.spawn(terminal .. " -e " .. editor .. " " .. awesome.conffile)
+	end, { description = "edit rc.lua", group = "random" })
 )
 
 local clientkeys = gears.table.join(
@@ -550,7 +594,7 @@ for i = 1, 9 do
 			if tag then
 				tag:view_only()
 			end
-		end, { description = "view tag #" .. i, group = "tag" }),
+		end),
 		-- Toggle tag display.
 		awful.key({ modkey, "Control" }, "#" .. i + 9, function()
 			local screen = awful.screen.focused()
@@ -558,7 +602,7 @@ for i = 1, 9 do
 			if tag then
 				awful.tag.viewtoggle(tag)
 			end
-		end, { description = "toggle tag #" .. i, group = "tag" }),
+		end),
 		-- Move client to tag.
 		awful.key({ modkey, "Shift" }, "#" .. i + 9, function()
 			if client.focus then
@@ -567,7 +611,7 @@ for i = 1, 9 do
 					client.focus:move_to_tag(tag)
 				end
 			end
-		end, { description = "move focused client to tag #" .. i, group = "tag" }),
+		end),
 		-- Toggle tag on focused client.
 		awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9, function()
 			if client.focus then
@@ -576,9 +620,15 @@ for i = 1, 9 do
 					client.focus:toggle_tag(tag)
 				end
 			end
-		end, { description = "toggle focused client on tag #" .. i, group = "tag" })
+		end)
 	)
 end
+hotkeys_popup.widget.add_hotkeys({["tag"] = {{modifiers = {modkey}, keys ={i = "focus tag i (0-9)"}}}})
+hotkeys_popup.widget.add_hotkeys({["tag"] = {{modifiers = {modkey, "Control"}, keys ={i = "toggle tag i (0-9)"}}}})
+hotkeys_popup.widget.add_hotkeys({["tag"] = {{modifiers = {modkey, "Shift"}, keys ={i = "move client to tag i (0-9)"}}}})
+hotkeys_popup.widget.add_hotkeys({["tag"] = {{modifiers = {modkey, "Control", "Shift"}, keys ={i = "toggle focused client on tag i (0-9)"}}}})
+-- hotkeys_popup.widget.add_group_rules("screem", {color = beautiful.eva.purple1})
+-- , { description = "toggle focused client on tag i"  .. i, group = "tag" }
 
 local clientbuttons = gears.table.join(
 	awful.button({}, 1, function(c)
@@ -593,11 +643,17 @@ local clientbuttons = gears.table.join(
 		awful.mouse.client.resize(c)
 	end),
 
-	-- my mouse bindings: modkey + wheel up/down changes tag and middle mouse click 
+	-- my mouse bindings: modkey + wheel up/down changes tag and middle mouse click
 	-- changes screen focus
-	awful.button({modkey}, 4, function(c) awful.tag.viewnext() end),
-	awful.button({modkey}, 5, function(c) awful.tag.viewprev() end),
-	awful.button({modkey}, 2, function(c) awful.screen.focus_relative(1) end)
+	awful.button({ modkey }, 4, function(c)
+		awful.tag.viewnext()
+	end),
+	awful.button({ modkey }, 5, function(c)
+		awful.tag.viewprev()
+	end),
+	awful.button({ modkey }, 2, function(c)
+		awful.screen.focus_relative(1)
+	end)
 )
 
 -- Set keys
