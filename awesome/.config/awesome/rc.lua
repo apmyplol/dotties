@@ -221,6 +221,37 @@ awful.screen.connect_for_each_screen(function(s)
 	s.mywibox:setup(sbar(s))
 end)
 
+
+local pom = require("mystuff.pomodoro")
+
+--pomodoro wibox
+local pomowibox = awful.wibox({ position = "top", screen = 1, height=4})
+pomowibox.visible = false
+local pomodoro = pom.new({
+	minutes 			= 2,
+	do_notify 			= true,
+	active_bg_color 	= beautiful.eva.eva_green,
+	paused_bg_color 	= beautiful.eva.reb_purple1,
+	fg_color			= {type = "linear", from = {0,0}, to = {pomowibox.width, 0}, stops = {{0, "#AECF96"},{0.5, "#88A175"},{1, "#FF5656"}}},
+	width 				= pomowibox.width,
+	height 				= pomowibox.height,
+
+	begin_callback = function()
+    awful.screen.connect_for_each_screen(function(s)
+			s.mywibox.visible = false
+    end)
+		pomowibox.visible = true
+	end,
+
+	finish_callback = function()
+    awful.screen.connect_for_each_screen(function(s)
+			s.mywibox.visible = true
+    end
+    )
+		pomowibox.visible = false
+	end})
+pomowibox:set_widget(pomodoro)
+
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
 	-- TODO: add mymainmenu?
@@ -414,7 +445,9 @@ local globalkeys = gears.table.join(
 	end, { description = "集中モード", group = "random" }),
 	awful.key({ modkey, "Control" }, "c", function()
 		awful.spawn(terminal .. " -e " .. editor .. " " .. awesome.conffile)
-	end, { description = "edit rc.lua", group = "random" })
+	end, { description = "edit rc.lua", group = "random" }),
+awful.key({	modkey			}, "p", function () pomodoro:toggle() end),
+awful.key({	modkey, "Shift"	}, "p", function () pomodoro:finish() end)
 )
 
 
@@ -698,3 +731,5 @@ awful.spawn.with_shell(
 awful.spawn.with_shell(
 	"pgrep -l picom || picom --experimental-backends --xrender-sync-fence --config /home/afa/.config/picom.conf"
 ) -- für logs --log-level info --log-file /home/afa/picom.log")
+
+

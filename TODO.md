@@ -1,6 +1,9 @@
-+ Remove Systray and replace with own widgets, or use the hide trick (https://pavelmakhov.com/2018/01/hide-systray-in-awesome/)
-+ Set wacom keybindings
-+ Set nvim keybindings
+# Desktop
++ add pomodoro with eva style https://i.gifer.com/3AzD.gif or https://i.pinimg.com/originals/c0/8c/1a/c08c1a17ee55c995267561a7698614c5.gif
+
+# Laptop 
++ Eva battery warning https://64.media.tumblr.com/f207d7cafd192737dca8821259c27f4c/tumblr_pjw2zyrTPf1xdjegyo1_540.gifv or https://pbs.twimg.com/media/EWNzwSQUMAEAESh.jpg
+
 
 #  Snippets todo
 + add hotkey for todo for links in obsidian or find plugin for linking
@@ -26,4 +29,3 @@
 + add lazygit to ranger
 + maximtrp/ranger-archives
 + add neovim integration? https://github.com/ranger/ranger/wiki/Integration-with-other-programs
-
