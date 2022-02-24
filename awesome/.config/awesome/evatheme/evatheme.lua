@@ -49,7 +49,9 @@ theme.eva2 = eva2
 theme.eva0 = eva0
 
 theme.font = "Source Han Sans Serif JP"
-
+--local numbers = { "壹", "貳", "參", "肆", "伍", "陸", "漆", "捌", "玖" }
+-- local numbers = { "壱", "弐", "参", "四", "伍", "六", "七", "八", "九" }
+theme.numbers = { "壱", "弐", "参", "肆", "伍", "陸", "漆", "捌", "玖" }
 -- clock
 theme.clock_extra_fg = theme.standart_on
 theme.clock_extra_bg = theme.eva_green

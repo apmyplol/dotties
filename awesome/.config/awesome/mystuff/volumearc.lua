@@ -18,7 +18,6 @@ local GET_VOLUME_CMD = 'amixer -D pulse sget Master'
 local INC_VOLUME_CMD = 'amixer -q -D pulse sset Master 5%+'
 local DEC_VOLUME_CMD = 'amixer -q -D pulse sset Master 5%-'
 local TOG_VOLUME_CMD = 'amixer -q -D pulse sset Master toggle'
-local SET_VOLUME_CMD = "a"
 local VOL_CONTROL = 'pavucontrol'
 
 local PATH_TO_ICON = "/usr/share/icons/Arc/status/symbolic/audio-volume-muted-symbolic.svg"

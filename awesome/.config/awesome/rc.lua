@@ -7,19 +7,26 @@ local awful = require("awful")
 require("awful.autofocus")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
+local numbers = beautiful.numbers
 
 -- TODO: replace path with relative path
 beautiful.init("/home/afa/.config/awesome/evatheme/evatheme.lua")
 
-local switcher = require("awesome-switcher")
-switcher.settings.preview_box_bg = beautiful.reb_purple1 -- background color
-switcher.settings.preview_box_border = beautiful.eva_green -- border-color
-switcher.settings.cycle_raise_client = false
-switcher.settings.preview_box_title_color = { 247 / 155, 186 / 255, 221 / 255, 1 }
+
+-- TODO: edit popup to become eva thing
+require("mystuff.volume_popup")
+
+-- TODO: make cool switcher
+-- local switcher = require("awesome-switcher")
+-- switcher.settings.preview_box_bg = beautiful.reb_purple1 -- background color
+-- switcher.settings.preview_box_border = beautiful.eva_green -- border-color
+-- switcher.settings.cycle_raise_client = false
+-- switcher.settings.preview_box_title_color = { 247 / 155, 186 / 255, 221 / 255, 1 }
 
 local naughty = require("naughty")
--- local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+
+-- set hotkey popup colors
 hotkeys_popup.widget.add_group_rules("awesome", { color = beautiful.eva.reb_orange })
 hotkeys_popup.widget.add_group_rules("client", { color = beautiful.eva.reb_orange })
 hotkeys_popup.widget.add_group_rules("launcher", { color = beautiful.eva.reb_orange })
@@ -35,8 +42,8 @@ local INC_VOLUME = "amixer -q -D default sset Master 2%+"
 local DEC_VOLUME = "amixer -q -D default sset Master 2%-"
 local TOG_VOLUME = "amixer -q -D default sset Master toggle"
 local volumearc, volume_update = mystuff.volumearc({
-	main_color = beautiful.eva_green,
-	mute_color = beautiful.standart_on,
+	main_color = beautiful.eva.reb_green,
+	mute_color = beautiful.eva.orange,
 	get_volume_cmd = GET_VOLUME,
 	inc_volume_cmd = INC_VOLUME,
 	dec_volume_cmd = DEC_VOLUME,
@@ -45,10 +52,6 @@ local volumearc, volume_update = mystuff.volumearc({
 	height = 25,
 })
 
--- numbers for the taglist
---local numbers = { "壹", "貳", "參", "肆", "伍", "陸", "漆", "捌", "玖" }
--- local numbers = { "壱", "弐", "参", "四", "伍", "六", "七", "八", "九" }
-local numbers = { "壱", "弐", "参", "肆", "伍", "陸", "漆", "捌", "玖" }
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -222,35 +225,36 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 
 
-local pom = require("mystuff.pomodoro")
 
+-- TODO: make cool pomodoro timer
+-- local pom = require("mystuff.pomodoro")
 --pomodoro wibox
-local pomowibox = awful.wibox({ position = "top", screen = 1, height=4})
-pomowibox.visible = false
-local pomodoro = pom.new({
-	minutes 			= 2,
-	do_notify 			= true,
-	active_bg_color 	= beautiful.eva.eva_green,
-	paused_bg_color 	= beautiful.eva.reb_purple1,
-	fg_color			= {type = "linear", from = {0,0}, to = {pomowibox.width, 0}, stops = {{0, "#AECF96"},{0.5, "#88A175"},{1, "#FF5656"}}},
-	width 				= pomowibox.width,
-	height 				= pomowibox.height,
-
-	begin_callback = function()
-    awful.screen.connect_for_each_screen(function(s)
-			s.mywibox.visible = false
-    end)
-		pomowibox.visible = true
-	end,
-
-	finish_callback = function()
-    awful.screen.connect_for_each_screen(function(s)
-			s.mywibox.visible = true
-    end
-    )
-		pomowibox.visible = false
-	end})
-pomowibox:set_widget(pomodoro)
+-- local pomowibox = awful.wibox({ position = "top", screen = 1, height=4})
+-- pomowibox.visible = false
+-- local pomodoro = pom.new({
+-- 	minutes 			= 2,
+-- 	do_notify 			= true,
+-- 	active_bg_color 	= beautiful.eva.eva_green,
+-- 	paused_bg_color 	= beautiful.eva.reb_purple1,
+-- 	fg_color			= {type = "linear", from = {0,0}, to = {pomowibox.width, 0}, stops = {{0, "#AECF96"},{0.5, "#88A175"},{1, "#FF5656"}}},
+-- 	width 				= pomowibox.width,
+-- 	height 				= pomowibox.height,
+--
+-- 	begin_callback = function()
+--     awful.screen.connect_for_each_screen(function(s)
+-- 			s.mywibox.visible = false
+--     end)
+-- 		pomowibox.visible = true
+-- 	end,
+--
+-- 	finish_callback = function()
+--     awful.screen.connect_for_each_screen(function(s)
+-- 			s.mywibox.visible = true
+--     end
+--     )
+-- 		pomowibox.visible = false
+-- 	end})
+-- pomowibox:set_widget(pomodoro)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
@@ -399,15 +403,30 @@ local globalkeys = gears.table.join(
 	end, { description = "Screenshot", group = "media" }),
 	awful.key({}, "XF86AudioRaiseVolume", function()
 		awful.spawn(INC_VOLUME)
-		volume_update()
+
+    -- emit signal for volume change
+    -- make arcpopip if in normal mode and eva popup in 集中モード
+    if screen.primary.mywibox.position == "bottom" then
+      awesome.emit_signal("volume_change")
+    else
+      volume_update()
+    end
 	end, { description = "raise volume", group = "media" }),
 	awful.key({}, "XF86AudioMute", function()
 		awful.spawn(TOG_VOLUME)
-		volume_update()
+    if screen.primary.mywibox.position == "bottom" then
+      awesome.emit_signal("volume_change")
+    else
+      volume_update()
+    end
 	end, { description = "mute", group = "media" }),
 	awful.key({}, "XF86AudioLowerVolume", function()
 		awful.spawn(DEC_VOLUME)
-		volume_update()
+    if screen.primary.mywibox.position == "bottom" then
+      awesome.emit_signal("volume_change")
+    else
+		  volume_update()
+    end
 	end, { description = "lower volume", group = "media" }),
 	awful.key({}, "XF86AudioPlay", function()
 		awful.spawn("playerctl play-pause")
@@ -445,9 +464,10 @@ local globalkeys = gears.table.join(
 	end, { description = "集中モード", group = "random" }),
 	awful.key({ modkey, "Control" }, "c", function()
 		awful.spawn(terminal .. " -e " .. editor .. " " .. awesome.conffile)
-	end, { description = "edit rc.lua", group = "random" }),
-awful.key({	modkey			}, "p", function () pomodoro:toggle() end),
-awful.key({	modkey, "Shift"	}, "p", function () pomodoro:finish() end)
+	end, { description = "edit rc.lua", group = "random" })
+  -- TODO: Pomodoro timer
+  -- awful.key({	modkey			}, "p", function () pomodoro:toggle() end),
+  -- awful.key({	modkey, "Shift"	}, "p", function () pomodoro:finish() end)
 )
 
 
