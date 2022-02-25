@@ -464,6 +464,9 @@ local globalkeys = gears.table.join(
 	end, { description = "集中モード", group = "random" }),
 	awful.key({ modkey, "Control" }, "c", function()
 		awful.spawn(terminal .. " -e " .. editor .. " " .. awesome.conffile)
+	end, { description = "edit rc.lua", group = "random" }),
+	awful.key({ modkey}, "e", function()
+		awful.spawn(terminal .. " -e ranger")
 	end, { description = "edit rc.lua", group = "random" })
   -- TODO: Pomodoro timer
   -- awful.key({	modkey			}, "p", function () pomodoro:toggle() end),
