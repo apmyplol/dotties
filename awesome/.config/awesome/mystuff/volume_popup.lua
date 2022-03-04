@@ -29,7 +29,7 @@ local volume_adjust = wibox({
 	y = fscreen.geometry.height,
 	width = fscreen.geometry.width - 2 * offsetx,
 	height = 50,
-	bg = "#00000055",
+	bg = "#00000000",
 	shape = gears.shape.rectangle,
 	visible = false,
 	ontop = true,
@@ -40,13 +40,37 @@ local volume_bar = wibox.widget({
 	shape = gears.shape.rectangle,
 	color = beautiful.eva.reb_green,
 	background_color = beautiful.eva.reb_purple1,
+  -- ticks = true,
+  -- ticks_size = 10,
+  -- bar_shape = gears.shape.powerline,
+  shape = function(cr, width, height)
+    local gaps = 2
+    local size = 20
+    local amount = math.floor(width/(size+gaps))
+    -- require ("naughty").notify({text = gears.debug.dump_return(width)})
+    for i = 1, amount, 1 do
+      gears.shape.transform(gears.shape.powerline) : translate((i-1)*(gaps + size), 0) (cr, size, height)
+      -- cr:append_path(bla)
+      --[[ sp = gears.shape.transform(gears.shape.powerline) : append(gears.shape.transform(gears.shape.powerline) : translate(100, 0) (cr, 80, 10)) ]]
+    end
+    end,
+  bar_shape = function(cr, width, height)
+    local gaps = 2
+    local size = 20
+    local amount = math.floor(width/size)
+    for i = 1, amount, 1 do
+      gears.shape.transform(gears.shape.powerline) : translate((i-1)*(gaps + size), 0) (cr, size, height)
+      -- cr:append_path(bla)
+      --[[ sp = gears.shape.transform(gears.shape.powerline) : append(gears.shape.transform(gears.shape.powerline) : translate(100, 0) (cr, 80, 10)) ]]
+    end
+    end,
 	max_value = 100,
 	value = 0,
 })
 
 volume_adjust:setup({
 	layout = wibox.layout.align.horizontal,
-	wibox.container.margin(volume_icon, dpi(20), dpi(10)),
+    wibox.container.background(volume_icon, dpi(20), dpi(10)),
 	{
 		wibox.container.margin(volume_bar, dpi(10), dpi(20), dpi(20), dpi(20)),
 		layout = wibox.container.place,
@@ -107,7 +131,11 @@ awesome.connect_signal("volume_change", function()
 				if vol == 100 then
 					volume_icon:set_markup_silently(text("拾", beautiful.eva.green))
 					return
+        elseif vol == 0 then
+					volume_icon:set_markup_silently(text("〇", beautiful.eva.red))
+					return
 				elseif vol < 10 then
+          volume_bar.color = beautiful.eva2.red
 					volume_icon:set_markup_silently(text("零", beautiful.eva2.red))
 					return
 				end
