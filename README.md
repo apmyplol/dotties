@@ -7,6 +7,10 @@ They are still in development but here are a couple of screenshots.
 
 I also got a couple of rofi themes which are mostly copied from [here](https://github.com/adi1090x/rofi) with other colors.
 
+## Volume indicator
+<img src="images/vol_normal.png">
+<img src="images/vol_mute.png"  >
+
 ## Launcher
 <img src="images/rofi1.png" width = "69%"> 
 
@@ -14,3 +18,4 @@ I also got a couple of rofi themes which are mostly copied from [here](https://g
 <img src="images/rofi2.png" width = "69%">
 <img src="images/rofi3.png" width = "69%">
 <img src="images/rofi4.png" width = "69%">
+
