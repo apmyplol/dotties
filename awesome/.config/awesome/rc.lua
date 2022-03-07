@@ -39,18 +39,14 @@ hotkeys_popup.widget.add_group_rules("screen", { color = beautiful.eva.reb_orang
 hotkeys_popup.widget.add_group_rules("tag", { color = beautiful.eva.reb_orange })
 
 -- some widgets
-local GET_VOLUME = commands.GET_VOLUME
-local INC_VOLUME = commands.INC_VOLUME
-local DEC_VOLUME = commands.DEC_VOLUME
-local TOG_VOLUME = commands.TOG_VOLUME
 -- TODO: volumearc läuft die ganze Zeit im Hintergrund -> deswegen erstmal ausgemacht
 -- local volumearc, volume_update = mystuff.volumearc({
 -- 	main_color = beautiful.eva.reb_green,
 -- 	mute_color = beautiful.eva.reb_orange,
--- 	get_volume_cmd = GET_VOLUME,
--- 	inc_volume_cmd = INC_VOLUME,
--- 	dec_volume_cmd = DEC_VOLUME,
--- 	tog_volume_cmd = TOG_VOLUME,
+-- 	get_volume_cmd = commands.GET_VOLUME,
+-- 	inc_volume_cmd = commands.INC_VOLUME,
+-- 	dec_volume_cmd = commands.DEC_VOLUME,
+-- 	tog_volume_cmd = commands.TOG_VOLUME,
 -- 	thickness = 12.5,
 -- 	height = 25,
 -- })
@@ -405,7 +401,7 @@ local globalkeys = gears.table.join(
 		awful.util.spawn("flameshot gui")
 	end, { description = "Screenshot", group = "media" }),
 	awful.key({}, "XF86AudioRaiseVolume", function()
-		awful.spawn(INC_VOLUME)
+		awful.spawn(commands.INC_VOLUME)
 
     -- emit signal for volume change
     -- make arcpopip if in normal mode and eva popup in 集中モード
@@ -417,7 +413,7 @@ local globalkeys = gears.table.join(
     end
 	end, { description = "raise volume", group = "media" }),
 	awful.key({}, "XF86AudioMute", function()
-		awful.spawn(TOG_VOLUME)
+		awful.spawn(commands.TOG_VOLUME)
     if screen.primary.mywibox.position == "bottom" then
       awesome.emit_signal("volume_change")
     else
@@ -425,7 +421,7 @@ local globalkeys = gears.table.join(
     end
 	end, { description = "mute", group = "media" }),
 	awful.key({}, "XF86AudioLowerVolume", function()
-		awful.spawn(DEC_VOLUME)
+		awful.spawn(commands.DEC_VOLUME)
     if screen.primary.mywibox.position == "bottom" then
       awesome.emit_signal("volume_change")
     else
@@ -433,19 +429,19 @@ local globalkeys = gears.table.join(
     end
 	end, { description = "lower volume", group = "media" }),
 	awful.key({}, "XF86AudioPlay", function()
-		awful.spawn("playerctl play-pause")
+		awful.spawn(commands.TOG_PLAY)
 	end, { description = "play/pause", group = "media" }),
 	awful.key({}, "XF86AudioNext", function()
-		awful.spawn("playerctl next")
+		awful.spawn(commands.MEDIA_NEXT)
 	end, { description = "next", group = "media" }),
 	awful.key({}, "XF86AudioPrev", function()
-		awful.spawn("playerctl previous")
+		awful.spawn(commands.MEDIA_PREV)
 	end, { description = "previous", group = "media" }),
 	awful.key({}, "XF86Tools", function()
-		awful.spawn("mpv --player-operation-mode=pseudo-gui")
+		awful.spawn(commands.IDLE_MPV)
 	end, { description = "run mpv", group = "media" }),
 	awful.key({ modkey }, "XF86Tools", function()
-		awful.spawn("brave --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod")
+		awful.spawn(commands.YT_MUSIC)
 	end, { description = "run youtube music", group = "media" }),
 
 
@@ -631,7 +627,6 @@ awful.rules.rules = {
 	{
 		rule_any = {
 			instance = {
-				"DTA", -- Firefox addon DownThemAll.
 				"copyq", -- Includes session name in class.
 				"pinentry",
 			},
@@ -655,8 +650,6 @@ awful.rules.rules = {
 				"Event Tester", -- xev.
 			},
 			role = {
-				"AlarmWindow", -- Thunderbird's calendar.
-				"ConfigManager", -- Thunderbird's about:config.
 				"pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
 			},
 		},
@@ -666,7 +659,6 @@ awful.rules.rules = {
 	-- Add titlebars to normal clients and dialogs
 	{ rule_any = { type = { "normal", "dialog" } }, properties = { titlebars_enabled = false } },
 
-	-- Set Firefox to always map on the tag named "2" on screen 1.
 	{
 		rule = { name = "Google Podcasts - Brave" },
 		properties = { screen = 2, tag = numbers[9], floating = false },
