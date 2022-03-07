@@ -8,14 +8,14 @@ if not status_ok then
 	return
 end
 
-treesitterps.get_parser_configs().matlab = {
-	install_info = {
-		url = "https://github.com/mstanciu552/tree-sitter-matlab.git",
-		files = { "src/parser.c" },
-		branch = "main",
-	},
-	filetype = "matlab",
-}
+-- treesitterps.get_parser_configs().matlab = {
+-- 	install_info = {
+-- 		url = "https://github.com/mstanciu552/tree-sitter-matlab.git",
+-- 		files = { "src/parser.c" },
+-- 		branch = "main",
+-- 	},
+-- 	filetype = "matlab",
+-- }
 treesitter.setup({
 	ensure_installed = "maintained",
 	sync_install = false,
@@ -63,9 +63,9 @@ treesitter.setup({
 			show_help = "?",
 		},
 	},
-  matchup = {
-    enable = true,              -- mandatory, false will disable the whole extension
-    disable = { "c", "ruby" },  -- optional, list of language that will be disabled
-    -- [options]
-  },
+	matchup = {
+		enable = true, -- mandatory, false will disable the whole extension
+		disable = { "c", "ruby" }, -- optional, list of language that will be disabled
+		-- [options]
+	},
 })

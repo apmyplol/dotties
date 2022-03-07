@@ -121,7 +121,8 @@ return packer.startup(function(use)
   -- Plugin which extends vim's matchup, i.e. jumping to matching parenthesis
   use 'andymass/vim-matchup'
   -- for surrouding editing
-  use 'blackcauldron7/surround.nvim'
+  -- surround has been deleted...
+  -- use 'blackcauldron7/surround.nvim'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   --danymat/neogen, ekickx/clipboard-image.nvim
@@ -131,6 +132,9 @@ return packer.startup(function(use)
   --     'glacambre/firenvim',
   --     run = function() vim.fn['firenvim#install'](0) end
   -- }
+  
+  -- for nice folding
+  use 'anuvyklack/pretty-fold.nvim'
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
