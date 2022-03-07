@@ -133,6 +133,19 @@ for key, val in pairs(hotkeys) do
     theme["hotkeys_" .. key] = val
 end
 
+local shapes = {
+    -- eva bar 1, progressbar
+    bar1 = function(cr, width, height, gaps, size)
+        local amount = math.floor(width/(size+gaps))
+        for i = 1, amount, 1 do
+          gears.shape.transform(gears.shape.powerline) : translate((i-1)*(gaps + size), 0) (cr, size, height)
+        end
+    end,
+}
+
+theme.shapes = shapes
+
+
 --[[
 local taglist_square_size = 5 --die kleinen Squares in der Ecke der Tags
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(

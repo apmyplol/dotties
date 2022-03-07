@@ -8,6 +8,7 @@ require("awful.autofocus")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local numbers = beautiful.numbers
+local commands = require("mystuff.commands")
 
 -- TODO: replace path with relative path
 beautiful.init("/home/afa/.config/awesome/evatheme/evatheme.lua")
@@ -37,20 +38,21 @@ hotkeys_popup.widget.add_group_rules("screen", { color = beautiful.eva.reb_orang
 hotkeys_popup.widget.add_group_rules("tag", { color = beautiful.eva.reb_orange })
 
 -- some widgets
-local GET_VOLUME = "amixer -D default sget Master"
-local INC_VOLUME = "amixer -q -D default sset Master 2%+"
-local DEC_VOLUME = "amixer -q -D default sset Master 2%-"
-local TOG_VOLUME = "amixer -q -D default sset Master toggle"
-local volumearc, volume_update = mystuff.volumearc({
-	main_color = beautiful.eva.reb_green,
-	mute_color = beautiful.eva.orange,
-	get_volume_cmd = GET_VOLUME,
-	inc_volume_cmd = INC_VOLUME,
-	dec_volume_cmd = DEC_VOLUME,
-	tog_volume_cmd = TOG_VOLUME,
-	thickness = 12.5,
-	height = 25,
-})
+local GET_VOLUME = commands.GET_VOLUME
+local INC_VOLUME = commands.INC_VOLUME
+local DEC_VOLUME = commands.DEC_VOLUME
+local TOG_VOLUME = commands.TOG_VOLUME
+-- TODO: volumearc läuft die ganze Zeit im Hintergrund -> deswegen erstmal ausgemacht
+-- local volumearc, volume_update = mystuff.volumearc({
+-- 	main_color = beautiful.eva.reb_green,
+-- 	mute_color = beautiful.eva.reb_orange,
+-- 	get_volume_cmd = GET_VOLUME,
+-- 	inc_volume_cmd = INC_VOLUME,
+-- 	dec_volume_cmd = DEC_VOLUME,
+-- 	tog_volume_cmd = TOG_VOLUME,
+-- 	thickness = 12.5,
+-- 	height = 25,
+-- })
 
 
 -- {{{ Error handling
@@ -189,7 +191,8 @@ local nbar = function(s)
 		mytextclock,
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
-			volumearc,
+      -- TODO: volumearc fix
+			-- volumearc,
 			--mykeyboardlayout,
 			-- TODO something with systray
 			wibox.widget.systray(),
@@ -220,7 +223,7 @@ awful.screen.connect_for_each_screen(function(s)
 		opacity = "1",
 		height = beautiful.wibox,
 	})
-
+  -- s.mywibox:struts({bottom = 400})
 	s.mywibox:setup(sbar(s))
 end)
 
@@ -409,7 +412,8 @@ local globalkeys = gears.table.join(
     if screen.primary.mywibox.position == "bottom" then
       awesome.emit_signal("volume_change")
     else
-      volume_update()
+      -- TODO: volumearc fix
+      -- volume_update()
     end
 	end, { description = "raise volume", group = "media" }),
 	awful.key({}, "XF86AudioMute", function()
@@ -417,7 +421,7 @@ local globalkeys = gears.table.join(
     if screen.primary.mywibox.position == "bottom" then
       awesome.emit_signal("volume_change")
     else
-      volume_update()
+      -- volume_update()
     end
 	end, { description = "mute", group = "media" }),
 	awful.key({}, "XF86AudioLowerVolume", function()
@@ -425,7 +429,7 @@ local globalkeys = gears.table.join(
     if screen.primary.mywibox.position == "bottom" then
       awesome.emit_signal("volume_change")
     else
-		  volume_update()
+		  -- volume_update()
     end
 	end, { description = "lower volume", group = "media" }),
 	awful.key({}, "XF86AudioPlay", function()
@@ -504,6 +508,9 @@ local clientkeys = gears.table.join(
 	end, { description = "minimize", group = "client" }),
 	awful.key({ modkey }, "m", function(c)
 		c.maximized = not c.maximized
+    if screen.primary.mywibox.position == "bottom" then
+      c:struts({bottom = 40})
+    end
 		c:raise()
 	end, { description = "(un)maximize", group = "client" }),
 	awful.key({ modkey, "Control" }, "m", function(c)

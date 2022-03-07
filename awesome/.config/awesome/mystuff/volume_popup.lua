@@ -6,12 +6,15 @@ local wibox = require("wibox")
 local awful = require("awful")
 local gears = require("gears")
 local beautiful = require("beautiful")
+local GET_VOL = require("mystuff.commands").GET_VOLUME
 
 local dpi = beautiful.xresources.apply_dpi
 
-local offsetx = dpi(50)
+local offsetx = dpi(200)
 local fscreen = awful.screen.focused()
 beautiful.init(gears.filesystem.get_configuration_dir() .. "/evatheme/evatheme.lua")
+local tick_size = 15
+local gaps = 1
 
 -- ===================================================================
 -- Appearance & Functionality
@@ -37,32 +40,13 @@ local volume_adjust = wibox({
 
 local volume_bar = wibox.widget({
 	widget = wibox.widget.progressbar,
-	shape = gears.shape.rectangle,
 	color = beautiful.eva.reb_green,
 	background_color = beautiful.eva.reb_purple1,
-  -- ticks = true,
-  -- ticks_size = 10,
-  -- bar_shape = gears.shape.powerline,
   shape = function(cr, width, height)
-    local gaps = 2
-    local size = 20
-    local amount = math.floor(width/(size+gaps))
-    -- require ("naughty").notify({text = gears.debug.dump_return(width)})
-    for i = 1, amount, 1 do
-      gears.shape.transform(gears.shape.powerline) : translate((i-1)*(gaps + size), 0) (cr, size, height)
-      -- cr:append_path(bla)
-      --[[ sp = gears.shape.transform(gears.shape.powerline) : append(gears.shape.transform(gears.shape.powerline) : translate(100, 0) (cr, 80, 10)) ]]
-    end
+    beautiful.shapes.bar1(cr, width, height, gaps, tick_size)
     end,
   bar_shape = function(cr, width, height)
-    local gaps = 2
-    local size = 20
-    local amount = math.floor(width/size)
-    for i = 1, amount, 1 do
-      gears.shape.transform(gears.shape.powerline) : translate((i-1)*(gaps + size), 0) (cr, size, height)
-      -- cr:append_path(bla)
-      --[[ sp = gears.shape.transform(gears.shape.powerline) : append(gears.shape.transform(gears.shape.powerline) : translate(100, 0) (cr, 80, 10)) ]]
-    end
+    beautiful.shapes.bar1(cr, width, height, gaps, tick_size)
     end,
 	max_value = 100,
 	value = 0,
@@ -70,9 +54,9 @@ local volume_bar = wibox.widget({
 
 volume_adjust:setup({
 	layout = wibox.layout.align.horizontal,
-    wibox.container.background(volume_icon, dpi(20), dpi(10)),
+    volume_icon,
 	{
-		wibox.container.margin(volume_bar, dpi(10), dpi(20), dpi(20), dpi(20)),
+		wibox.container.margin(volume_bar, dpi(20), dpi(0), dpi(20), dpi(20)),
 		layout = wibox.container.place,
 	},
 })
@@ -111,19 +95,22 @@ awesome.connect_signal("volume_change", function()
 
 	-- set new volume value and colors etc
 	awful.spawn.easy_async_with_shell(
-		"amixer sget Master | grep 'Right:' | awk -F '[][]' '{print $2$4}'",
+    GET_VOL,
 		function(stdout)
-			local out = gears.string.split(stdout, "%%")
-			local vol = tonumber(out[1])
-			local status = out[2]
+      -- 27
+      -- false
+			local vol, status = stdout:match("([%d]+)\n([%a]*)")
+			local vol = tonumber(vol)
+
 
 			volume_bar.value = vol
 
       local text = function(tex, clr)
         return "<span color='" .. clr .."'>" .. tex .. "</span>"
       end
+
 			-- set colors and 漢字
-			if status == "off\n" then
+			if status == "true" then -- if muted
 				volume_bar.color = beautiful.eva.orange
 				volume_icon:set_markup_silently(text("無", beautiful.eva.orange))
 			else
