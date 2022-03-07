@@ -10,8 +10,9 @@ local beautiful = require("beautiful")
 local numbers = beautiful.numbers
 local commands = require("mystuff.commands")
 
--- TODO: replace path with relative path
-beautiful.init("/home/afa/.config/awesome/evatheme/evatheme.lua")
+local adir = gears.filesystem.get_configuration_dir() -- awesome config dir
+local cdir = gears.filesystem.get_xdg_config_home() -- .config dir
+beautiful.init(adir .. "/evatheme/evatheme.lua")
 
 
 -- TODO: edit popup to become eva thing
@@ -202,10 +203,11 @@ local nbar = function(s)
 end
 
 local function set_wallpaper(s)
-	-- TODO: copy images to awesome path and replace with relative path
-	awful.spawn.with_shell(
-		"feh --bg-fill $HOME/.config/awesome/evatheme/evaunit01.jpg --bg-max $HOME/SynologyDrive/BG/tate/eva_3.jpg"
-	)
+  if s == screen.primary then
+    gears.wallpaper.fit(adir .. "evatheme/evaunit01.jpg", s)
+  else
+    gears.wallpaper.fit(adir .. "evatheme/eva_3.jpg", s)
+  end
 end
 
 awful.screen.connect_for_each_screen(function(s)
@@ -319,8 +321,7 @@ local globalkeys = gears.table.join(
 		end
 	end, { description = "restore minimized", group = "client" }),
 	awful.key({ "Mod1" }, "Tab", function()
-		-- TODO: replace with relative path
-		awful.util.spawn("/home/afa/.config/rofi/evaswitch/colorful_eva")
+		awful.util.spawn(cdir .. "/rofi/evaswitch/colorful_eva")
 	end, { description = "change tabs", group = "client" }),
 
 
@@ -342,8 +343,7 @@ local globalkeys = gears.table.join(
 		awful.util.spawn("rofi -show run")
 	end, { description = "run prompt", group = "launcher" }),
 	awful.key({ modkey }, "d", function()
-	-- TODO: replace with relative path
-		awful.util.spawn("/home/afa/.config/rofi/evaribbon/launcher.sh")
+		awful.util.spawn(cdir .. "rofi/evaribbon/launcher.sh")
   end, { description = "run application prompt", group = "launcher" }),
 	awful.key({ modkey }, "Return", function()
 		awful.spawn(terminal)
@@ -757,9 +757,8 @@ awful.spawn.with_shell(
 		.. "dex --environment Awesome --autostart" -- hab das hier weggemacht, hat iwien icht geklappt --search-paths "$XDG_CONFIG_DIRS/autostart:$XDG_CONFIG_HOME/autostart"' -- https://github.com/jceb/dex
 )
 
--- TODO: replace with relative path
 awful.spawn.with_shell(
-	"pgrep -l picom || picom --experimental-backends --xrender-sync-fence --config /home/afa/.config/picom.conf"
+	"pgrep -l picom || picom --experimental-backends --xrender-sync-fence --config " .. cdir .. "picom.conf"
 ) -- für logs --log-level info --log-file /home/afa/picom.log")
 
 
