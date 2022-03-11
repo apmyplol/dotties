@@ -7,6 +7,7 @@ return{
   MEDIA_NEXT = "playerctl next",
   MEDIA_PREV = "playerctl previous",
   IDLE_MPV = "mpv --player-operation-mode=pseudo-gui",
-  YT_MUSIC = "brave --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod"
-  
+  YT_MUSIC = "brave --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod",
+  BRIGHT_DWN = "test $(xbacklight -get) -lt 10 && xbacklight -1 || xbacklight -5",
+  BRIGHT_UP = "test $(xbacklight -get) -lt 10 && xbacklight +1 || xbacklight +5"
 }

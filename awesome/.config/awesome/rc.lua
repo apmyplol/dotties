@@ -465,6 +465,11 @@ local globalkeys = gears.table.join(
 	awful.key({ modkey }, "XF86Tools", function()
 		awful.spawn(commands.YT_MUSIC)
 	end, { description = "run youtube music", group = "media" }),
+  -- Brightness
+   awful.key({ }, "XF86MonBrightnessDown", function ()
+    awful.spawn.with_shell(commands.BRIGHT_DWN) end, {description="brightness down", group="media"}),
+   awful.key({ }, "XF86MonBrightnessUp", function ()
+    awful.spawn.with_shell(commands.BRIGHT_UP) end, {description="brightness up", group="media"}),
 
 
 
