@@ -2,3 +2,4 @@
 /ranger/.config/ranger/plugins/__pycache__/
 /ranger/.config/ranger/plugins/ranger_devicons/__pycache__/
 lazygit/.config/lazygit/state.yml
+nvim/.config/nvim/plugin/
