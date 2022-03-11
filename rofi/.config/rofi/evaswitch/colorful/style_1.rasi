@@ -24,7 +24,7 @@ window {
     background-color:               @bg;
     text-color:                     @fg;
 	border:							0px;
-	border-color:					@ac;
+	border-color:					@sen; //@ac;
 	width:							35%;
     location:                       center;
     x-offset:                       0;
@@ -52,12 +52,12 @@ entry {
 
 inputbar {
 	children: 						[ prompt, entry ];
-    background-color:               @ac;
+    background-color:               @sen; //@ac;
     text-color:                     @bg;
     expand:                         false;
 	border:							0% 0% 0% 0%;
     border-radius:                  0px;
-	border-color:					@ac;
+	border-color:					            @sen; //@ac;
     margin:                         0% 0% 0% 0%;
     padding:                        1.5%;
 }
@@ -76,7 +76,7 @@ mainbox {
     background-color:               @al;
 	border:							0% 0% 0% 0%;
     border-radius:                  0% 0% 0% 0%;
-	border-color:					@ac;
+	border-color:					            @sen; //@ac;
     children:                       [ inputbar, listview ];
     spacing:                       	0%;
     padding:                        0%;
@@ -109,6 +109,6 @@ element-text {
 }
 
 element selected {
-    background-color:               @sen;
-    text-color:                     @fg;
+    background-color:               @ac;// @sen;
+    text-color:                     @se;
 }

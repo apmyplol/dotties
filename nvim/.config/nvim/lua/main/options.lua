@@ -47,6 +47,7 @@ end
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd[[autocmd FileType vimwiki,markdown setlocal foldexpr=MarkdownFold() foldmethod=expr]]
+-- vim.cmd[[autocmd FileType vimwiki let g:vimtex_enabled = 1]]
 vim.cmd("set nofoldenable")
 vim.cmd("let g:polyglot_disabled = ['vue']")
 vim.cmd('autocmd BufRead,BufNewFile,BufWrite,BufWritePost *.m set filetype=matlab foldmethod=manual')

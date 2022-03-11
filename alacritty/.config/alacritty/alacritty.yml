@@ -170,9 +170,9 @@ colors:
     black:   '#000000'
     red:     '#FF0000'
     green:   '#A462FA'
-    yellow:  '#523874'
+    yellow:  '#7999f2'
     blue:    '#ff8c28'
-    magenta: '#7999f2'
+    magenta: '#8866A2'
     cyan:    '#00FF00'
     white:   '#FFFFFF' 
 

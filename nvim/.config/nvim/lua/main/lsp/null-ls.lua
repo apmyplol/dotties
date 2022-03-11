@@ -14,8 +14,10 @@ null_ls.setup {
     --formatting.prettier.with { extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } },
     formatting.black.with { extra_args = { "--fast" } },
     -- formatting.yapf,
-    null_ls.builtins.diagnostics.pylint,
-    --formatting.stylua,
+    -- formatting.eslint_d,
+    -- diagnostics.eslint_d,
+    diagnostics.pylint,
+    formatting.stylua,
     --diagnostics.flake8,
   },
 }

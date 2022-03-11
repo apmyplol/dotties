@@ -47,7 +47,7 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "sheerun/vim-polyglot" -- better Syntax support
+  -- use "sheerun/vim-polyglot" -- better Syntax support
   use "windwp/nvim-autopairs" -- autocomplete for ( { [
 
   -- File explorer and telescope for search
@@ -74,7 +74,7 @@ return packer.startup(function(use)
 
     -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  -- use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
   use "benfowler/telescope-luasnip.nvim"  -- Luasnip integration for telescope
 
@@ -89,7 +89,7 @@ return packer.startup(function(use)
 
   use "lewis6991/gitsigns.nvim" -- for git information, added/deleted stuff and see changes while file is opened
 
-  use { 'lervag/vimtex', ft =  {'tex' }} -- latex support
+  use { 'lervag/vimtex', ft =  {'tex', 'vimwiki' }} -- latex support
 
   -- never fotget keybindings again (hopefully)
   use "folke/which-key.nvim"
@@ -107,12 +107,34 @@ return packer.startup(function(use)
   use {"vimwiki/vimwiki", ft = {"markdown"}}
   -- use "junegunn/goyo.vim"
   use "tanvirtin/vgit.nvim"
+
+  -- Block and single line quotes
   use "numToStr/Comment.nvim"
   use "JoosepAlviste/nvim-ts-context-commentstring"
+
+  -- Autocmd lua wrapper
   use 'jakelinnzy/autocmd-lua'
 
+  -- Statusline
+  use 'nvim-lualine/lualine.nvim'
+
+  -- Plugin which extends vim's matchup, i.e. jumping to matching parenthesis
+  use 'andymass/vim-matchup'
+  -- for surrouding editing
+  -- surround has been deleted...
+  -- use 'blackcauldron7/surround.nvim'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
+  --danymat/neogen, ekickx/clipboard-image.nvim
+
+  -- to use neovim in browser
+  -- use {
+  --     'glacambre/firenvim',
+  --     run = function() vim.fn['firenvim#install'](0) end
+  -- }
+  
+  -- for nice folding
+  use 'anuvyklack/pretty-fold.nvim'
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end

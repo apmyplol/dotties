@@ -89,7 +89,7 @@ mainbox {
 }
 
 element {
-    background-color:               @se;
+    background-color:               @bg;
     text-color:                     @fg;
     orientation:                    horizontal;
     padding:                        1% 0.5% 1% 0.75%;
@@ -113,12 +113,12 @@ element-text {
 }
 
 element selected {
-    background-color:               @bg;
+    background-color:               @se;
     text-color:                     @ac;
 	border:							0% 0.3% 0% 0.3%;
     border-radius:                  12px;
-    border-color:                  	@ac;
+    border-color:                  	@sen;
 }
 element-icon selected{
-    background-color : @bg;
+    background-color : @se;
 }

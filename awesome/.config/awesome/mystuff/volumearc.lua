@@ -13,12 +13,12 @@ local awful = require("awful")
 local spawn = require("awful.spawn")
 local watch = require("awful.widget.watch")
 local wibox = require("wibox")
+local commands = require("mystuff.commands")
 
-local GET_VOLUME_CMD = 'amixer -D pulse sget Master'
-local INC_VOLUME_CMD = 'amixer -q -D pulse sset Master 5%+'
-local DEC_VOLUME_CMD = 'amixer -q -D pulse sset Master 5%-'
-local TOG_VOLUME_CMD = 'amixer -q -D pulse sset Master toggle'
-local SET_VOLUME_CMD = "a"
+local GET_VOLUME = commands.GET_VOLUME
+local INC_VOLUME = commands.INC_VOLUME
+local DEC_VOLUME = commands.DEC_VOLUME
+local TOG_VOLUME = commands.TOG_VOLUME
 local VOL_CONTROL = 'pavucontrol'
 
 local PATH_TO_ICON = "/usr/share/icons/Arc/status/symbolic/audio-volume-muted-symbolic.svg"
@@ -62,14 +62,20 @@ local function worker(args)
     }
 
     local update_graphic = function(widget, stdout, _, _, _)
-        local mute = string.match(stdout, "%[(o%D%D?)%]")   -- \[(o\D\D?)\] - [on] or [off]
-        local volume = string.match(stdout, "(%d?%d?%d)%%") -- (\d?\d?\d)\%)
-        volume = tonumber(string.format("% 3d", volume))
+        local mute,volume = stdout:match("([%a]*)%s([%d]+)")
+        -- local mute = string.match(stdout, "%[(o%D%D?)%]")   -- \[(o\D\D?)\] - [on] or [off]
+        -- local volume = string.match(stdout, "(%d?%d?%d)%%") -- (\d?\d?\d)\%)
+        -- volume = tonumber(string.format("% 3d", volume))
+        volume = tonumber(volume)
 
+        --TODO: das printet alle 1 sekunde, deswegen volumearc ausgemacht
+        require("naughty").notify({text = stdout})
+        require("naughty").notify({text = mute})
         widget.value = volume / 100;
-        widget.colors = mute == 'off'
+        widget.colors = mute == 'true'
                 and { mute_color }
                 or { main_color }
+          -- widget.colors = { main_color }
     end
 
     local ext_update = function()

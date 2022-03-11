@@ -253,7 +253,7 @@ ls.snippets = {
           end, {})
       ),
       s(
-				{ trig = "i(o?)(%-?%S)(%-?%S)", name = "interval", dscr = "expands 'iab' to open or closed interval from a to b", regTrig = true, hidden = true },
+				{ trig = "i(o?)(%-?[%a%d])(%-?[%a%d])", name = "interval", dscr = "expands 'iab' to open or closed interval from a to b", regTrig = true, hidden = true },
 				c(1, {
 					f(function(_, snip)
 						local mid = snip.captures[2] .. "," .. snip.captures[3]
@@ -273,7 +273,7 @@ ls.snippets = {
 				end, {})
       ),
       s(
-        { trig = "ih(%-?%S)(%-?%S)", name = "half opened interval choice node", dscr = "expands 'ihba' to choice node '(b, a] OR [b, a)'",  regTrig = true, hidden = true },
+        { trig = "ih(%-?[%a%d])(%-?[%a%d])", name = "half opened interval choice node", dscr = "expands 'ihba' to choice node '(b, a] OR [b, a)'",  regTrig = true, hidden = true },
           c(1,{
             f(function(_, snip)
               return "(" .. snip.captures[1] .. "," .. snip.captures[2] .. "]"
