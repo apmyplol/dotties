@@ -1,5 +1,8 @@
 pcall(require, "luarocks.loader")
 
+local menubar = require("mymenubar")
+
+
 local mystuff = require("mystuff")
 
 local gears = require("gears")
@@ -334,7 +337,8 @@ local globalkeys = gears.table.join(
 
 
   ---------------------- LAUNCHER BINDINGS ---------------------------
-
+    awful.key({ modkey }, "p", function() menubar.show() end,
+              {description = "show the menubar", group = "launcher"}),
 	awful.key({ modkey }, "c", function()
 		awful.util.spawn("rofi -show run")
 	end, { description = "run prompt", group = "launcher" }),
