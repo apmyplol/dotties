@@ -19,7 +19,7 @@ beautiful.init(adir .. "/evatheme/evatheme.lua")
 -- require("mystuff.volume_popup_side")
 
 -- TODO: make cool switcher
-local switcher = require("awesome-switcher")
+local switcher = mystuff.switcher
 switcher.settings.preview_box_bg = beautiful.eva.reb_purple1 .. "88" -- background color
 switcher.settings.preview_box_border = beautiful.eva.reb_green -- border-color
 switcher.settings.preview_box_title_color_selected = {gears.color.parse_color(beautiful.eva.reb_green)}
