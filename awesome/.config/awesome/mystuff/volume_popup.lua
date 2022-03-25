@@ -82,7 +82,7 @@ awesome.connect_signal("volume_change", function()
 
 		if focused_screen == screen.primary then
 			volume_adjust.x = offsetx --screen.geometry.width,
-			volume_adjust.y = fscreen.geometry.height
+			volume_adjust.y = dpi(2000) --screen.primary.geometry.height / 2
 			volume_adjust.width = fscreen.geometry.width - 2 * offsetx
 			volume_adjust.height = 50
 		else

@@ -125,3 +125,22 @@ cmp.setup {
     native_menu = false,
   },
 }
+--[[
+
+links after `[[`: >
+
+  augroup my_cm_setup
+    autocmd!
+    autocmd BufEnter * call ncm2#enable_for_buffer()
+    autocmd User WikiBufferInitialized call ncm2#register_source({
+          \ 'name': 'wiki',
+          \ 'priority': 9,
+          \ 'scope': ['wiki'],
+          \ 'word_pattern': '\w+',
+          \ 'complete_pattern': '\[\[',
+          \ 'on_complete': ['ncm2#on_complete#delay', 200,
+          \                 'ncm2#on_complete#omni',
+          \                 'wiki#complete#omnicomplete'],
+          \})
+  augroup END
+--]]

@@ -6,5 +6,6 @@ return {
 	volumearc = require("mystuff.volumearc"),
 	pomodoro = require("mystuff.pomodoro"),
   volumepopup = require("mystuff.volume_popup_side"),
-  commands = require("mystuff.commands")
+  commands = require("mystuff.commands"),
+  switcher = require("mystuff.awesome-switcher")
 }

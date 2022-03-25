@@ -4,6 +4,8 @@
 
 # Laptop 
 + Eva battery warning https://64.media.tumblr.com/f207d7cafd192737dca8821259c27f4c/tumblr_pjw2zyrTPf1xdjegyo1_540.gifv or https://pbs.twimg.com/media/EWNzwSQUMAEAESh.jpg
++ change to pipewire
++ adjust volumepopup position
 
 
 #  Snippets todo
