@@ -20,5 +20,5 @@ xsetwacom set "Wacom Graphire3 Pen eraser" Button 1 "key v button +3"
 
 # set smoothness
 xsetwacom set "Wacom Graphire3 Pen stylus" RawSample 3
-xsetwacom set "Wacom Graphire3 Pen stylus" Threshold 10
-xsetwacom set "Wacom Graphire3 Pen stylus" PressureCurve 0 10 100 10
+# xsetwacom set "Wacom Graphire3 Pen stylus" Threshold 10
+# xsetwacom set "Wacom Graphire3 Pen stylus" PressureCurve 0 10 100 10

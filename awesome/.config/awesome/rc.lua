@@ -16,7 +16,7 @@ beautiful.init(adir .. "/evatheme/evatheme.lua")
 
 
 -- TODO: edit popup to become eva thing
-require("mystuff.volume_popup")
+-- require("mystuff.volume_popup_side")
 
 -- TODO: make cool switcher
 -- local switcher = require("awesome-switcher")
