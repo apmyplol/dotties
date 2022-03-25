@@ -61,4 +61,5 @@ xrandr --output DVI-I-0 --off --output DVI-I-1 --off --output HDMI-0 --primary -
 #fcitx5 &
 redshift &
 anki &
+../other_config/wacom_setup.sh &
 exec awesome
