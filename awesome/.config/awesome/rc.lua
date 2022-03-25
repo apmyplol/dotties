@@ -19,11 +19,11 @@ beautiful.init(adir .. "/evatheme/evatheme.lua")
 -- require("mystuff.volume_popup_side")
 
 -- TODO: make cool switcher
--- local switcher = require("awesome-switcher")
--- switcher.settings.preview_box_bg = beautiful.reb_purple1 -- background color
--- switcher.settings.preview_box_border = beautiful.eva_green -- border-color
--- switcher.settings.cycle_raise_client = false
--- switcher.settings.preview_box_title_color = { 247 / 155, 186 / 255, 221 / 255, 1 }
+local switcher = require("awesome-switcher")
+switcher.settings.preview_box_bg = beautiful.eva.reb_purple1 .. "88" -- background color
+switcher.settings.preview_box_border = beautiful.eva.reb_green -- border-color
+switcher.settings.preview_box_title_color_selected = {gears.color.parse_color(beautiful.eva.reb_green)}
+switcher.settings.preview_box_border_selected = {gears.color.parse_color(beautiful.eva.reb_green)}
 
 local naughty = require("naughty")
 local hotkeys_popup = require("awful.hotkeys_popup")
@@ -338,7 +338,7 @@ local globalkeys = gears.table.join(
 			c:emit_signal("request::activate", "key.unminimize", { raise = true })
 		end
 	end, { description = "restore minimized", group = "client" }),
-	awful.key({ "Mod1" }, "Tab", function()
+	awful.key({ modkey }, "Tab", function()
 		awful.util.spawn(cdir .. "/rofi/evaswitch/colorful_eva")
 	end, { description = "change tabs", group = "client" }),
 
@@ -353,7 +353,10 @@ local globalkeys = gears.table.join(
 		awful.screen.focus_relative(-1)
 	end, { description = "focus the previous screen", group = "screen" }),
 
-
+awful.key({ "Mod1"           }, "Tab",
+      function ()
+          switcher.switch( 1, "Mod1", "Alt_L", "Shift", "Tab")
+      end),
 
   ---------------------- LAUNCHER BINDINGS ---------------------------
 
