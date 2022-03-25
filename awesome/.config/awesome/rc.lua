@@ -42,21 +42,6 @@ hotkeys_popup.widget.add_group_rules("screen", { color = beautiful.eva.reb_orang
 hotkeys_popup.widget.add_group_rules("tag", { color = beautiful.eva.reb_orange })
 
 -- some widgets
-local batteryarc = mystuff.battery_widget({
-    show_current_level = true,
-    arc_thickness = 2,
-    size = beautiful.wibox,
-    timeout = 10,
-    --main stuff
-    arc_main_color = beautiful.standart_on,
-    main_background = beautiful.black,
-    main_text = beautiful.white,
-    -- chargin stuff
-    charging_background = beautiful.black,
-    charging_text = beautiful.white,
-    arc_charging_color = beautiful.eva_green,
-    get_bat_cmd = "cat /sys/class/power_supply/BAT1/capacity /sys/class/power_supply/BAT1/status"
-  })
 
 local bluetooth = wibox.widget {
     image  = beautiful.bluetooth_pic,
@@ -217,18 +202,17 @@ local nbar = function(s)
 			--mykeyboardlayout,
 			-- TODO something with systray
 			wibox.widget.systray(),
-			batteryarc,
 			--s.mylayoutbox,
 		},
 	}
 end
 
 local function set_wallpaper(s)
-  -- if s == screen.primary then
+  if s == screen.primary then
     gears.wallpaper.fit(adir .. "evatheme/evaunit01.jpg", s)
-  -- else
-  --   gears.wallpaper.fit(adir .. "evatheme/eva_3.jpg", s)
-  -- end
+  else
+    gears.wallpaper.fit(adir .. "evatheme/eva_3.jpg", s)
+  end
 end
 
 awful.screen.connect_for_each_screen(function(s)
@@ -472,12 +456,6 @@ awful.key({ "Mod1"           }, "Tab",
 	awful.key({ modkey }, "XF86Tools", function()
 		awful.spawn(commands.YT_MUSIC)
 	end, { description = "run youtube music", group = "media" }),
-  -- Brightness
-   awful.key({ }, "XF86MonBrightnessDown", function ()
-    awful.spawn.with_shell(commands.BRIGHT_DWN) end, {description="brightness down", group="media"}),
-   awful.key({ }, "XF86MonBrightnessUp", function ()
-    awful.spawn.with_shell(commands.BRIGHT_UP) end, {description="brightness up", group="media"}),
-
 
 
 
@@ -693,20 +671,21 @@ awful.rules.rules = {
 	-- Add titlebars to normal clients and dialogs
 	{ rule_any = { type = { "normal", "dialog" } }, properties = { titlebars_enabled = false } },
 
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-     { rule = { name = "Google Podcasts - Brave" },
-       properties = { screen = 1, tag = numbers[9], floating = false } },
-     { rule = { class = "discord" },
-       properties = { screen = 1, tag = numbers[9] } },
-     { rule = { class = "obsidian" },
-       properties = { screen = 1, tag = numbers[2] } },
-     { rule = { name = "YouTube Music" },
-       properties = { screen = 1, tag = numbers[8], floating = false } },
+	{
+		rule = { name = "Google Podcasts - Brave" },
+		properties = { screen = 2, tag = numbers[9], floating = false },
+	},
+	{ rule = { class = "discord" }, properties = { screen = 1, tag = numbers[9] } },
+	{ rule = { class = "obsidian" }, properties = { screen = 1, tag = numbers[2] } },
+
+
+
 	{
 		rule = { name = "YouTube" },
 		except = { instance = "YouTube Music" },
 		properties = { screen = 1, tag = numbers[8], floating = false },
-	}
+	},
+	{ rule = { name = "YouTube Music" }, properties = { screen = 2, tag = numbers[9], floating = false } },
 }
 -- }}}
 
