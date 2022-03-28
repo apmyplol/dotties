@@ -119,78 +119,54 @@ local current_category = nil
 local shownitems = nil
 local instance = nil
 
-local lines = 2
-local height = dpi(300)
+local rows = 5
+local cols = 5
+local height = dpi(600)
 local hgap = dpi(10)
+local width = dpi(800)
 
 local my_widget_template = {
 	{
+		{
 			{
-				{
-					id = "icon_role",
-					widget = wibox.widget.imagebox,
-                                        forced_height = height/(lines)
-				},
-				id = "icon_margin_role",
-				margins = 1,
-				widget = wibox.container.margin,
+				id = "icon_role",
+				widget = wibox.widget.imagebox,
+				forced_height = height / rows / 4,
 			},
-			{
-				id = "text_role",
-				widget = wibox.widget.textbox,
-			},
-			id = "text_margin_role",
-			fill_space = false,
-			layout = wibox.layout.fixed.horizontal,
+			id = "icon_margin_role",
+			-- left = height / rows ,
+			-- right = height / rows / 8,
+			top = hgap, --height / lines / 4,
+			-- bottom = height / lines / 4,
+			widget = wibox.container.margin,
+		},
+		{
+			id = "text_role",
+                        align = "center",
+			widget = wibox.widget.textbox,
+		},
+		id = "text_margin_role",
+		fill_space = false,
+		layout = wibox.layout.fixed.vertical,
 	},
 	id = "background_role",
+    forced_height = height/rows,
+    forced_width = width/cols,
 	widget = wibox.container.background,
-	bg = "#000000",
-        -- update_callback = function(self, c, index, objects) require("naughty").notify({text = gears.debug.dump_return(c)}) end,
-        -- create_callback = function() require("naughty").notify({text = "oooooo"}) end
 }
--- local widget_template = {
---         {
---             {
---                 {
---                     {
---                         {
---                             id     = "index_role",
---                             widget = wibox.widget.textbox,
---                         },
---                         margins = 4,
---                         widget  = wibox.container.margin,
---                     },
---                     bg     = "#dddddd",
---                     shape  = gears.shape.circle,
---                     widget = wibox.container.background,
---                 },
---                 {
---                     {
---                         id     = "icon_role",
---                         widget = wibox.widget.imagebox,
---                     },
---                     margins = 2,
---                     widget  = wibox.container.margin,
---                 },
---                 {
---                     id     = "text_role",
---                     widget = wibox.widget.textbox,
---                 },
---                 layout = wibox.layout.fixed.horizontal,
---             },
---             left  = 18,
---             right = 18,
---             widget = wibox.container.margin
---         }
--- }
+
 local common_args = {
 	w = wibox.widget({
-		layout = wibox.layout.grid.horizontal,
-		forced_num_rows = 2,
-		forced_height = dpi(300) / 2,
-		homogeneous = true,
-		expand = false,
+            layout = wibox.layout.grid,
+            orientation = "horizontal",
+            forced_num_cols = cols,
+            forced_num_rows = rows,
+            -- spacing = hgap,
+            forced_height = height,
+            forced_width = width,
+            -- superpose = true,
+            homogeneous = true,
+            expand = false,
 	}),
 	data = setmetatable({}, { __mode = "kv" }),
 }
@@ -280,40 +256,38 @@ end
 -- @tparam number|screen scr Screen
 -- @return table List of items for current page.
 local function get_current_page(all_items, query, scr)
-	scr = get_screen(scr)
-	if not instance.prompt.width then
-		instance.prompt.width = compute_text_width(instance.prompt.prompt, scr)
-	end
-	if not menubar.left_label_width then
-		menubar.left_label_width = compute_text_width(menubar.left_label, scr)
-	end
-	if not menubar.right_label_width then
-		menubar.right_label_width = compute_text_width(menubar.right_label, scr)
-	end
-	local available_space = instance.geometry.width
-		- menubar.right_margin
-		- menubar.right_label_width
-		- menubar.left_label_width
-		- compute_text_width(query, scr)
-		- instance.prompt.width
 
-	local width_sum = 0
 	local current_page = {}
-	for i, item in ipairs(all_items) do
-		item.width = item.width
-			or compute_text_width(item.name, scr) + (item.icon and instance.geometry.height or 0) + list_interspace
-		if width_sum + item.width > available_space then
-			if current_item < i then
-				table.insert(current_page, { name = menubar.right_label, icon = nil })
-				break
-			end
-			current_page = { { name = menubar.left_label, icon = nil }, item }
-			width_sum = item.width
-		else
-			table.insert(current_page, item)
-			width_sum = width_sum + item.width
-		end
-	end
+        local first_page_len = cols*rows - 1
+        local page_len = cols*rows - 2
+        local pages = (#all_items - #all_items % page_len) / page_len
+        local left_label =  { name = menubar.left_label, icon = nil }
+        local right_label = { name = menubar.right_label, icon = nil }
+        -- if there are no items to display (i.e. search without results), return nothing
+        if #all_items == 1 then return {} end
+
+
+        -- current item is on first page
+        if current_item <= first_page_len then
+            current_page = table.move(all_items, 1, first_page_len, 1, {})
+            table.insert(current_page, right_label)
+
+        -- current item is on last page
+        elseif current_item >= page_len * (pages-1) + first_page_len - 1 then
+            current_page = table.move(all_items, page_len * (pages-1) + first_page_len - 1, #all_items, 1, {})
+            table.insert(current_page, 1, left_label)
+
+        -- else current item is between first and last page
+        else
+           local curpage = ((current_item - first_page_len - 1) - ((current_item - first_page_len - 1)% page_len))/page_len + 1
+            -- higher and lower bounds for the page to display
+            local lower_b = first_page_len+(curpage-1)*page_len+1
+            local higher_b = first_page_len+curpage*page_len
+            current_page = table.move(all_items, lower_b, higher_b, 1, {})
+            table.insert(current_page, 1, left_label)
+            table.insert(current_page, #current_page + 1, right_label)
+        end
+
 	return current_page
 end
 
@@ -542,7 +516,7 @@ function menubar.show(scr)
 	-- Set position and size
 	local scrgeom = scr.workarea
 	local geometry = menubar.geometry
-	instance.geometry = { x = offsetx, y = fscreen.geometry.height, height = dpi(300), width = dpi(2000) }
+	instance.geometry = { x = offsetx, y = fscreen.geometry.height, height = height, width = width }
 	instance.wibox:geometry(instance.geometry)
 
 	current_item = 1

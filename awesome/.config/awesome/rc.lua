@@ -1,6 +1,7 @@
 pcall(require, "luarocks.loader")
 
 local menubar = require("mymenubar")
+menubar.show_categories = false
 
 
 local mystuff = require("mystuff")
