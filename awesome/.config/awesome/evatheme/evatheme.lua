@@ -114,6 +114,8 @@ local taglist = {
     font = theme.font .. " 15"
 }
 
+
+
 for key, val in pairs(taglist) do
     theme["taglist_" .. key] = val
 end
