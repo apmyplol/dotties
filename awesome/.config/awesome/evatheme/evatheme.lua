@@ -166,7 +166,7 @@ theme.menubar_fg_normal = eva.black
 theme.menubar_bg_focus = eva.purple1
 theme.menubar_fg_focus = eva.white
 theme.menubar_border_width = 5
-theme.menubar_border_color = eva.white
+theme.menubar_border_color = eva.green
 
 -- You can add as many variables as
 -- you wish and access them by using
