@@ -2,6 +2,9 @@ pcall(require, "luarocks.loader")
 
 local mystuff = require("mystuff")
 
+local menubar = require("mymenubar")
+menubar.show_categories = false
+
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
@@ -359,7 +362,8 @@ awful.key({ "Mod1"           }, "Tab",
       end),
 
   ---------------------- LAUNCHER BINDINGS ---------------------------
-
+  awful.key({ modkey }, "p", function() menubar.show() end,
+   {description = "show the menubar", group = "launcher"}),
 	awful.key({ modkey }, "c", function()
 		awful.util.spawn("rofi -show run")
 	end, { description = "run prompt", group = "launcher" }),
