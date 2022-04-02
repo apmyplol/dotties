@@ -78,7 +78,7 @@ menubar.cache_entries = true
 --- When true the categories will be shown alongside application
 -- entries.
 -- @tfield[opt=true] boolean show_categories
-menubar.show_categories = true
+menubar.show_categories = false
 
 --- Specifies the geometry of the menubar. This is a table with the keys
 -- x, y, width and height. Missing values are replaced via the screen's
@@ -110,7 +110,10 @@ local list_interspace = theme.xresources.apply_dpi(4) * 3
 --- Allows user to specify custom parameters for prompt.run function
 -- (like colors).
 -- @see awful.prompt
-menubar.prompt_args = {}
+
+menubar.prompt_args = {bg_cursor= "#00FF00", prompt = "bla:   "}
+menubar.textargs = {text_forced_height = 20, align="center" }
+menubar.bgargs = {bg = "#FF0000", fg = "#00FF00", border_width = 10, border_color="#FFFF00"}
 
 -- Private section
 local current_item = 1
@@ -119,11 +122,32 @@ local current_category = nil
 local shownitems = nil
 local instance = nil
 
-local rows = 5
-local cols = 5
-local height = dpi(600)
-local hgap = dpi(10)
-local width = dpi(800)
+menubar.grid = {
+    rows = 5,
+    columns = 2,
+    height = dpi(600),
+    hgap = dpi(10),
+    width = dpi(800),
+    offsetx = dpi(200),
+}
+
+-- local menubar.grid.rows = menubar.grid.rows
+-- local menubar.grid.columns = menubar.grid.columns
+-- local menubar.grid.height = menubar.grid.height
+-- local menubar.grid.hgap = menubar.grid.height
+-- local menubar.grid.width = menubar.grid.height
+-- local menubar.grid.offsetx = menubar.grid.offsetx
+local fscreen = awful.screen.focused()
+
+-- local offsetx = dpi(200)
+-- local fscreen = awful.screen.focused()
+-- local rows = 5
+-- local cols = 5
+-- local height = dpi(600)
+-- local hgap = dpi(10)
+-- local width = dpi(800)
+local img_siz = math.min(menubar.grid.height / menubar.grid.rows / 2, menubar.grid.width / menubar.grid.columns /2)
+local marg_siz = (menubar.grid.width / menubar.grid.columns - img_siz) / 2
 
 local my_widget_template = {
 	{
@@ -131,13 +155,17 @@ local my_widget_template = {
 			{
 				id = "icon_role",
 				widget = wibox.widget.imagebox,
-				forced_height = height / rows / 4,
+                                valign = "center",
+                                align = "center",
+                                -- clip_shape = gears.shape.circle,
+				forced_height = img_siz,
+                                forced_width = img_siz,
 			},
 			id = "icon_margin_role",
-			-- left = height / rows ,
-			-- right = height / rows / 8,
-			top = hgap, --height / lines / 4,
-			-- bottom = height / lines / 4,
+			left = marg_siz,
+			right = marg_siz,
+			top = menubar.grid.hgap, --height / lines / 4,
+			bottom = menubar.grid.hgap*2,
 			widget = wibox.container.margin,
 		},
 		{
@@ -147,23 +175,26 @@ local my_widget_template = {
 		},
 		id = "text_margin_role",
 		fill_space = false,
-		layout = wibox.layout.fixed.vertical,
-	},
+                layout = wibox.layout.fixed.vertical,
+                },
+        forced_height = menubar.grid.height/menubar.grid.rows,
+        forced_width = menubar.grid.width/menubar.grid.columns,
 	id = "background_role",
-    forced_height = height/rows,
-    forced_width = width/cols,
 	widget = wibox.container.background,
-}
+    }
+
+
+menubar.geometry = { x = menubar.grid.offsetx, y = fscreen.geometry.height, height = menubar.grid.height+menubar.textargs.text_forced_height, width = menubar.grid.width}
 
 local common_args = {
 	w = wibox.widget({
             layout = wibox.layout.grid,
             orientation = "horizontal",
-            forced_num_cols = cols,
-            forced_num_rows = rows,
+            forced_num_cols = menubar.grid.columns,
+            forced_num_rows = menubar.grid.rows,
             -- spacing = hgap,
-            forced_height = height,
-            forced_width = width,
+            forced_height = menubar.grid.height,
+            forced_width = menubar.grid.width,
             -- superpose = true,
             homogeneous = true,
             expand = false,
@@ -258,8 +289,8 @@ end
 local function get_current_page(all_items, query, scr)
 
 	local current_page = {}
-        local first_page_len = cols*rows - 1
-        local page_len = cols*rows - 2
+        local first_page_len = menubar.grid.columns*menubar.grid.rows - 1
+        local page_len = menubar.grid.columns*menubar.grid.rows - 2
         local pages = (#all_items - #all_items % page_len) / page_len
         local left_label =  { name = menubar.left_label, icon = nil }
         local right_label = { name = menubar.right_label, icon = nil }
@@ -386,7 +417,7 @@ local function menulist_update(scr)
 
 	if #shownitems > 0 then
 		-- Insert a run item value as the last choice
-		table.insert(shownitems, { name = "Exec: " .. query, cmdline = query, icon = nil })
+		-- table.insert(shownitems, { name = "Exec: " .. query, cmdline = query, icon = nil })
 
 		if current_item > #shownitems then
 			current_item = #shownitems
@@ -465,12 +496,10 @@ end
 -- @param[opt] scr Screen.
 function menubar.show(scr)
 	scr = get_screen(scr or awful.screen.focused() or 1)
-	local fg_color = theme.menubar_fg_normal or theme.menu_fg_normal or theme.fg_normal
-	local bg_color = theme.menubar_bg_normal or theme.menu_bg_normal or theme.bg_normal
-	local border_width = theme.menubar_border_width or theme.menu_border_width or 0
-	local border_color = theme.menubar_border_color or theme.menu_border_color
-	local offsetx = dpi(200)
-	local fscreen = awful.screen.focused()
+	local fg_color = menubar.bgargs.fg
+	local bg_color = menubar.bgargs.bg
+	local border_width = menubar.bgargs.border_width
+	local border_color = menubar.bgargs.border_color
 
 	if not instance then
 		-- Add to each category the name of its key in all_categories
@@ -485,23 +514,18 @@ function menubar.show(scr)
 		instance = {
 			wibox = wibox({
 				ontop = true,
-				bg = "#FF00FF",
+				bg = bg_color,
 				fg = fg_color,
 				border_width = border_width,
 				border_color = border_color,
-				x = offsetx, --screen.geometry.width,,
-				y = fscreen.geometry.height,
-				layout = wibox.layout.grid,
-				spacing = 100,
+				layout = wibox.layout.background,
 			}),
 			widget = common_args.w,
-			prompt = awful.widget.prompt(),
+			prompt = awful.widget.prompt{prompt = "bla"},
 			query = nil,
 			count_table = nil,
-			x = offsetx, --screen.geometry.width,,
-			y = fscreen.geometry.height,
 		}
-		local layout = wibox.layout.fixed.horizontal()
+		local layout = wibox.layout.fixed.vertical()
 		layout:add(instance.prompt)
 		layout:add(instance.widget)
 		instance.wibox:set_widget(layout)
@@ -513,11 +537,14 @@ function menubar.show(scr)
 		menubar.refresh(scr)
 	end
 
-	-- Set position and size
-	local scrgeom = scr.workarea
-	local geometry = menubar.geometry
-	instance.geometry = { x = offsetx, y = fscreen.geometry.height, height = height, width = width }
-	instance.wibox:geometry(instance.geometry)
+        -- set textbox properties
+        for key, value in pairs(menubar.textargs) do
+            instance.prompt.widget[key] = value
+        end
+
+        -- require("naughty").notify({text = gears.debug.dump_return(instance.prompt.widget)})
+
+	instance.wibox:geometry(menubar.geometry)
 
 	current_item = 1
 	current_category = nil
@@ -526,7 +553,6 @@ function menubar.show(scr)
 	local prompt_args = menubar.prompt_args or {}
 
 	awful.prompt.run(setmetatable({
-		prompt = "Run: ",
 		textbox = instance.prompt.widget,
 		completion_callback = awful.completion.shell,
 		history_path = gfs.get_cache_dir() .. "/history_menu",
