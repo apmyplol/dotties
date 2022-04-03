@@ -299,7 +299,12 @@ show_menu() {
 }
 
 # Rofi command to pipe into, can add any options here
-rofi_command="rofi -dmenu -no-fixed-num-lines -yoffset -100 -i -p"
+dir=$HOME/.config/rofi/evaswitch/colorful
+themes=($(ls -p --hide="colors.rasi" $dir))
+theme="$dir/${themes[$(( $RANDOM % 5 ))]}"
+echo $theme
+# theme="${themes[4]}"
+rofi_command="rofi -dmenu -fixed-num-lines -i -theme $theme -p"
 
 case "$1" in
     --status)

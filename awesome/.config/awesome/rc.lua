@@ -500,6 +500,9 @@ awful.key({ "Mod1"           }, "Tab",
 	end, { description = "edit rc.lua", group = "random" }),
 	awful.key({ modkey}, "e", function()
 		awful.spawn(terminal .. " -e ranger")
+	end, { description = "edit rc.lua", group = "random" }),
+	awful.key({ modkey}, "b", function()
+		awful.spawn(cdir .. "rofi/rofi-bluetooth/rofi-bluetooth")
 	end, { description = "edit rc.lua", group = "random" })
   -- TODO: Pomodoro timer
   -- awful.key({	modkey			}, "p", function () pomodoro:toggle() end),
