@@ -34,6 +34,8 @@ local gcolor = require 'gears.color'
 local gstring = require 'gears.string'
 local gdebug = require 'gears.debug'
 local gears = require "gears"
+local naughty = require"naughty"
+
 
 local beautiful = require 'beautiful'
 local dpi = beautiful.xresources.apply_dpi
@@ -128,57 +130,9 @@ menubar.grid = {
     offsetx = dpi(200),
 }
 
--- local menubar.grid.rows = menubar.grid.rows
--- local menubar.grid.columns = menubar.grid.columns
--- local menubar.grid.height = menubar.grid.height
--- local menubar.grid.hgap = menubar.grid.height
--- local menubar.grid.width = menubar.grid.height
--- local menubar.grid.offsetx = menubar.grid.offsetx
-local fscreen = awful.screen.focused()
-
--- local offsetx = dpi(200)
--- local fscreen = awful.screen.focused()
--- local rows = 5
--- local cols = 5
--- local height = dpi(600)
--- local hgap = dpi(10)
--- local width = dpi(800)
 local img_siz = math.min(menubar.grid.height / menubar.grid.rows / 2, menubar.grid.width / menubar.grid.columns / 2)
 local marg_siz = (menubar.grid.width / menubar.grid.columns - img_siz) / 2
 
--- local my_widget_template = {
--- 	{
--- 		{
--- 			{
--- 				id = "icon_role",
--- 				widget = wibox.widget.imagebox,
--- 				valign = "center",
--- 				align = "center",
--- 				-- clip_shape = gears.shape.circle,
--- 				forced_height = img_siz,
--- 				forced_width = img_siz,
--- 			},
--- 			id = "icon_margin_role",
--- 			left = marg_siz,
--- 			right = marg_siz,
--- 			top = menubar.grid.hgap, --height / lines / 4,
--- 			bottom = menubar.grid.hgap * 2,
--- 			widget = wibox.container.margin,
--- 		},
--- 		{
--- 			id = "text_role",
--- 			align = "center",
--- 			widget = wibox.widget.textbox,
--- 		},
--- 		id = "text_margin_role",
--- 		fill_space = false,
--- 		layout = wibox.layout.fixed.vertical,
--- 	},
--- 	forced_height = menubar.grid.height / menubar.grid.rows,
--- 	forced_width = menubar.grid.width / menubar.grid.columns,
--- 	id = "background_role",
--- 	widget = wibox.container.background,
--- }
 
 local my_widget_template = {
     {
@@ -234,10 +188,8 @@ local common_args = {
         orientation = 'horizontal',
         forced_num_cols = menubar.grid.columns,
         forced_num_rows = menubar.grid.rows,
-        -- spacing = hgap,
         forced_height = menubar.grid.height,
         forced_width = menubar.grid.width,
-        -- superpose = true,
         homogeneous = true,
         expand = false,
     },
@@ -638,6 +590,10 @@ function menubar.get(scr)
     end
     return common_args.w
 end
+
+
+--[[ local applist = require("mystuff.applist_backend"){get_current_page = get_current_page, labelfunc = label,widget_container = common_args.w,widget_template = my_widget_template } ]]
+--[[ naughty.notify({text = gears.debug.dump_return(applist)}) ]]
 
 local mt = {}
 function mt.__call(_, ...)

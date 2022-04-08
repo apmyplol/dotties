@@ -7,5 +7,6 @@ return {
 	pomodoro = require("mystuff.pomodoro"),
   volumepopup = require("mystuff.volume_popup_side"),
   commands = require("mystuff.commands"),
-  switcher = require("mystuff.awesome-switcher")
+  switcher = require("mystuff.awesome-switcher"),
+  desktop = require("mystuff.desktop")
 }

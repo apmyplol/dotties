@@ -10,7 +10,11 @@ require("awful.autofocus")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local numbers = beautiful.numbers
+table.insert(numbers, "🙆")
 local commands = require("mystuff.commands")
+
+
+
 
 local adir = gears.filesystem.get_configuration_dir() -- awesome config dir
 local cdir = gears.filesystem.get_xdg_config_home() -- .config dir
@@ -84,6 +88,28 @@ if awesome.startup_errors then
 		text = awesome.startup_errors,
 	})
 end
+
+-- local desktop = wibox.widget.textbox("bla")
+-- desktop.text = "bla"
+-- desktop.width = 100
+-- desktop.height = 100
+-- desktop.bg = "#ff0000"
+
+
+-- local desktop = wibox.container.background()
+-- desktop.bg = "#ff0000"
+--
+-- local tb1 = wibox.widget.textbox("foo")
+-- local tb2 = wibox.widget.textbox("bar")
+--
+-- tb1.text = "foo"
+-- tb2.text = "bar"
+--
+-- local l = wibox.layout.fixed.vertical()
+-- l:add(tb1)
+-- l:add(tb2)
+--
+-- desktop.widget = l
 
 -- Handle runtime errors after startup
 do
@@ -236,6 +262,14 @@ awful.screen.connect_for_each_screen(function(s)
 
 	-- Each screen has its own tag table.
 	awful.tag(numbers, s, awful.layout.layouts[1])
+
+
+
+  -- add desktops to every thing
+  s.tags[10]:connect_signal("property::selected", function(tag)
+        -- naughty.notify({text = "selected " .. tostring(tag.selected)})
+        mystuff.desktop.visible = tag.selected
+  end)
 
 	-- Create the wibox
 	s.mywibox = awful.wibar({
@@ -496,14 +530,15 @@ awful.key({ "Mod1"           }, "Tab",
 		end)
 	end, { description = "集中モード", group = "random" }),
 	awful.key({ modkey, "Control" }, "c", function()
-		awful.spawn(terminal .. " -e " .. editor .. " " .. awesome.conffile)
+		naughty.notify{ text = terminal .. " --working-directory " .. adir .. " -e " .. editor .. " rc.lua" }
+		awful.spawn(terminal .. " --working-directory " .. adir .. " -e " .. editor .. " rc.lua")
 	end, { description = "edit rc.lua", group = "random" }),
 	awful.key({ modkey}, "e", function()
 		awful.spawn(terminal .. " -e ranger")
-	end, { description = "edit rc.lua", group = "random" }),
+	end, { description = "open file explorer (ranger)", group = "random" }),
 	awful.key({ modkey}, "b", function()
 		awful.spawn(cdir .. "rofi/rofi-bluetooth/rofi-bluetooth")
-	end, { description = "edit rc.lua", group = "random" })
+	end, { description = "open bluetooth menu", group = "random" })
   -- TODO: Pomodoro timer
   -- awful.key({	modkey			}, "p", function () pomodoro:toggle() end),
   -- awful.key({	modkey, "Shift"	}, "p", function () pomodoro:finish() end)
