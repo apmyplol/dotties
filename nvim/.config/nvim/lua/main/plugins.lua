@@ -123,6 +123,7 @@ return packer.startup(function(use)
   -- for surrouding editing
   -- surround has been deleted...
   -- use 'blackcauldron7/surround.nvim'
+  use "ur4ltz/surround.nvim"
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   --danymat/neogen, ekickx/clipboard-image.nvim
