@@ -39,14 +39,6 @@
     "prefix": "epsilon",
     "body": "\\varepsilon "
   },
-  "exists2": {
-    "prefix": "ex",
-    "body": "\\exists "
-  },
-  "exists": {
-    "prefix": "exists",
-    "body": "\\exists "
-  },
   "in": {
     "prefix": "in",
     "body": "\\in "
@@ -91,14 +83,6 @@
     "prefix": "partial",
     "body": "\\partial "
   },
-  "rot": {
-    "prefix": "rot",
-    "body": "<font color=red>$1</font>$2"
-  },
-  "farbe": {
-    "prefix": "farbe",
-    "body": "<font color=$1>$2</font>$3"
-  },
   "color": {
     "prefix": "color",
     "body": "\\textcolor{$1}{$2}"
@@ -108,20 +92,16 @@
     "body": "\\subset "
   },
   "kleiner": {
-    "prefix": "kleiner",
+    "prefix": "kl",
     "body": "\\leq "
   },
   "größer": {
-    "prefix": "größer",
+    "prefix": "gr",
     "body": "\\geq "
   },
   "overline": {
     "prefix": "overline",
     "body": "\\overline{$1}$2"
-  },
-  "xi": {
-    "prefix": "xi",
-    "body": "\\xi "
   },
   "also": {
     "prefix": "also",
@@ -135,53 +115,9 @@
     "prefix": "oben",
     "body": "\\overset{$1}{$2}$3"
   },
-  "kla": {
-    "prefix": "kla",
-    "body": "{ $1 } $2"
-  },
   "tilde": {
     "prefix": "tilde",
     "body": "\\tilde "
-  },
-  "alf": {
-    "prefix": "alf",
-    "body": "\\alpha "
-  },
-  "bet": {
-    "prefix": "bet",
-    "body": "\\beta "
-  },
-  "gamma": {
-    "prefix": "gamma",
-    "body": "\\gamma "
-  },
-  "Gamma": {
-    "prefix": "Gamma",
-    "body": "\\Gamma "
-  },
-  "delta": {
-    "prefix": "delta",
-    "body": "\\delta "
-  },
-  "phi": {
-    "prefix": "phi",
-    "body": "\\phi "
-  },
-  "psi": {
-    "prefix": "psi",
-    "body": "\\psi "
-  },
-  "sigma": {
-    "prefix": "sigma",
-    "body": "\\sigma "
-  },
-  "omega": {
-    "prefix": "omega",
-    "body": "\\omega "
-  },
-  "kappa": {
-    "prefix": "kappa",
-    "body": "\\kappa "
   },
   "sinus": {
     "prefix": "sin",
@@ -222,29 +158,21 @@
   "Set": {
     "prefix": "men",
     "body": "\\{$1 \\}$0"
-  }, 
+  },
   "set": {
     "prefix": "set",
     "body": "\\{$1\\}$0"
-  }, 
+  },
   "Setminus": {
     "prefix": "sm",
     "body": "\\setminus "
-  }, 
+  },
   "Ohne=Setminus": {
     "prefix": "ohne",
     "body": "\\setminus $0"
-  }, 
-  "pi": {
-    "prefix": "pi",
-    "body": "\\pi"
-  }, 
-  "Pi": {
-    "prefix": "Pi",
-    "body": "\\Pi"
   },
   "forall": {
     "prefix": "fall",
     "body": "\\forall "
-  } 
+  }
 }
