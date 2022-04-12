@@ -89,7 +89,7 @@ end
 h.bigsymbol = function(trig, tex, name, desc) -- creates big math symbol snippet, e.g. sum, integral,. etc
     return s(
         -- %s(%S+)%s(.+) ersetzt durch  %s%(?([^()]+)%)?%s(%S+)
-        { trig = trig .. "%s%(?([^()]+)%)?%s(%S+)", name = name, dscr = desc, regTrig = true, hidden = true },
+        { trig = "[^\\]" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)", name = name, dscr = desc, regTrig = true, hidden = true },
         f(function(_, snip)
             local out = "\\" .. tex .. "_{" .. snip.captures[1] .. "}"
             if snip.captures[2] ~= " " then
@@ -298,6 +298,8 @@ ls.snippets = {
         h.bigsymbol("min", "min", "minimum", "creates minimum symbol based on expression seperated by spaces"),
         h.bigsymbol("max", "max", "maximum", "creates maximum symbol based on expression seperated by spaces"),
         h.bigsymbol("sup", "sup", "supremum", "creates supremum based on expression seperated by spaces"),
+      h.bigsymbol("cup", "cup", "∪ symbol", "creates cup symbol based on expression seperated by spaces"),
+      h.bigsymbol("cap", "cap", "∩ symbol", "creates cap symbol based on expression seperated by spaces"),
 
         -- limes
         s(
@@ -495,20 +497,37 @@ ls.snippets = {
                 end, {}),
             })
         ),
-
+    },
+    obsidian = {
         -- snippet for markdown comment
-        s("ct", {
+        s("inttheo", {
             t {
                 "---",
-                "tags: ana/complex",
+                "tags: ana/inttheo",
                 "date: " .. os.date "%d-%m-%Y",
-                "vorlesung: 11",
-                "kapitel: ",
+                "vorlesung: ",
             },
-            i(1),
+            i(1, "2"),
+            t { "", "kapitel: " },
+            i(2, "1"),
             t { "", "aliases:" },
-            i(2),
-            t { "", "---", "", "#" },
+            i(3),
+            t { "", "---", "", "# " },
+            i(0),
+        }),
+        s("stat", {
+            t {
+                "---",
+                "tags: WS/EinfStochastik",
+                "date: " .. os.date "%d-%m-%Y",
+                "vorlesung: ",
+            },
+            i(1, "2"),
+            t { "", "kapitel: " },
+            i(2, "2"),
+            t { "", "aliases:" },
+            i(3),
+            t { "", "---", "", "# " },
             i(0),
         }),
     },
@@ -516,6 +535,7 @@ ls.snippets = {
 
 vsloader.load { paths = { "~/.config/nvim/snippets/" } }
 
-ls.filetype_set("latex", { "tex" })
-ls.filetype_set("markdown", { "tex" })
-ls.filetype_set("vimwiki", { "tex" })
+ls.filetype_extend("latex", { "tex", "obsidian" })
+ls.filetype_extend("markdown", { "tex", "obsidian" })
+ls.filetype_extend("vimwiki", { "tex", "obsidian" })
+ls.filetype_extend("tex", { "tex", "obsidian" })

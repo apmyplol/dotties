@@ -1,0 +1,26 @@
+{
+    "Example": {
+      "prefix": "bsp",
+      "body": "> [!example]+\n> "
+    },
+    "Abstract": {
+      "prefix": "summary",
+      "body": "> [!abstract]+\n> "
+    },
+    "Definition": {
+      "prefix": "def",
+      "body": "> [!important]+ Definition\n> "
+    },
+    "Remark": {
+      "prefix": "rem",
+      "body": "> [!info]+ Bemerkung\n> "
+    },
+    "Warning": {
+      "prefix": "warning",
+      "body": "> [!warning]+\n> "
+    },
+    "Quote": {
+      "prefix": "quote",
+      "body": "> [!quote]+\n> "
+    }
+}

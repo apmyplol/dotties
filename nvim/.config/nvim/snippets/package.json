@@ -10,7 +10,13 @@
           "tex"
         ],
         "path": "./tex.json"
-    }
+      },
+      {
+        "language": [
+          "obsidian"
+        ],
+        "path": "./obsidian.json"
+      }
     ]
   }
 }

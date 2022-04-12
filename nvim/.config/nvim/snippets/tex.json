@@ -174,5 +174,9 @@
   "forall": {
     "prefix": "fall",
     "body": "\\forall "
+  },
+  "emptyset": {
+    "prefix": "leer",
+    "body": "\\emptyset "
   }
 }

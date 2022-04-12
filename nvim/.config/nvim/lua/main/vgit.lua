@@ -126,13 +126,13 @@ vgit.setup({
       end,
     },
     live_gutter = {
-      enabled = true,
+      enabled = false,
     },
     screen = {
       diff_preference = 'unified',
     },
     signs = {
-      priority = 10,
+      priority = 6,
       definitions = {
         GitSignsAddLn = {
           linehl = 'GitSignsAddLn',
