@@ -8,6 +8,8 @@ if not status_ok then
     return
 end
 
+vsloader.load { paths = { "~/.config/nvim/snippets/" } }
+
 local s = ls.snippet
 local sn = ls.snippet_node
 local t = ls.text_node
@@ -26,30 +28,6 @@ local fmt = require("luasnip.extras.fmt").fmt
 local fmta = require("luasnip.extras.fmt").fmta
 local types = require "luasnip.util.types"
 local conds = require "luasnip.extras.expand_conditions"
-
--- vim.api.nvim_command("hi LuasnipChoiceNodePassive cterm=italic")
--- ls.config.setup({
--- 	ext_opts = {
--- 		[types.insertNode] = {
--- 			passive = {
--- 				hl_group = "GruvboxRed"
--- 			}
--- 		},
--- 		[types.choiceNode] = {
--- 			active = {
--- 				virt_text = {{"choiceNode", "GruvboxOrange"}}
--- 			}
--- 		},
--- 		[types.textNode] = {
--- 			snippet_passive = {
--- 				hl_group = "GruvboxGreen"
--- 			}
--- 		},
--- 	},
--- 	ext_base_prio = 200,
--- 	ext_prio_increase = 3,
--- })
--- 'recursive' dynamic snippet. Expands to some text followed by itself.
 
 -- helper functions for defining snippets
 local h = {}
@@ -89,7 +67,13 @@ end
 h.bigsymbol = function(trig, tex, name, desc) -- creates big math symbol snippet, e.g. sum, integral,. etc
     return s(
         -- %s(%S+)%s(.+) ersetzt durch  %s%(?([^()]+)%)?%s(%S+)
-        { trig = "[^\\]" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)", name = name, dscr = desc, regTrig = true, hidden = true },
+        {
+            trig = "[^\\]" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)",
+            name = name,
+            dscr = desc,
+            regTrig = true,
+            hidden = true,
+        },
         f(function(_, snip)
             local out = "\\" .. tex .. "_{" .. snip.captures[1] .. "}"
             if snip.captures[2] ~= " " then
@@ -152,10 +136,11 @@ h.greek = {
     z = "zeta",
 }
 
-ls.snippets = {
+ls.add_snippets(
     -- snippet to create snippets lol
 
-    lua = {
+    "lua",
+    {
         ls.parser.parse_snippet(
             { trig = "regsnippet", name = "regex snippet", dscr = "snippet to create regex snippets" },
             [[
@@ -179,10 +164,13 @@ ls.snippets = {
                 return "snip.captures[" .. snip.captures[1] .. "]"
             end, {})
         ),
-    },
+    }
+)
 
+ls.add_snippets(
     -- tex snippets
-    tex = {
+    "tex",
+    {
         s({
             trig = "%-%-(%d)%-%-",
             name = "& expandor",
@@ -298,8 +286,8 @@ ls.snippets = {
         h.bigsymbol("min", "min", "minimum", "creates minimum symbol based on expression seperated by spaces"),
         h.bigsymbol("max", "max", "maximum", "creates maximum symbol based on expression seperated by spaces"),
         h.bigsymbol("sup", "sup", "supremum", "creates supremum based on expression seperated by spaces"),
-      h.bigsymbol("cup", "cup", "∪ symbol", "creates cup symbol based on expression seperated by spaces"),
-      h.bigsymbol("cap", "cap", "∩ symbol", "creates cap symbol based on expression seperated by spaces"),
+        h.bigsymbol("cup", "cup", "∪ symbol", "creates cup symbol based on expression seperated by spaces"),
+        h.bigsymbol("cap", "cap", "∩ symbol", "creates cap symbol based on expression seperated by spaces"),
 
         -- limes
         s(
@@ -497,45 +485,43 @@ ls.snippets = {
                 end, {}),
             })
         ),
-    },
-    obsidian = {
-        -- snippet for markdown comment
-        s("inttheo", {
-            t {
-                "---",
-                "tags: ana/inttheo",
-                "date: " .. os.date "%d-%m-%Y",
-                "vorlesung: ",
-            },
-            i(1, "2"),
-            t { "", "kapitel: " },
-            i(2, "1"),
-            t { "", "aliases:" },
-            i(3),
-            t { "", "---", "", "# " },
-            i(0),
-        }),
-        s("stat", {
-            t {
-                "---",
-                "tags: WS/EinfStochastik",
-                "date: " .. os.date "%d-%m-%Y",
-                "vorlesung: ",
-            },
-            i(1, "2"),
-            t { "", "kapitel: " },
-            i(2, "2"),
-            t { "", "aliases:" },
-            i(3),
-            t { "", "---", "", "# " },
-            i(0),
-        }),
-    },
-}
-
-vsloader.load { paths = { "~/.config/nvim/snippets/" } }
+    }
+)
+ls.add_snippets("obsidian", {
+    -- snippet for markdown comment
+    s("inttheo", {
+        t {
+            "---",
+            "tags: ana/inttheo",
+            "date: " .. os.date "%d-%m-%Y",
+            "vorlesung: ",
+        },
+        i(1, "2"),
+        t { "", "kapitel: " },
+        i(2, "1"),
+        t { "", "aliases:" },
+        i(3),
+        t { "", "---", "", "# " },
+        i(0),
+    }),
+    s("stat", {
+        t {
+            "---",
+            "tags: WS/EinfStochastik",
+            "date: " .. os.date "%d-%m-%Y",
+            "vorlesung: ",
+        },
+        i(1, "2"),
+        t { "", "kapitel: " },
+        i(2, "2"),
+        t { "", "aliases:" },
+        i(3),
+        t { "", "---", "", "# " },
+        i(0),
+    }),
+})
 
 ls.filetype_extend("latex", { "tex", "obsidian" })
 ls.filetype_extend("markdown", { "tex", "obsidian" })
-ls.filetype_extend("vimwiki", { "tex", "obsidian" })
-ls.filetype_extend("tex", { "tex", "obsidian" })
+ls.filetype_extend("vimwiki", { "obsidian", "tex" })
+ls.filetype_extend("tex", { "obsidian" })
