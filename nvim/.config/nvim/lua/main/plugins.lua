@@ -118,7 +118,6 @@ return packer.startup(function(use)
     -- Statusline
     use "nvim-lualine/lualine.nvim"
 
-<<<<<<< HEAD
   -- Plugin which extends vim's matchup, i.e. jumping to matching parenthesis
   use 'andymass/vim-matchup'
   -- for surrouding editing
