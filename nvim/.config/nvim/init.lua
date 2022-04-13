@@ -24,3 +24,7 @@ require "main.lualine"
 require "main.matchup"
 require "main.surround"
 require "main.pretty-fold"
+require "main.workspaces"
+require "main.todo-comments"
+
+-- TODO: check gisigns vs vgit
