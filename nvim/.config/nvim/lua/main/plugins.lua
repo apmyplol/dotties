@@ -118,15 +118,17 @@ return packer.startup(function(use)
     -- Statusline
     use "nvim-lualine/lualine.nvim"
 
-  -- Plugin which extends vim's matchup, i.e. jumping to matching parenthesis
-  use 'andymass/vim-matchup'
-  -- for surrouding editing
-  -- surround has been deleted...
-  -- use 'blackcauldron7/surround.nvim'
-  use "ur4ltz/surround.nvim"
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  --danymat/neogen, ekickx/clipboard-image.nvim
+    -- Plugin which extends vim's matchup, i.e. jumping to matching parenthesis
+    use "andymass/vim-matchup"
+    -- for surrouding editing
+    -- surround has been deleted...
+    -- use 'blackcauldron7/surround.nvim'
+
+    -- copy of original surround.nvim
+    use "/ur4ltz/surround.nvim"
+    -- Automatically set up your configuration after cloning packer.nvim
+    -- Put this at the end after all plugins
+    --danymat/neogen, ekickx/clipboard-image.nvim
 
     -- to use neovim in browser
     -- use {
@@ -141,7 +143,7 @@ return packer.startup(function(use)
     use "natecraddock/workspaces.nvim"
 
     -- fancy todo highlights
-    use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim"}
+    use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" }
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()
