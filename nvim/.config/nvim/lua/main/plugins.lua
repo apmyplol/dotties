@@ -123,6 +123,9 @@ return packer.startup(function(use)
     -- for surrouding editing
     -- surround has been deleted...
     -- use 'blackcauldron7/surround.nvim'
+
+    -- copy of original surround.nvim
+    use "/ur4ltz/surround.nvim"
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     --danymat/neogen, ekickx/clipboard-image.nvim
@@ -140,7 +143,7 @@ return packer.startup(function(use)
     use "natecraddock/workspaces.nvim"
 
     -- fancy todo highlights
-    use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim"}
+    use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" }
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()
