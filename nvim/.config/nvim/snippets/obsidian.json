@@ -1,7 +1,7 @@
 {
     "Example": {
       "prefix": "bsp",
-      "body": "> [!example]+\n> "
+      "body": "> [!example]-\n> "
     },
     "Abstract": {
       "prefix": "summary",
@@ -9,18 +9,22 @@
     },
     "Definition": {
       "prefix": "def",
-      "body": "> [!important]+ Definition\n> "
+      "body": "> [!important]+ Definition $1\n> $2"
     },
     "Remark": {
       "prefix": "rem",
-      "body": "> [!info]+ Bemerkung\n> "
+      "body": "> [!info]- Bemerkung\n> "
     },
     "Warning": {
       "prefix": "warning",
-      "body": "> [!warning]+\n> "
+      "body": "> [!warning]-\n> "
     },
     "Quote": {
       "prefix": "quote",
-      "body": "> [!quote]+\n> "
+      "body": "> [!quote]-\n> "
+    },
+    "Theorem": {
+      "prefix": "satz",
+      "body": "> [!abstract]- $1\n> $2"
     }
 }
