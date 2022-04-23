@@ -1,0 +1,9 @@
+[Unit]
+Description=Automount synology workstation
+
+[Automount]
+Where=/run/media/afa/Synology_WorkStation/
+TimeoutIdleSec=10min
+
+[Install]
+WantedBy=multi-user.target

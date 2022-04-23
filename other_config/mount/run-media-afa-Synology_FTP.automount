@@ -1,8 +1,8 @@
 [Unit]
-Description=Automount synology workstation
+Description=Automount synology FTP Server
 
 [Automount]
-Where=/mnt/workstation
+Where=/run/media/afa/Synology_FTP/
 TimeoutIdleSec=10min
 
 [Install]

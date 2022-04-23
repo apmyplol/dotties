@@ -1,0 +1,12 @@
+[Unit]
+Description=Mount Synology FTP Server at boot
+
+[Mount]
+What=//192.168.178.98/FTPServer
+Where=/run/media/afa/Synology_FTP/
+Options=_netdev,credentials=/home/afa/secrets/synology_samba,vers=1.0,iocharset=utf8,rw
+Type=cifs
+TimeoutSec=30
+
+[Install]
+WantedBy=multi-user.target
