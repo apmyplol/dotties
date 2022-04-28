@@ -35,10 +35,6 @@
     "prefix": "choose",
     "body": "{$1 \\choose $2}$3"
   },
-  "epsilon": {
-    "prefix": "epsilon",
-    "body": "\\varepsilon "
-  },
   "in": {
     "prefix": "in",
     "body": "\\in "
@@ -53,7 +49,7 @@
   },
   "inf": {
     "prefix": "inf",
-    "body": "\\infty "
+    "body": "\\infty"
   },
   "begin": {
     "prefix": "begin",
@@ -61,11 +57,11 @@
   },
   "cup": {
     "prefix": "cup",
-    "body": "\\cup "
+    "body": "\\cup"
   },
   "cap": {
     "prefix": "cap",
-    "body": "\\cap "
+    "body": "\\cap"
   },
   "align": {
     "prefix": "align",
@@ -85,7 +81,7 @@
   },
   "color": {
     "prefix": "color",
-    "body": "\\textcolor{$1}{$2}"
+    "body": "\\textcolor{$1}{$2}$3"
   },
   "teil": {
     "prefix": "teil",
@@ -155,21 +151,13 @@
     "prefix": "tanh",
     "body": "\\tanh "
   },
-  "Set": {
-    "prefix": "men",
-    "body": "\\{$1 \\}$0"
-  },
-  "set": {
-    "prefix": "set",
-    "body": "\\{$1\\}$0"
-  },
   "Setminus": {
     "prefix": "sm",
     "body": "\\setminus "
   },
   "Ohne=Setminus": {
     "prefix": "ohne",
-    "body": "\\setminus $0"
+    "body": "\\setminus "
   },
   "forall": {
     "prefix": "fall",
