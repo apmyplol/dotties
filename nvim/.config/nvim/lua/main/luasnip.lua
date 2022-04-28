@@ -238,7 +238,7 @@ ls.add_snippets(
             f(function(_, snip)
                 local letter = snip.captures[1]:lower() ~= snip.captures[1] and h.greek[snip.captures[2]:upper()]
                     or h.greek[snip.captures[2]]
-                return (letter ~= nil and "\\" .. letter .. " " or "rip")
+                return (letter ~= nil and "\\" .. letter or "rip")
             end, {})
         ),
         s( -- TODO: add (?s) too abs snippet to use \| as the abs
@@ -288,6 +288,8 @@ ls.add_snippets(
         h.bigsymbol("sup", "sup", "supremum", "creates supremum based on expression seperated by spaces"),
         h.bigsymbol("cup", "cup", "∪ symbol", "creates cup symbol based on expression seperated by spaces"),
         h.bigsymbol("cap", "cap", "∩ symbol", "creates cap symbol based on expression seperated by spaces"),
+        h.bigsymbol("liminf", "liminf", "∩ symbol", "creates liminf symbol based on expression seperated by spaces"),
+        h.bigsymbol("limsup", "limsup", "∩ symbol", "creates limsup symbol based on expression seperated by spaces"),
 
         -- limes
         s(
