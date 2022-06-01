@@ -21,6 +21,8 @@
 
 + big does not work
 \frac{1}{6} \big [ h_{i+1} m_{i+1} + 2 (h_{i} + h_{i+1})m_{i} + m_{i} m_{i-1} \big ]
++ trigger errors:
+  `$$ s = \sqrt[]{\frac{1}{}} $$` with cursor on 1
 
 + check out mickael-menu/zk
 + check out ekickx/clipboard-image.nvim
