@@ -65,10 +65,11 @@ h.rec_case = function()
 end
 
 h.bigsymbol = function(trig, tex, name, desc) -- creates big math symbol snippet, e.g. sum, integral,. etc
+    -- print("[^\\]" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)")
     return s(
         -- %s(%S+)%s(.+) ersetzt durch  %s%(?([^()]+)%)?%s(%S+)
         {
-            trig = "[^\\]" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)",
+            trig = "[^\\\n]" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)",
             name = name,
             dscr = desc,
             regTrig = true,
@@ -288,6 +289,7 @@ ls.add_snippets(
         h.bigsymbol("sup", "sup", "supremum", "creates supremum based on expression seperated by spaces"),
         h.bigsymbol("cup", "cup", "∪ symbol", "creates cup symbol based on expression seperated by spaces"),
         h.bigsymbol("cap", "cap", "∩ symbol", "creates cap symbol based on expression seperated by spaces"),
+       -- FIX: liminf und sup sind nicht ganz richtig, \rightarrow fehlt
         h.bigsymbol("liminf", "liminf", "∩ symbol", "creates liminf symbol based on expression seperated by spaces"),
         h.bigsymbol("limsup", "limsup", "∩ symbol", "creates limsup symbol based on expression seperated by spaces"),
 
@@ -472,7 +474,7 @@ ls.add_snippets(
         -- TODO: remove "i, p" from here, instead change snippet priority
         s(
             {
-                trig = "([^{%spi+]+)%s?([%diknd])",
+                trig = "([^{%spi+:]+)%s?([%diknd])",
                 name = "subscript and superscript",
                 dscr = "expands superscript or subscript numbers, depending on choice",
                 regTrig = true,
@@ -498,9 +500,9 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "2"),
+        i(1, "14"),
         t { "", "kapitel: " },
-        i(2, "1"),
+        i(2, "4.2"),
         t { "", "aliases:" },
         i(3),
         t { "", "---", "", "# " },
@@ -513,9 +515,9 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "2"),
+        i(1, "13"),
         t { "", "kapitel: " },
-        i(2, "2"),
+        i(2, "4.8"),
         t { "", "aliases:" },
         i(3),
         t { "", "---", "", "# " },
@@ -523,7 +525,10 @@ ls.add_snippets("obsidian", {
     }),
 })
 
+-- TODO: double snippets, add "\mathop{}\!\mathrm{d}" as snippet, vllt metrischer Raum snippet, \rightarrow
+
 ls.filetype_extend("latex", { "tex", "obsidian" })
-ls.filetype_extend("markdown", { "tex", "obsidian" })
-ls.filetype_extend("vimwiki", { "obsidian", "tex" })
+ls.filetype_extend("markdown", { "tex", "obsidian", "text" })
+ls.filetype_extend("vimwiki", { "obsidian", "tex", "text" })
 ls.filetype_extend("tex", { "obsidian" })
+ls.filetype_extend("html", {"text"})

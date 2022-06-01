@@ -14,7 +14,7 @@ vim.g.maplocalleader = " "
 -- mapping "h" onto "ö" for better navigation
 
 keymap("n", "ö", "h", opts)
-keymap("n", "i", "a", opts)
+-- keymap("n", "i", "a", opts)
 
 -- Modes
 --   normal_mode = "n",
@@ -85,8 +85,8 @@ keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
 keymap("i", "<C-k>", "<cmd>lua require 'main.keymapfunctions'.luasnipchoose(-1)<cr>", opts)
 keymap("i", "<C-j>", "<cmd>lua require 'main.keymapfunctions'.luasnipchoose(1)<cr>", opts)
 
-keymap("n", "F", "zA", opts)
-keymap("n", "f", "za", opts)
+-- keymap("n", "F", "zA", opts)
+-- keymap("n", "f", "za", opts)
 
 -- autocomplete for files
 --keymap('i', '<C-i>', [[<cmd>lua require 'main.keymapfunctions'.test_grep_filename()<CR>]], opts)

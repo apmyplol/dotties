@@ -1,18 +1,22 @@
 {
-    "lila": {
-      "prefix": "lila",
-      "body": "<b><font color='#752e75'>$1</font></b>$2"
-    },
-    "green": {
-      "prefix": "green",
-      "body": "<b><font color='#008000'>$1</font></b>$2"
-    },
-    "blau": {
-      "prefix": "blau",
-      "body": "<b><font color='#0000ff'>$1</font></b>$2"
-    },
-    "rot": {
-      "prefix": "rot",
-      "body": "<b><font color='#ff0000'>$1</font></b>$2"
-    }
+  "lila": {
+    "prefix": "lila",
+    "body": "<b><font color='#752e75'>$1</font></b>$2"
+  },
+  "green": {
+    "prefix": "green",
+    "body": "<b><font color='#008000'>$1</font></b>$2"
+  },
+  "blau": {
+    "prefix": "blau",
+    "body": "<b><font color='#0000ff'>$1</font></b>$2"
+  },
+  "rot": {
+    "prefix": "rot",
+    "body": "<b><font color='#ff0000'>$1</font></b>$2"
+  },
+  "farbe": {
+    "prefix": "color",
+    "body": "<font color='$1'>$2</font>$2"
+  }
 }

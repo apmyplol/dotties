@@ -103,19 +103,19 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: "CodeMExpanded"
+    family: "Cica"
     style: Regular
 
   bold:
-    family: "CodeMExpanded"
+    family: "Cica"
     style: Bold
 
   italic:
-   family: "CodeMExpanded"
+   family: "Cica"
    style: Italic
 
   bold_italic:
-   family: "CodeMExpanded"
+   family: "Cica"
    style: Bold Italic
 
   # Point size

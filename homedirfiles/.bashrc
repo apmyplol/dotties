@@ -69,3 +69,5 @@ case $(tty) in /dev/pts/[0-9]*)
   alias lst='exa --icons --tree'
   alias lsta='exa --icons --tree --long --git'
 esac
+
+eval "$(starship init bash)"
