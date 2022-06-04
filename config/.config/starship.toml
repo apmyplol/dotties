@@ -1,0 +1,48 @@
+# format = """
+# [シンジくん](bold green)[@](bold red)[初号機](bold blue)[🙆](blue)
+# [│](bold green)$directory$package
+# [└─>](bold green) """
+
+format = """
+[初号機](bold blue)[ @ ](blue)$all
+[ │](green)
+[ └─>](green) $character
+"""
+
+add_newline = true
+
+[line_break]
+disabled = true
+
+[character]
+# disabled = true
+error_symbol = "[🙅 ](bold red)"
+success_symbol = "[🙆 ](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
+
+# [status]
+# disabled = false
+# symbol = "[🙅](bold red)"
+# success_symbol = "[🙆](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
+# sigint_symbol = "👎"
+# not_found_symbol = "🙅"
+# format = "[$symbol]($style) "
+# map_symbol = true
+# pipestatus = true
+# style = "bold red"
+
+# [time]
+# disabled = false
+
+[cmd_duration]
+format = "[⌛ $duration]($style) "
+style = "bold yellow"
+
+[directory]
+truncation_length = 3
+truncation_symbol = "" #"… "
+format = "[$path]($style)[ $read_only]($read_only_style)"
+style = "bold cyan"
+read_only = "🔒"
+repo_root_format = "[$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) " 
+repo_root_style = "bold green"
+home_symbol = "🏠"
