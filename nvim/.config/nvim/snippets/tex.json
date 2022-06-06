@@ -71,10 +71,6 @@
     "prefix": "gleich",
     "body": "\\Leftrightarrow "
   },
-  "nach": {
-    "prefix": "nach",
-    "body": "\\mapsto "
-  },
   "partial": {
     "prefix": "partial",
     "body": "\\partial "

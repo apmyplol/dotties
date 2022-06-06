@@ -53,23 +53,12 @@ h.alignsnippet = function()
     )
 end
 
-h.rec_case = function()
-    return sn(
-        nil,
-        c(1, {
-            -- Order is important, sn(...) first would cause infinite loop of expansion.
-            t "",
-            sn(nil, { t { "", "\t" }, i(1), t " & ", i(2), t "\\\\", d(3, h.rec_case, {}) }),
-        })
-    )
-end
-
 h.bigsymbol = function(trig, tex, name, desc) -- creates big math symbol snippet, e.g. sum, integral,. etc
     -- print("[^\\]" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)")
     return s(
         -- %s(%S+)%s(.+) ersetzt durch  %s%(?([^()]+)%)?%s(%S+)
         {
-            trig = "[^\\\n]" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)",
+            trig = "[^\\]*" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)",
             name = name,
             dscr = desc,
             regTrig = true,
@@ -85,6 +74,21 @@ h.bigsymbol = function(trig, tex, name, desc) -- creates big math symbol snippet
     )
 end
 
+h.double = function(trig, tex, op1, op2, desc)
+    return s {
+        trig = trig,
+    }
+end
+
+h.temp = nil
+
+h.returnfunc = function(bool, choice1, choice2)
+    if bool then
+        return sn(nil, { c(1, { t(choice1), t(choice2) }) })
+    else
+        return sn(nil, { c(1, { t(choice2), t(choice1) }) })
+    end
+end
 h.greek = {
     a = "alpha",
     b = "beta",
@@ -136,6 +140,8 @@ h.greek = {
     X = "Xi",
     z = "zeta",
 }
+
+h.triglist = "[%a|{}[]]"
 
 ls.add_snippets(
     -- snippet to create snippets lol
@@ -258,6 +264,8 @@ ls.add_snippets(
                 return abs .. " " .. snip.captures[2] .. " " .. abs
             end, {})
         ),
+        -- TODO: Add pnorm trig = "...norm[pi%d]"
+        -- TODO: Add "nach" to expand to \rightarrow or \mapsto
         s(
             { trig = "norm%s(.+)%snorm", name = "norm", dscr = "replaces norm with |", regTrig = true, hidden = true },
             f(function(_, snip)
@@ -266,7 +274,7 @@ ls.add_snippets(
         ),
         s(
             {
-                trig = "[^\\]bi(g+)%s(.+)%s[^\\]bi(g+)",
+                trig = "[^\\]?bi(g+)%s(.+)%s[^\\]?bi(g+)",
                 name = "Bigg Thicc",
                 dscr = "depending on how many g's, replaces the text with latex \\Big command, the more g's the bigger the text",
                 regTrig = true,
@@ -289,7 +297,7 @@ ls.add_snippets(
         h.bigsymbol("sup", "sup", "supremum", "creates supremum based on expression seperated by spaces"),
         h.bigsymbol("cup", "cup", "∪ symbol", "creates cup symbol based on expression seperated by spaces"),
         h.bigsymbol("cap", "cap", "∩ symbol", "creates cap symbol based on expression seperated by spaces"),
-       -- FIX: liminf und sup sind nicht ganz richtig, \rightarrow fehlt
+        -- FIX: liminf und sup sind nicht ganz richtig, \rightarrow fehlt
         h.bigsymbol("liminf", "liminf", "∩ symbol", "creates liminf symbol based on expression seperated by spaces"),
         h.bigsymbol("limsup", "limsup", "∩ symbol", "creates limsup symbol based on expression seperated by spaces"),
 
@@ -489,8 +497,27 @@ ls.add_snippets(
                 end, {}),
             })
         ),
+        s(
+            {
+                trig = "([Nn][Aa][Cc][Hh])",
+                name = "nach",
+                dscr = "\\rightarrow or \\mapsto choicenode",
+                regTrig = true,
+                hidden = true,
+            },
+            {
+                f(function(_, snip)
+                    h.temp = (snip.captures[1]:lower() == snip.captures[1])
+                    return ""
+                end, {}),
+                d(1, function(_)
+                    return h.returnfunc(h.temp, "\\rightarrow", "\\mapsto")
+                end, {}),
+            }
+        ),
     }
 )
+
 ls.add_snippets("obsidian", {
     -- snippet for markdown comment
     s("inttheo", {
@@ -500,12 +527,12 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "14"),
+        i(1, "16"),
         t { "", "kapitel: " },
-        i(2, "4.2"),
+        i(2, "5.3"),
         t { "", "aliases:" },
         i(3),
-        t { "", "---", "", "# " },
+        t { "", "---", "" },
         i(0),
     }),
     s("stat", {
@@ -515,12 +542,12 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "13"),
+        i(1, "14"),
         t { "", "kapitel: " },
         i(2, "4.8"),
         t { "", "aliases:" },
         i(3),
-        t { "", "---", "", "# " },
+        t { "", "---", "" },
         i(0),
     }),
 })
@@ -531,4 +558,4 @@ ls.filetype_extend("latex", { "tex", "obsidian" })
 ls.filetype_extend("markdown", { "tex", "obsidian", "text" })
 ls.filetype_extend("vimwiki", { "obsidian", "tex", "text" })
 ls.filetype_extend("tex", { "obsidian" })
-ls.filetype_extend("html", {"text"})
+ls.filetype_extend("html", { "text" })
