@@ -58,7 +58,7 @@ h.bigsymbol = function(trig, tex, name, desc) -- creates big math symbol snippet
     return s(
         -- %s(%S+)%s(.+) ersetzt durch  %s%(?([^()]+)%)?%s(%S+)
         {
-            trig = "[^\\]*" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)",
+            trig = "[^\\]?" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)",
             name = name,
             dscr = desc,
             regTrig = true,
@@ -265,7 +265,6 @@ ls.add_snippets(
             end, {})
         ),
         -- TODO: Add pnorm trig = "...norm[pi%d]"
-        -- TODO: Add "nach" to expand to \rightarrow or \mapsto
         s(
             { trig = "norm%s(.+)%snorm", name = "norm", dscr = "replaces norm with |", regTrig = true, hidden = true },
             f(function(_, snip)
@@ -360,18 +359,16 @@ ls.add_snippets(
                 regTrig = true,
                 hidden = true,
             },
-            c(1, {
-                f(function(_, snip)
-                    local mid = snip.captures[2]:gsub("inf", "\\infty"):gsub("%.", "\\infty")
-                        .. ","
-                        .. snip.captures[3]:gsub("inf", "\\infty"):gsub("%.", "\\infty")
-                    if snip.captures[1] == "o" then
-                        return "(" .. mid .. ")"
-                    else
-                        return "[" .. mid .. "]"
-                    end
-                end, {}),
-            })
+            f(function(_, snip)
+                local mid = snip.captures[2]:gsub("inf", "\\infty"):gsub("%.", "\\infty")
+                    .. ","
+                    .. snip.captures[3]:gsub("inf", "\\infty"):gsub("%.", "\\infty")
+                if snip.captures[1] == "o" then
+                    return "(" .. mid .. ")"
+                else
+                    return "[" .. mid .. "]"
+                end
+            end, {})
         ),
         s(
             {
@@ -482,7 +479,7 @@ ls.add_snippets(
         -- TODO: remove "i, p" from here, instead change snippet priority
         s(
             {
-                trig = "([^{%spi+:]+)%s?([%diknd])",
+                trig = "([^{%spi+:%.]+)%s?([%diknd])",
                 name = "subscript and superscript",
                 dscr = "expands superscript or subscript numbers, depending on choice",
                 regTrig = true,
@@ -497,24 +494,21 @@ ls.add_snippets(
                 end, {}),
             })
         ),
-        s(
-            {
-                trig = "([Nn][Aa][Cc][Hh])",
-                name = "nach",
-                dscr = "\\rightarrow or \\mapsto choicenode",
-                regTrig = true,
-                hidden = true,
-            },
-            {
-                f(function(_, snip)
-                    h.temp = (snip.captures[1]:lower() == snip.captures[1])
-                    return ""
-                end, {}),
-                d(1, function(_)
-                    return h.returnfunc(h.temp, "\\rightarrow", "\\mapsto")
-                end, {}),
-            }
-        ),
+        s({
+            trig = "([Nn][Aa][Cc][Hh])",
+            name = "nach",
+            dscr = "\\rightarrow or \\mapsto choicenode",
+            regTrig = true,
+            hidden = true,
+        }, {
+            f(function(_, snip)
+                h.temp = (snip.captures[1]:lower() == snip.captures[1])
+                return ""
+            end, {}),
+            d(1, function(_)
+                return h.returnfunc(h.temp, "\\rightarrow", "\\mapsto")
+            end, {}),
+        }),
     }
 )
 
@@ -527,9 +521,9 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "16"),
+        i(1, "17"),
         t { "", "kapitel: " },
-        i(2, "5.3"),
+        i(2, "5.7"),
         t { "", "aliases:" },
         i(3),
         t { "", "---", "" },
@@ -542,7 +536,7 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "14"),
+        i(1, "15"),
         t { "", "kapitel: " },
         i(2, "4.8"),
         t { "", "aliases:" },

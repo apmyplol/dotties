@@ -26,7 +26,7 @@ function M.test_grep_filename()
                 require("telescope.actions").close(prompt_bufnr)
                 local filename = entry[1]
                 -- Insert filename in current cursor position
-                vim.cmd("normal i [[" .. filename:match "([^/.]+)%..*$")
+                vim.cmd("normal i[[" .. filename:match "([^/.]+)%..*$")
             end)
             return true
         end,
