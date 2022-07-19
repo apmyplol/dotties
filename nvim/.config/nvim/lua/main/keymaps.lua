@@ -90,5 +90,5 @@ keymap("i", "<C-j>", "<cmd>lua require 'main.keymapfunctions'.luasnipchoose(1)<c
 
 -- autocomplete for files
 --keymap('i', '<C-i>', [[<cmd>lua require 'main.keymapfunctions'.test_grep_filename()<CR>]], opts)
-keymap('i', '<C-u>', [[<cmd>lua require 'main.keymapfunctions'.test_grep_filename()<CR>]], opts)
-keymap("i", "<C-o>", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown())<cr>", opts)
+keymap('i', '<C-u>', [[<cmd>lua require 'main.obsidian'.main()<CR>]], opts)
+-- keymap("i", "<C-o>", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown())<cr>", opts)

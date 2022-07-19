@@ -460,7 +460,7 @@ ls.add_snippets(
         -- ),
         s(
             {
-                trig = "(%S+)%ss%s(.+)",
+                trig = "([^{%spi+:$%.-]+)%ss%s(.+)",
                 name = "sub/superscript in general",
                 dscr = "expands superscript or subscript expressions",
                 regTrig = true,
@@ -479,7 +479,7 @@ ls.add_snippets(
         -- TODO: remove "i, p" from here, instead change snippet priority
         s(
             {
-                trig = "([^{%spi+:%.]+)%s?([%diknd])",
+                trig = "([^{%spi+:$%.]+)%s?([%diknd])",
                 name = "subscript and superscript",
                 dscr = "expands superscript or subscript numbers, depending on choice",
                 regTrig = true,
@@ -521,9 +521,9 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "17"),
+        i(1, "23"),
         t { "", "kapitel: " },
-        i(2, "5.7"),
+        i(2, "7.0"),
         t { "", "aliases:" },
         i(3),
         t { "", "---", "" },
@@ -536,9 +536,9 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "15"),
+        i(1, "22"),
         t { "", "kapitel: " },
-        i(2, "4.8"),
+        i(2, "5.8"),
         t { "", "aliases:" },
         i(3),
         t { "", "---", "" },
@@ -552,4 +552,4 @@ ls.filetype_extend("latex", { "tex", "obsidian" })
 ls.filetype_extend("markdown", { "tex", "obsidian", "text" })
 ls.filetype_extend("vimwiki", { "obsidian", "tex", "text" })
 ls.filetype_extend("tex", { "obsidian" })
-ls.filetype_extend("html", { "text" })
+ls.filetype_extend("html", { "text", "tex" })
