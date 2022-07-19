@@ -85,7 +85,7 @@ local hide_volume_adjust = gears.timer({
 })
 
 -- show volume-adjust when "volume_change" signal is emitted
-awesome.connect_signal("volume_change", function()
+awesome.connect_signal("volume_change_s", function()
 	-- set new volume value and colors etc
 	awful.spawn.easy_async_with_shell(GET_VOL, function(stdout)
 		-- 27

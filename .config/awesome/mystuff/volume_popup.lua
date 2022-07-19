@@ -6,7 +6,13 @@ local wibox = require("wibox")
 local awful = require("awful")
 local gears = require("gears")
 local beautiful = require("beautiful")
+
+local adir = gears.filesystem.get_configuration_dir() -- awesome config dir
+beautiful.init(adir .. "/evatheme/evatheme.lua")
+
 local GET_VOL = require("mystuff.commands").GET_VOLUME
+
+local eva_bar = require("evatheme.evashapes").eva_progessbar
 
 local dpi = beautiful.xresources.apply_dpi
 
@@ -32,7 +38,7 @@ local volume_adjust = wibox({
 	y = fscreen.geometry.height,
 	width = fscreen.geometry.width - 2 * offsetx,
 	height = 50,
-	bg = "#00000000",
+	bg = "#00000088",
 	shape = gears.shape.rectangle,
 	visible = false,
 	ontop = true,
@@ -43,11 +49,11 @@ local volume_bar = wibox.widget({
 	color = beautiful.eva.reb_green,
 	background_color = beautiful.eva.reb_purple1,
   shape = function(cr, width, height)
-    beautiful.shapes.bar1(cr, width, height, gaps, tick_size)
-    end,
+   eva_bar(cr, width, height, gaps, tick_size)
+  end,
   bar_shape = function(cr, width, height)
-    beautiful.shapes.bar1(cr, width, height, gaps, tick_size)
-    end,
+    eva_bar(cr, width, height, gaps, tick_size)
+  end,
 	max_value = 100,
 	value = 0,
 })
@@ -72,7 +78,7 @@ local hide_volume_adjust = gears.timer({
 })
 
 -- show volume-adjust when "volume_change" signal is emitted
-awesome.connect_signal("volume_change", function()
+awesome.connect_signal("volume_change_n", function()
 	-- adjust position and length if the focused screen changed
 
 	local focused_screen = awful.screen.focused()

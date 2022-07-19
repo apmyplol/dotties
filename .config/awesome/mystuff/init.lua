@@ -5,7 +5,8 @@ return {
 	battery_widget = require("mystuff.batteryarc"),
 	volumearc = require("mystuff.volumearc"),
 	pomodoro = require("mystuff.pomodoro"),
-  volumepopup = require("mystuff.volume_popup_side"),
+  volumepopup_side = require("mystuff.volume_popup_side"),
+  volumepopup_horizontal = require("mystuff.volume_popup"),
   commands = require("mystuff.commands"),
   switcher = require("mystuff.awesome-switcher")
 }

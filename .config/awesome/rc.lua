@@ -396,8 +396,9 @@ local globalkeys = gears.table.join(
         -- emit signal for volume change
         -- make arcpopip if in normal mode and eva popup in 集中モード
         if screen.primary.mywibox.position == "bottom" then
-            awesome.emit_signal "volume_change"
+            awesome.emit_signal "volume_change_s"
         else
+            awesome.emit_signal "volume_change_n"
             -- TODO: volumearc fix
             -- volume_update()
         end
@@ -405,16 +406,18 @@ local globalkeys = gears.table.join(
     awful.key({}, "XF86AudioMute", function()
         awful.spawn(commands.TOG_VOLUME)
         if screen.primary.mywibox.position == "bottom" then
-            awesome.emit_signal "volume_change"
+            awesome.emit_signal "volume_change_s"
         else
             -- volume_update()
+            awesome.emit_signal "volume_change_n"
         end
     end, { description = "mute", group = "media" }),
     awful.key({}, "XF86AudioLowerVolume", function()
         awful.spawn(commands.DEC_VOLUME)
         if screen.primary.mywibox.position == "bottom" then
-            awesome.emit_signal "volume_change"
+            awesome.emit_signal "volume_change_s"
         else
+            awesome.emit_signal "volume_change_n"
             -- volume_update()
         end
     end, { description = "lower volume", group = "media" }),
