@@ -428,9 +428,27 @@ local globalkeys = gears.table.join(
         awful.spawn(commands.MEDIA_PREV)
     end, { description = "previous", group = "media" }),
     awful.key({}, "XF86Tools", function()
+        for i, c in ipairs(client.get()) do
+          if c.name:find("mpv") then
+            c.first_tag:view_only()
+            awful.screen.focus(c.first_tag.screen)
+            -- client.focus = c
+            c:raise()
+            return
+          end
+        end
         awful.spawn(commands.IDLE_MPV)
     end, { description = "run mpv", group = "media" }),
     awful.key({ modkey }, "XF86Tools", function()
+        for i, c in ipairs(client.get()) do
+          if c.name:find("YouTube Music") then
+            c.first_tag:view_only()
+            awful.screen.focus(c.first_tag.screen)
+            -- client.focus = c
+            c:raise()
+            return
+          end
+        end
         awful.spawn(commands.YT_MUSIC)
     end, { description = "run youtube music", group = "media" }),
 
