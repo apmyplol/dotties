@@ -1,5 +1,5 @@
 [Unit]
-Description=Mount Synology Workstation at boot
+Description=Mount Synology Workstation
 
 [Mount]
 What=//192.168.178.98/WorkStation

@@ -1,5 +1,6 @@
 [Unit]
-Description=Mount Synology FTP Server at boot
+Description=Mount Synology FTP
+ExecStopPost=sudo umount /run/media/afa/Synology_FTP
 
 [Mount]
 What=//192.168.178.98/FTPServer
