@@ -1,0 +1,5 @@
+# Requirements for proxer autoload.
+requests
+BeautifulSoup4
+tqdm
+cloudscraper
