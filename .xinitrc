@@ -37,6 +37,7 @@ export PATH=$PATH:$HOME/.local/bin
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
+export ZDOTDIR=$HOME/.config/zsh
 
 # Set stuff for Wacom driver
 # TODO: Run wacom script and change middle mouse clicc behavior

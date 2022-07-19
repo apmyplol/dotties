@@ -1,3 +1,5 @@
+# export ZDOTDIR=$HOME/.config/zsh
+# source "$HOME/.config/zsh/.zshrc"
 #!/bin/sh
 export ZDOTDIR=$HOME/.config/zsh
 HISTFILE=~/.zsh_history
@@ -36,7 +38,7 @@ source "$ZDOTDIR/zsh-functions"
 zsh_add_file "zsh-exports"
 zsh_add_file "zsh-vim-mode"
 zsh_add_file "zsh-aliases"
-zsh_add_file "zsh-prompt"
+# zsh_add_file "zsh-prompt"
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
@@ -47,7 +49,7 @@ zsh_add_plugin "hlissner/zsh-autopair"
 # More completions https://github.com/zsh-users/zsh-completions
 
 # Key-bindings
-bindkey -s '^o' 'ranger^M'
+bindkey -s '^e' 'ranger^M'
 bindkey -s '^f' 'zi^M'
 bindkey -s '^s' 'ncdu^M'
 # bindkey -s '^n' 'nvim $(fzf)^M'
@@ -77,11 +79,11 @@ autoload edit-command-line; zle -N edit-command-line
 # bindkey '^e' edit-command-line
 
 # TODO Remove these
-setxkbmap -option caps:escape
-xset r rate 210 40
+# setxkbmap -option caps:escape
+# xset r rate 210 10
 
 # Speedy keys
-# xset r rate 210 40
+xset r rate 210 20
 
 # Environment variables set everywhere
 export EDITOR="nvim"
@@ -92,8 +94,19 @@ export BROWSER="brave"
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 # remap caps to escape
-# setxkbmap -option caps:escape
+setxkbmap -option caps:escape
 # swap escape and caps
 # setxkbmap -option caps:swapescape
 
-eval "$(starship init zsh)"
+
+# if not on tty then start starship shell
+# and set exa aliases
+case $(tty) in /dev/pts/[0-9]*)
+  # If not on tty then change PS1 to シンジくん
+  alias ls='exa --icons --git --group-directories-first'
+  alias lsa='exa --icons --git -lah'
+  alias lst='exa --icons --tree'
+  alias lsta='exa --icons --tree --long --git'
+  eval "$(starship init zsh)"
+
+esac

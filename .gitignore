@@ -1,7 +1,8 @@
 /jpinput/
-/ranger/.config/ranger/plugins/__pycache__/
-/ranger/.config/ranger/plugins/ranger_devicons/__pycache__/
-lazygit/.config/lazygit/state.yml
-nvim/.config/nvim/plugin/
-/lazygit/.config/lazygit/state.yml
+.config/ranger/plugins/__pycache__/
+.config/ranger/plugins/ranger_devicons/__pycache__/
+.config/lazygit/state.yml
+.config/nvim/plugin/
+.config/lazygit/state.yml
 .dotties
+.config/zsh/plugins
