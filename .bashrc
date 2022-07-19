@@ -70,4 +70,7 @@ case $(tty) in /dev/pts/[0-9]*)
   alias lsta='exa --icons --tree --long --git'
 esac
 
+# Dotfiles config
+alias dotties='/usr/bin/git --git-dir=$HOME/.dotties/ --work-tree=$HOME'
+
 eval "$(starship init bash)"
