@@ -77,7 +77,7 @@ function M.obsidian(opts)
                 obsidian_rename(prompt_bufnr)
             end)
             map("i", "<C-CR>", function()
-                --[[ actions.close(prompt_bufnr) ]]
+                actions.close(prompt_bufnr)
                 local selection = action_state.get_selected_entry()[1]:match "([^/.]+)%..*$"
                 selection = selection:find "_" == nil and selection or selection .. "|" .. selection:gsub("_", " ")
 

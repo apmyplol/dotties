@@ -46,7 +46,7 @@ nvim_tree.setup {
   open_on_tab = false,
   hijack_cursor = false,
   hijack_directories={
-    enable = false,
+    enable = true,
   },
   update_cwd = true,
   update_to_buf_dir = {
