@@ -105,6 +105,8 @@ return packer.startup(function(use)
     -- use {'iamcco/markdown-preview.nvim', run=":call mkdp#util#install()" , ft={'markdown'}}
     --use "plasticboy/vim-markdown"
     use { "vimwiki/vimwiki", ft = { "markdown" } }
+    -- use "ixru/nvim-markdown"
+    -- use "renerocksai/telekasten.nvim"
     -- use "junegunn/goyo.vim"
     use "tanvirtin/vgit.nvim"
 
@@ -125,7 +127,7 @@ return packer.startup(function(use)
     -- use 'blackcauldron7/surround.nvim'
 
     -- copy of original surround.nvim
-    use "/ur4ltz/surround.nvim"
+    use "ur4ltz/surround.nvim"
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     --danymat/neogen, ekickx/clipboard-image.nvim
@@ -138,6 +140,13 @@ return packer.startup(function(use)
 
     -- for nice folding
     use "anuvyklack/pretty-fold.nvim"
+    use {
+        "anuvyklack/fold-preview.nvim",
+        requires = "anuvyklack/keymap-amend.nvim",
+        config = function()
+            require("fold-preview").setup()
+        end,
+    }
 
     -- workspaces
     use "natecraddock/workspaces.nvim"

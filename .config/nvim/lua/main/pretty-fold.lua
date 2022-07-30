@@ -58,18 +58,3 @@ pfold.setup{
  --      },
  --   }
 }
-
-
--- Fold Preview setup
-local status_ok, preview = pcall(require, "pretty-fold.preview")
-if not status_ok then
-  return
-end
-
-preview.setup{
-  key = 'l', -- 'h', 'l' or nil (if you would like to set your own keybinding)
-
-   -- 'none', "single", "double", "rounded", "solid", 'shadow' or table
-   -- For explanation see: :help nvim_open_win()
-   border = {' ', '', ' ', ' ', ' ', ' ', ' ', ' '},
-}
