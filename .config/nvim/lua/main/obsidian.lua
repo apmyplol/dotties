@@ -20,19 +20,52 @@ local find_command = {
     -- ".rgignore",
 }
 
-local obsidian_rename = function(old_bufnr)
-    actions.close(old_bufnr)
-    local old_sel = action_state.get_selected_entry()
-    local fname, ext = old_sel[1]:match "([^/.]+)%.(.*)$"
+-- function to rename heading or block reference
+-- only runs, if a heading or block was selected in the second prompt
+local rename_heading_block = function(sel)
+    local filename = sel.filename
+    local attach = sel.attach
+
+    local res = { attach, filename }
+
+    opts = {}
+    pickers
+        .new(opts, {
+            prompt_title = "Block/Heading Naming for File: " .. filename .. attach ,
+            finder = finders.new_table {
+                results = res,
+                entry_maker = function(entry)
+                    return sel
+                end,
+            },
+            sorter = conf.file_sorter(opts),
+            attach_mappings = function(prompt_bufnr, map)
+                actions.select_default:replace(function()
+
+                    local prompt_text = action_state.get_current_picker(prompt_bufnr).sorter._discard_state.prompt
+                    actions.close(prompt_bufnr)
+
+                    vim.api.nvim_put({ "[[" .. filename .. attach .. "|" .. prompt_text .. "]] " }, "", false, true)
+                    vim.api.nvim_input "a"
+                end)
+                return true
+            end,
+        })
+        :find()
+end
+
+-- prompt that renames a file or selects a heading / block in a file and opens another prompt to rename the heading / block reference
+local obsidian_rename = function(inp_fname)
+    local fname, ext = inp_fname:match "([^/.]+)%.(.*)$"
     fname = ext == "md" and fname or fname .. "." .. ext
     -- only search for aliases and ^^ things in file if markdown file
     -- but either way add fname as a result
     local res = { fname }
 
     if ext == "md" then
-        local alias_match = vim.fn.system("rg -e 'aliases:' " .. old_sel[1])
-        local block_ref = vim.fn.system("rg -e '^\\^' " .. old_sel[1])
-        local heading_ref = vim.fn.system("rg -e '^#' " .. old_sel[1])
+        local alias_match = vim.fn.system("rg -e 'aliases:' " .. inp_fname)
+        local block_ref = vim.fn.system("rg -e '^\\^' " .. inp_fname)
+        local heading_ref = vim.fn.system("rg -e '^#' " .. inp_fname)
 
         -- add aliases to result list
         for str in alias_match:gsub("aliases:%s?", ""):gsub("\n", ""):gsub(",%s", "~"):gmatch "[^~]+" do
@@ -53,26 +86,40 @@ local obsidian_rename = function(old_bufnr)
     local opts = {}
     pickers
         .new(opts, {
-            prompt_title = "Reference Naming",
+            prompt_title = "Ref Naming, Block/Heading selection for File: " .. fname,
             finder = finders.new_table {
                 results = res,
                 entry_maker = function(entry)
-                    local onlyrename = nil
-                    local lattach = nil
-                    if entry:find "^^" then
+                    -- is this a file reference or header/block reference
+                    local fileref = true
+                    -- what to attach to the filename in the reference
+                    local lattach = ""
+                    local display = ""
+                    local mathref = false
+                    -- if entry is the filename, then attach nothing, and set filereference to true
+                    if entry == fname then
+                        lattach = entry:find "_" and "|" .. entry:gsub("_", " ") or ""
+                        display = entry:find "_" and "|" .. entry:gsub("_", " ") or entry
+                    elseif entry:find "^^" then
+                        fileref = false
                         lattach = "#" .. entry
-                        onlyrename = false
-                    elseif entry == "fname" then
-                        lattach = ""
+                        display = lattach
+                    elseif entry:find "^#" then
+                        fileref = false
+                        lattach = "" .. entry
+                        display = lattach
                     else
                         lattach = "|" .. entry
+                        display = lattach
                     end
-                    -- local attach = entry == fname and "" or "|" .. entry
                     return {
-                        display = entry,
-                        ordinal = entry,
+                        -- attach what is being displayed
+                        display = display,
                         attach = lattach,
+                        ordinal = entry,
                         filename = fname,
+                        fileref = fileref,
+                        mathref = mathref,
                     }
                 end,
             },
@@ -82,12 +129,17 @@ local obsidian_rename = function(old_bufnr)
                 actions.select_default:replace(function()
                     local prompt_text = action_state.get_current_picker(prompt_bufnr).sorter._discard_state.prompt
                     local selection = action_state.get_selected_entry()
-                    local text = selection ~= nil and selection.attach or "|" .. prompt_text
+                    -- if the selection is nil then use the prompt text, else the selection attach
+                    local attach = selection == nil and "|" .. prompt_text or selection.attach
+                    if selection.fileref == true then
                     actions.close(prompt_bufnr)
-                    vim.api.nvim_put({ "[[" .. fname .. text .. "]] " }, "", false, true)
+                    vim.api.nvim_put({ "[[" .. fname .. attach .. "]] " }, "", false, true)
                     -- vim.api.nvim_command "startinsert"
                     -- vim.cmd("startinsert")
                     vim.api.nvim_input "a"
+                    else
+                        rename_heading_block(selection)
+                    end
                 end)
 
                 map("i", "<C-CR>", function()
@@ -112,7 +164,9 @@ function M.obsidian(opts)
             sorter = conf.file_sorter(opts),
             attach_mappings = function(prompt_bufnr, map)
                 actions.select_default:replace(function()
-                    obsidian_rename(prompt_bufnr)
+                    actions.close(prompt_bufnr)
+                    local filename = action_state.get_selected_entry()[1]
+                    obsidian_rename(filename)
                 end)
                 map("i", "<C-CR>", function()
                     actions.close(prompt_bufnr)
