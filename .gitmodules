@@ -1,0 +1,3 @@
+[submodule "mpvitas"]
+	path = .config/mpv
+	url = https://github.com/apmyplol/mpvitas
