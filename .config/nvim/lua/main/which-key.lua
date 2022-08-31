@@ -82,7 +82,7 @@ local opts = {
 }
 
 local mappings = {
-    ["/"] = { "<cmd>lua require('main.keymapfunctions').comment()<CR>", "Comment" },
+    ["/"] = { "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", "Comment" },
     ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
     ["b"] = {
         "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
@@ -175,13 +175,14 @@ local mappings = {
     },
     -- TODO: Add telescope for "t"
 
-    s = {
+    m = {
         name = "my stuff",
         M = { "zM", "close all folds" },
         n = { "zn", "open all folds" },
         c = { "<cmd>ColorizerAttachToBuffer<cr>", "enable colorizer" },
         s = { "<cmd>source ~/.config/nvim/lua/main/luasnip.lua<cr>" },
         l = { "<cmd>lua require'main.keymapfunctions'.latex()<cr>", "Show markdown/tex preview" },
+        S = {"<cmd>Shipwright ~/.config/nvim/lua/colors/shipwright_build.lua<cr>"}
     },
 }
 
@@ -194,7 +195,7 @@ local vopts = {
     nowait = true, -- use `nowait` when creating keymaps
 }
 local vmappings = {
-    ["/"] = { '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', "Comment" },
+    ["/"] = { '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>', "Comment" },
     z = {
         name = "Folds",
         f = { ":'<,'>fold<CR>", "create Fold" },
@@ -202,10 +203,10 @@ local vmappings = {
     c = {
         name = "Comments",
         c = {
-            [[<CMD>lua require("Comment.api").call("toggle_current_linewise_op")<CR>g@$]],
+            [[<CMD>lua require("Comment.api").toggle.linewise_op<CR>]],
             "Toggle linewise Comment",
         },
-        b = { [[<CMD>lua require("Comment.api").toggle_current_blockwise()<CR>]], "Toggle blockwise comment" },
+        b = { [[<CMD>lua require("Comment.api").toggle.blockwise()<CR>]], "Toggle blockwise comment" },
     },
 }
 

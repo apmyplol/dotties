@@ -154,6 +154,10 @@ return packer.startup(function(use)
     -- fancy todo highlights
     use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" }
 
+    -- for evatheme
+    use { "rktjmp/lush.nvim" }
+    use {"rktjmp/shipwright.nvim"}
+
     if PACKER_BOOTSTRAP then
         require("packer").sync()
     end

@@ -62,7 +62,7 @@ local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
-local eva = require("colors.eva")
+local eva = require("colors.eva_colors")
 
 local colors = {
 	normal = {

@@ -124,10 +124,21 @@ _G.packer_plugins = {
     path = "/home/afa/.local/share/nvim/site/pack/packer/start/colorschemes",
     url = "https://github.com/lunarvim/colorschemes"
   },
+  ["fold-preview.nvim"] = {
+    config = { "\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17fold-preview\frequire\0" },
+    loaded = true,
+    path = "/home/afa/.local/share/nvim/site/pack/packer/start/fold-preview.nvim",
+    url = "https://github.com/anuvyklack/fold-preview.nvim"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/afa/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
+  ["keymap-amend.nvim"] = {
+    loaded = true,
+    path = "/home/afa/.local/share/nvim/site/pack/packer/start/keymap-amend.nvim",
+    url = "https://github.com/anuvyklack/keymap-amend.nvim"
   },
   ["lightspeed.nvim"] = {
     loaded = true,
@@ -138,6 +149,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/afa/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  ["lush.nvim"] = {
+    loaded = true,
+    path = "/home/afa/.local/share/nvim/site/pack/packer/start/lush.nvim",
+    url = "https://github.com/rktjmp/lush.nvim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -219,10 +235,15 @@ _G.packer_plugins = {
     path = "/home/afa/.local/share/nvim/site/pack/packer/start/pretty-fold.nvim",
     url = "https://github.com/anuvyklack/pretty-fold.nvim"
   },
+  ["shipwright.nvim"] = {
+    loaded = true,
+    path = "/home/afa/.local/share/nvim/site/pack/packer/start/shipwright.nvim",
+    url = "https://github.com/rktjmp/shipwright.nvim"
+  },
   ["surround.nvim"] = {
     loaded = true,
     path = "/home/afa/.local/share/nvim/site/pack/packer/start/surround.nvim",
-    url = "https://github.com//ur4ltz/surround.nvim"
+    url = "https://github.com/ur4ltz/surround.nvim"
   },
   ["telescope-luasnip.nvim"] = {
     loaded = true,
@@ -291,13 +312,17 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: fold-preview.nvim
+time([[Config for fold-preview.nvim]], true)
+try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17fold-preview\frequire\0", "config", "fold-preview.nvim")
+time([[Config for fold-preview.nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vimwiki'}, { ft = "markdown" }, _G.packer_plugins)]]
 vim.cmd [[au FileType tex ++once lua require("packer.load")({'vimtex'}, { ft = "tex" }, _G.packer_plugins)]]
 vim.cmd [[au FileType vimwiki ++once lua require("packer.load")({'vimtex'}, { ft = "vimwiki" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vimwiki'}, { ft = "markdown" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]
