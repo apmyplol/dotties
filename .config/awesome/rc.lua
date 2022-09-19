@@ -444,7 +444,8 @@ local globalkeys = gears.table.join(
     end, { description = "run mpv", group = "media" }),
     awful.key({ modkey }, "XF86Tools", function()
         for i, c in ipairs(client.get()) do
-          if c.name:find("YouTube Music") then
+          if c.name:find("YouTube Music") and c.role == "pop-up" then
+            -- naughty.notify({text = gears.debug.dump_return(c.role)})
             c.first_tag:view_only()
             awful.screen.focus(c.first_tag.screen)
             -- client.focus = c
@@ -454,7 +455,17 @@ local globalkeys = gears.table.join(
         end
         awful.spawn(commands.YT_MUSIC)
     end, { description = "run youtube music", group = "media" }),
-
+    awful.key({ modkey, "Shift" }, "XF86Tools", function()
+        for i, c in ipairs(client.get()) do
+          if c.name:find("YouTube Music") and c.role == "pop-up" then
+            c.first_tag:view_only()
+            awful.screen.focus(c.first_tag.screen)
+            c:raise()
+            awful.spawn("xdotool search --classname 'crx_cinhimbnkkaeohfgghhklpknlkffjgod' windowactivate --sync %1 keyup Super_L+Shift+XF86Tools key 'Ctrl+Shift+8'")
+            return
+          end
+        end
+    end, { description = "open add to playlist tab", group = "media" }),
     ----------------------------- RANDOM BINDINGS------------------------
 
     awful.key({ modkey, "Control" }, "s", function()
