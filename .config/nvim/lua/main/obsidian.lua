@@ -31,7 +31,7 @@ local rename_heading_block = function(sel)
     opts = {}
     pickers
         .new(opts, {
-            prompt_title = "Block/Heading Naming for File: " .. filename .. attach ,
+            prompt_title = "Block/Heading Naming for File: " .. filename .. attach,
             finder = finders.new_table {
                 results = res,
                 entry_maker = function(entry)
@@ -41,7 +41,6 @@ local rename_heading_block = function(sel)
             sorter = conf.file_sorter(opts),
             attach_mappings = function(prompt_bufnr, map)
                 actions.select_default:replace(function()
-
                     local prompt_text = action_state.get_current_picker(prompt_bufnr).sorter._discard_state.prompt
                     actions.close(prompt_bufnr)
 
@@ -63,9 +62,9 @@ local obsidian_rename = function(inp_fname)
     local res = { fname }
 
     if ext == "md" then
-        local alias_match = vim.fn.system("rg -e 'aliases:' " .. inp_fname)
-        local block_ref = vim.fn.system("rg -e '^\\^' " .. inp_fname)
-        local heading_ref = vim.fn.system("rg -e '^#' " .. inp_fname)
+        local alias_match = vim.fn.system("rg -e 'aliases:' " .. inp_fname:gsub(" ", "\\ "))
+        local block_ref = vim.fn.system("rg -e '^\\^' " .. inp_fname:gsub(" ", "\\ "))
+        local heading_ref = vim.fn.system("rg -e '^#' " .. inp_fname:gsub(" ", "\\ "))
 
         -- add aliases to result list
         for str in alias_match:gsub("aliases:%s?", ""):gsub("\n", ""):gsub(",%s", "~"):gmatch "[^~]+" do
@@ -132,11 +131,11 @@ local obsidian_rename = function(inp_fname)
                     -- if the selection is nil then use the prompt text, else the selection attach
                     local attach = selection == nil and "|" .. prompt_text or selection.attach
                     if selection.fileref == true then
-                    actions.close(prompt_bufnr)
-                    vim.api.nvim_put({ "[[" .. fname .. attach .. "]] " }, "", false, true)
-                    -- vim.api.nvim_command "startinsert"
-                    -- vim.cmd("startinsert")
-                    vim.api.nvim_input "a"
+                        actions.close(prompt_bufnr)
+                        vim.api.nvim_put({ "[[" .. fname .. attach .. "]] " }, "", false, true)
+                        -- vim.api.nvim_command "startinsert"
+                        -- vim.cmd("startinsert")
+                        vim.api.nvim_input "a"
                     else
                         rename_heading_block(selection)
                     end
@@ -155,25 +154,70 @@ local obsidian_rename = function(inp_fname)
         :find()
 end
 
+-- first telescope instance
 function M.obsidian(opts)
     opts = opts or {}
+
+    -- create entries manually to be able to search for aliases
+    local entries = {}
+    local full_search = vim.fn.system "rg -e 'aliases:' --ignore-file .rgignore"
+    -- loop over all files and their aliases
+    for str in full_search:gmatch "([^\n]+)\n" do
+        -- split stirng into filename and aliases
+        local file, aliases = str:match "(.*):aliases:(.*)"
+        -- add file without | as entry
+        local fname = file:match "([^/.]+)%.(.*)$"
+        entries[#entries + 1] = { fname, "" , file}
+        if fname:find("_") then
+          local f_no_underscore = fname:gsub("_", " ")
+          entries[#entries+1] = {fname, f_no_underscore, file}
+        end
+        -- loop over all aliases and add {filename, alias} as entry
+        for alias in aliases:gsub("%s?", ""):gsub("\n", ""):gsub(",%s", "~"):gmatch "[^~]+" do
+            if alias ~= "" then
+                entries[#entries + 1] = { fname, alias, file }
+            end
+        end
+    end
+
+    -- entry creation done, create telescope picker
     pickers
         .new(opts, {
             prompt_title = "Reference File",
-            finder = finders.new_oneshot_job(find_command, opts),
+            finder = finders.new_table {
+                results = entries,
+                entry_maker = function(entry)
+                    if entry[2] == "" then
+                        return { display = entry[1], ordinal = entry[1], alias = false, filename = entry[3] }
+                    else
+                        return {
+                            display = entry[1] .. "|" .. entry[2],
+                            ordinal = entry[1] .. " " .. entry[2],
+                            alias = true,
+                            filename = entry[3]
+                        }
+                    end
+                end,
+            },
             sorter = conf.file_sorter(opts),
             attach_mappings = function(prompt_bufnr, map)
                 actions.select_default:replace(function()
                     actions.close(prompt_bufnr)
-                    local filename = action_state.get_selected_entry()[1]
+                    local filename = action_state.get_selected_entry().filename
                     obsidian_rename(filename)
                 end)
                 map("i", "<C-CR>", function()
+                    local telematch = action_state.get_current_picker(prompt_bufnr)._selection_entry
+                    -- print(vim.inspect(telematch))
+                    local text = ""
+                    if telematch ~= nil then
+                      text = telematch.display
+                    else
+                      text = action_state.get_current_picker(prompt_bufnr).sorter._discard_state.prompt
+                    end
                     actions.close(prompt_bufnr)
-                    local selection = action_state.get_selected_entry()[1]:match "([^/.]+)%..*$"
-                    selection = selection:find "_" == nil and selection or selection .. "|" .. selection:gsub("_", " ")
 
-                    vim.api.nvim_put({ "[[" .. selection .. "]] " }, "", false, true)
+                    vim.api.nvim_put({ "[[" .. text .. "]] " }, "", false, true)
                     vim.api.nvim_input "a"
                 end)
                 return true
@@ -183,7 +227,6 @@ function M.obsidian(opts)
 end
 
 M.main = function()
-    --[[ M.obsidian(require("telescope.themes").get_dropdown {}) ]]
     M.obsidian()
 end
 return M

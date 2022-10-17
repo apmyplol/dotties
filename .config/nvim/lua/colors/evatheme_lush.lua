@@ -117,7 +117,7 @@ local theme = lush(function()
     ErrorMsg     { bg = ec.red, fg = ec.black }, -- Error messages on the command line
     VertSplit    { fg = ec.orange }, -- Column separating vertically split windows
     HorizSplit = { fg = ec.orange },
-    -- Folded       { }, -- Line used for closed folds
+    Folded       { bg = ec.green.da(20), fg = ec.black }, -- Line used for closed folds
     -- FoldColumn   { }, -- 'foldcolumn'
     SignColumn   { bg = ec.alacbg.da(10) }, -- Column where |signs| are displayed
     -- IncSearch    { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"

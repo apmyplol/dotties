@@ -233,6 +233,18 @@ ls.add_snippets(
                     or "\\mathbb{" .. snip.captures[1]:lower() .. "}"
             end, {})
         ),
+        s(
+            {
+                trig = "fat([%a%d])",
+                name = "fat/bold math text, not letters",
+                dscr = "expands 'fata' to \\\boldsymbol{a}",
+                regTrig = true,
+                hidden = true,
+            },
+            f(function(_, snip)
+                    return "\\boldsymbol{" .. snip.captures[1] .. "}"
+            end, {})
+        ),
         -- TODO: maybe add .* before gr, so that 2grpi could also expand to 2\pi
         s(
             {
@@ -529,18 +541,37 @@ ls.add_snippets("obsidian", {
         t { "", "---", "" },
         i(0),
     }),
-    s("stat", {
+    s("ws", {
         t {
             "---",
-            "tags: WS/EinfStochastik",
+            "tags: math/WS/WSTheo",
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "22"),
+        i(1, "1"),
         t { "", "kapitel: " },
-        i(2, "5.8"),
+        i(2, "1.1"),
         t { "", "aliases:" },
         i(3),
+        t { "", "mathlink:" },
+        i(4),
+        t { "", "---", "" },
+        i(0),
+    }),
+    s("opti", {
+        t {
+            "---",
+            "tags: math/opti",
+            "date: " .. os.date "%d-%m-%Y",
+            "vorlesung: ",
+        },
+        i(1, "1"),
+        t { "", "kapitel: " },
+        i(2, "1.0"),
+        t { "", "aliases:" },
+        i(3),
+        t { "", "mathlink: " },
+        i(4),
         t { "", "---", "" },
         i(0),
     }),
