@@ -167,10 +167,10 @@ function M.obsidian(opts)
         local file, aliases = str:match "(.*):aliases:(.*)"
         -- add file without | as entry
         local fname = file:match "([^/.]+)%.(.*)$"
-        entries[#entries + 1] = { fname, "" , file}
-        if fname:find("_") then
-          local f_no_underscore = fname:gsub("_", " ")
-          entries[#entries+1] = {fname, f_no_underscore, file}
+        entries[#entries + 1] = { fname, "", file }
+        if fname:find "_" then
+            local f_no_underscore = fname:gsub("_", " ")
+            entries[#entries + 1] = { fname, f_no_underscore, file }
         end
         -- loop over all aliases and add {filename, alias} as entry
         for alias in aliases:gsub("%s?", ""):gsub("\n", ""):gsub(",%s", "~"):gmatch "[^~]+" do
@@ -194,7 +194,7 @@ function M.obsidian(opts)
                             display = entry[1] .. "|" .. entry[2],
                             ordinal = entry[1] .. " " .. entry[2],
                             alias = true,
-                            filename = entry[3]
+                            filename = entry[3],
                         }
                     end
                 end,
@@ -202,23 +202,52 @@ function M.obsidian(opts)
             sorter = conf.file_sorter(opts),
             attach_mappings = function(prompt_bufnr, map)
                 actions.select_default:replace(function()
+                    local prompt = action_state.get_current_picker(prompt_bufnr).sorter._discard_state.prompt
                     actions.close(prompt_bufnr)
+                    -- if local prompt contains | then the text was probably completed using tab
+                    -- -> do not open obsidian rename window, just input the text
+                    if prompt:find("|") then
+                      vim.api.nvim_put({ "[[" .. prompt .. "]] " }, "", false, true)
+                      vim.api.nvim_input "a"
+                    else
                     local filename = action_state.get_selected_entry().filename
                     obsidian_rename(filename)
+                    end
+
                 end)
                 map("i", "<C-CR>", function()
-                    local telematch = action_state.get_current_picker(prompt_bufnr)._selection_entry
+                    local telematch = action_state.get_selected_entry()
                     -- print(vim.inspect(telematch))
                     local text = ""
                     if telematch ~= nil then
-                      text = telematch.display
+                        text = telematch.display
                     else
-                      text = action_state.get_current_picker(prompt_bufnr).sorter._discard_state.prompt
+                        text = action_state.get_current_picker(prompt_bufnr).sorter._discard_state.prompt
                     end
                     actions.close(prompt_bufnr)
 
                     vim.api.nvim_put({ "[[" .. text .. "]] " }, "", false, true)
                     vim.api.nvim_input "a"
+                end)
+
+                -- autocomplete prompt according to the entry that is selected
+                map("i", "<Tab>", function()
+                    -- get selected entry and prompt
+                    local selected_entry = action_state.get_selected_entry()
+                    -- if no item is selected then return
+                    if selected_entry == nil then
+                        return
+                    end
+                    local prompt = action_state.get_current_picker(prompt_bufnr).sorter._discard_state.prompt
+                    local text = selected_entry.display
+                    -- if prompt has text then remove the text
+                    if prompt ~= "" then
+                        vim.api.nvim_input "<ESC>"
+                        vim.api.nvim_input "dd"
+                        vim.api.nvim_input "i"
+                    end
+                    -- input selected entry text into prompt
+                    vim.api.nvim_input(text)
                 end)
                 return true
             end,
