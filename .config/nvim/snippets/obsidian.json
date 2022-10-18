@@ -1,7 +1,7 @@
 {
     "Example": {
       "prefix": "bsp",
-      "body": "> [!example]-\n> "
+      "body": "> [!example]- $1\n> $2"
     },
     "Abstract": {
       "prefix": "summary",
@@ -13,11 +13,11 @@
     },
     "Remark": {
       "prefix": "rem",
-      "body": "> [!info]- Bemerkung\n> "
+      "body": "> [!info]- Bemerkung $1\n> $2"
     },
     "Warning": {
       "prefix": "warning",
-      "body": "> [!warning]-\n> "
+      "body": "> [!warning]- $1\n> $2"
     },
     "Quote": {
       "prefix": "quote",

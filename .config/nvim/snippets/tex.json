@@ -162,5 +162,13 @@
   "emptyset": {
     "prefix": "leer",
     "body": "\\emptyset "
+  },
+  "Menge": {
+    "prefix": "men",
+    "body": "\\{$1\\\\}$2"
+  },
+  "Set": {
+    "prefix": "set",
+    "body": "\\{$1\\\\}$2"
   }
 }
