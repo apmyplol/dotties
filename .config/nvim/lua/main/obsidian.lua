@@ -240,7 +240,6 @@ function M.fileref_popup(opts)
                 end)
                 map("i", "<C-CR>", function()
                     local telematch = action_state.get_selected_entry()
-                    -- print(vim.inspect(telematch))
                     local text = ""
                     if telematch ~= nil then
                         text = telematch.display
@@ -269,7 +268,6 @@ M.mathlink = function()
     -- create entries manually to be able to search for aliases
     local entries = {}
     local full_search = vim.fn.system "rg -e 'mathlink:' --ignore-file .rgignore"
-    print(vim.inspect(full_search))
     -- loop over all files and their aliases
     for str in full_search:gmatch "([^\n]+)\n" do
         -- split stirng into filename and aliases
@@ -277,8 +275,7 @@ M.mathlink = function()
         -- add file without | as entry
         local fname = file:match("([^/.]+)%.(.*)$"):gsub(" ", "%20")
         -- loop over all aliases and add {filename, alias} as entry
-        print(mathlinks)
-        for mathlink in mathlinks:gsub("\n", ""):gsub(",%s", "~"):gmatch "[^~]+" do
+        for mathlink in mathlinks:gsub("\n", ""):gsub(",,%s", "~"):gmatch "[^~]+" do
             if mathlink ~= "" and mathlink ~= " " then
                 entries[#entries + 1] = { fname, mathlink, file }
             end
@@ -298,7 +295,7 @@ M.mathlink = function()
                         ordinal = entry[1] .. " " .. entry[2],
                         filename = entry[3],
                         math = entry[2],
-                        luasnip = "[$$" .. entry[2] .. "$1$$]" .. "(" .. entry[1] .. ")"
+                        luasnip = "\\href{obsidian://open?vault=wiki&file=" .. entry[1] .. "}{" .. entry[2] .. "}"
                     }
                 end,
             },
