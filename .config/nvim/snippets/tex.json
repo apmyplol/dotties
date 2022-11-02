@@ -71,6 +71,14 @@
     "prefix": "gleich",
     "body": "\\Leftrightarrow "
   },
+  "äquivalent": {
+    "prefix": "gdw",
+    "body": "\\Leftrightarrow "
+  },
+  "äquivalent": {
+    "prefix": "lrarrow",
+    "body": "\\Leftrightarrow "
+  },
   "partial": {
     "prefix": "partial",
     "body": "\\partial "
@@ -170,5 +178,13 @@
   "Set": {
     "prefix": "set",
     "body": "\\{$1\\\\}$2"
+  },
+  "not equal": {
+    "prefix": "neq",
+    "body": "\\neq "
+  },
+  "times": {
+    "prefix": "times",
+    "body": "\\times  "
   }
 }

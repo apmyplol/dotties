@@ -46,16 +46,16 @@ local rename_heading_block = function(sel)
     local filename = sel.filename
     local attach = sel.attach
 
-    local res = { attach, filename }
+    local res = { sel }
 
-    opts = {}
+    local opts = {}
     pickers
         .new(opts, {
             prompt_title = "Block/Heading Naming for File: " .. filename .. attach,
             finder = finders.new_table {
                 results = res,
                 entry_maker = function(entry)
-                    return sel
+                    return entry
                 end,
             },
             sorter = conf.file_sorter(opts),
@@ -63,10 +63,27 @@ local rename_heading_block = function(sel)
                 actions.select_default:replace(function()
                     local prompt_text = action_state.get_current_picker(prompt_bufnr).sorter._discard_state.prompt
                     actions.close(prompt_bufnr)
+                    local text = filename .. attach
+                    -- if prompt text contains | then just add the prompt text to filename (was probably tab completed)
+                    if prompt_text:find "|" then
+                        text = filename .. prompt_text
+                    -- else if the prompt is empty then do no renaming
+                    elseif prompt_text ~= "" then
+                        text = filename .. attach .. "|" .. prompt_text
+                    end
+
+                    vim.api.nvim_put({ "[[" .. text .. "]] " }, "", false, true)
+                    vim.api.nvim_input "a"
+                end)
+
+                map("i", "<C-CR>", function()
+                    local prompt_text = action_state.get_current_picker(prompt_bufnr).sorter._discard_state.prompt
+                    actions.close(prompt_bufnr)
 
                     vim.api.nvim_put({ "[[" .. filename .. attach .. "|" .. prompt_text .. "]] " }, "", false, true)
                     vim.api.nvim_input "a"
                 end)
+
                 map("i", "<Tab>", function()
                     tabcomplete(prompt_bufnr)
                 end)
@@ -149,17 +166,27 @@ local obsidian_rename = function(inp_fname)
             attach_mappings = function(prompt_bufnr, map)
                 --[[ local prompt_text = action_state.get_current_picker(prompt_bufnr).sorter._discard_state.prompt ]]
                 actions.select_default:replace(function()
-                    local prompt_text = action_state.get_current_picker(prompt_bufnr).sorter._discard_state.prompt
                     local selection = action_state.get_selected_entry()
-                    -- if the selection is nil then use the prompt text, else the selection attach
-                    local attach = selection == nil and "|" .. prompt_text or selection.attach
-                    if selection == nil or selection.fileref == true then
-                        actions.close(prompt_bufnr)
-                        vim.api.nvim_put({ "[[" .. fname .. attach .. "]] " }, "", false, true)
-                        vim.api.nvim_input "a"
-                    else
+                    -- if the selected item is a heading or file block then open rename heading prompt
+                    if selection ~= nil and not selection.fileref then
                         rename_heading_block(selection)
+                        return
                     end
+
+                    local prompt_text = action_state.get_current_picker(prompt_bufnr).sorter._discard_state.prompt
+                    local append_text = ""
+                    actions.close(prompt_bufnr)
+                    -- if prompt text contains | then no need to attach anything, just write the prompt text into nvim
+                    if prompt_text:find "|" then
+                        append_text = fname .. prompt_text
+                    elseif selection == nil or selection.fileref == true then
+                        -- if the no item is selected or the selected item is a file reference, then use the prompt text
+                        local attach = selection == nil and "|" .. prompt_text or selection.attach
+                        append_text = fname .. attach
+                    end
+
+                    vim.api.nvim_put({ "[[" .. append_text .. "]] " }, "", false, true)
+                    vim.api.nvim_input "a"
                 end)
 
                 map("i", "<C-CR>", function()
@@ -282,7 +309,6 @@ M.mathlink = function()
         end
     end
 
-
     -- entry creation done, create telescope picker
     pickers
         .new(opts, {
@@ -295,27 +321,26 @@ M.mathlink = function()
                         ordinal = entry[1] .. " " .. entry[2],
                         filename = entry[3],
                         math = entry[2],
-                        luasnip = "\\href{obsidian://open?vault=wiki&file=" .. entry[1] .. "}{" .. entry[2] .. "}"
+                        luasnip = "\\href{obsidian://open?vault=wiki&file=" .. entry[1] .. "}{" .. entry[2] .. "}",
                     }
                 end,
             },
             sorter = conf.file_sorter(opts),
             attach_mappings = function(prompt_bufnr, map)
                 actions.select_default:replace(function()
-                    -- local prompt = action_state.get_current_picker(prompt_bufnr).sorter._discard_state.prompt
-                    actions.close(prompt_bufnr)
                     local luasnip = action_state.get_selected_entry().luasnip
+                    actions.close(prompt_bufnr)
                     vim.fn.setreg("m", luasnip)
-                    require('luasnip.extras.otf').on_the_fly("m")
-                    -- if local prompt contains | then the text was probably completed using tab
-                    -- -> do not open obsidian rename window, just input the text
-                    -- vim.api.nvim_put({ telematch }, "", false, true)
-                    -- vim.api.nvim_input "a"
+                    require("luasnip.extras.otf").on_the_fly "m"
                 end)
                 return true
             end,
         })
         :find()
+end
+
+M.findfile = function()
+
 end
 
 return M

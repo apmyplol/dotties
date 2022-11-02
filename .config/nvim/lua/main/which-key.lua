@@ -177,8 +177,6 @@ local mappings = {
 
     m = {
         name = "my stuff",
-        M = { "zM", "close all folds" },
-        n = { "zn", "open all folds" },
         c = { "<cmd>ColorizerAttachToBuffer<cr>", "enable colorizer" },
         s = { "<cmd>source ~/.config/nvim/lua/main/luasnip.lua<cr>" },
         l = { "<cmd>lua require'main.keymapfunctions'.latex()<cr>", "Show markdown/tex preview" },
@@ -208,6 +206,7 @@ local vmappings = {
         },
         b = { [[<CMD>lua require("Comment.api").toggle.blockwise()<CR>]], "Toggle blockwise comment" },
     },
+
 }
 
 which_key.setup(setup)

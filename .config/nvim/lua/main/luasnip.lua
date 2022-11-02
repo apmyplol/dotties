@@ -526,16 +526,14 @@ ls.add_snippets(
 
 ls.add_snippets("obsidian", {
     -- snippet for markdown comment
-    s("inttheo", {
+    s("nlp", {
         t {
             "---",
-            "tags: ana/inttheo",
+            "tags: NLP/web",
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "23"),
-        t { "", "kapitel: " },
-        i(2, "7.0"),
+        i(1, "3"),
         t { "", "aliases:" },
         i(3),
         t { "", "---", "" },
@@ -548,9 +546,9 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "1"),
+        i(1, "6"),
         t { "", "kapitel: " },
-        i(2, "1.1"),
+        i(2, "?"),
         t { "", "aliases:" },
         i(3),
         t { "", "mathlink:" },
@@ -565,9 +563,9 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "1"),
+        i(1, "7"),
         t { "", "kapitel: " },
-        i(2, "1.0"),
+        i(2, "2.6"),
         t { "", "aliases:" },
         i(3),
         t { "", "mathlink: " },

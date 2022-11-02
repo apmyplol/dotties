@@ -1,4 +1,5 @@
 require "main.options"
+require "main.workspaces"
 require "main.keymaps"
 require "main.plugins"
 require "main.autopairs"
@@ -27,7 +28,7 @@ require "main.matchup"
 require "main.surround"
 require "main.pretty-fold"
 require "main.fold-preview"
-require "main.workspaces"
 require "main.todo-comments"
+require "main.jupyter"
 
 -- TODO: check gisigns vs vgit

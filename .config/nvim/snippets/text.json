@@ -15,6 +15,10 @@
     "prefix": "rot",
     "body": "<b><font color='#ff0000'>$1</font></b>$2"
   },
+  "color": {
+    "prefix": "color",
+    "body": "<b><font color='$1'>$2</font></b>$3"
+  },
   "farbe": {
     "prefix": "color",
     "body": "<font color='$1'>$2</font>$2"
