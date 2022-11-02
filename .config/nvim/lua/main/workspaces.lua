@@ -3,6 +3,12 @@ if not status_ok then
     return
 end
 
+local function open_hook()
+  if workspaces.name() == "wiki" then
+    --register command
+  end
+  vim.api.nvim_command("NvimTreeOpen")
+end
 
 workspaces.setup {
     -- path to a file to store workspaces data in
@@ -26,6 +32,7 @@ workspaces.setup {
         add = {},
         remove = {},
         open_pre = {},
-        open = { "NvimTreeOpen" },
+        open = { open_hook },
     },
 }
+

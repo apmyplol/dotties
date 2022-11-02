@@ -52,5 +52,5 @@ vim.cmd[[autocmd FileType vimwiki,markdown setlocal foldexpr=MarkdownFold() fold
 vim.cmd("set nofoldenable")
 vim.cmd("let g:polyglot_disabled = ['vue']")
 vim.cmd('autocmd BufRead,BufNewFile,BufWrite,BufWritePost *.m set filetype=matlab foldmethod=manual')
-vim.cmd("let g:python3_host_prog = '/home/afa/eccspra/.venv/bin/python'")
+-- vim.cmd("let g:python3_host_prog = '/home/afa/eccspra/.venv/bin/python'")
 vim.cmd("set spell spelllang=de,en,cjk")

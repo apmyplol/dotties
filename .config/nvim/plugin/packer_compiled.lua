@@ -285,6 +285,11 @@ _G.packer_plugins = {
     path = "/home/afa/.local/share/nvim/site/pack/packer/start/vim-bbye",
     url = "https://github.com/moll/vim-bbye"
   },
+  ["vim-jukit"] = {
+    loaded = true,
+    path = "/home/afa/.local/share/nvim/site/pack/packer/start/vim-jukit",
+    url = "https://github.com/luk400/vim-jukit"
+  },
   ["vim-matchup"] = {
     loaded = true,
     path = "/home/afa/.local/share/nvim/site/pack/packer/start/vim-matchup",
@@ -326,8 +331,8 @@ vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
 vim.cmd [[au FileType tex ++once lua require("packer.load")({'vimtex'}, { ft = "tex" }, _G.packer_plugins)]]
-vim.cmd [[au FileType vimwiki ++once lua require("packer.load")({'vimtex'}, { ft = "vimwiki" }, _G.packer_plugins)]]
 vim.cmd [[au FileType markdown ++once lua require("packer.load")({'vimwiki'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType vimwiki ++once lua require("packer.load")({'vimtex'}, { ft = "vimwiki" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]

@@ -1,30 +1,33 @@
 local status_ok, acmd = pcall(require, "autocmd-lua")
 if not status_ok then
-  return
+    return
 end
 
-acmd.augroup{
-  "filetype_commands", {{
-    "FileType",
-{
-    vimwiki = function()
-    local path = vim.fn.stdpath "data" .. "/site/pack/packer/start";
-    vim.cmd(
-    [[function! Bla()
+acmd.augroup {
+    "filetype_commands",
+    {
+        {
+            "FileType",
+            {
+                vimwiki = function()
+                    print "bla"
+                    local path = vim.fn.stdpath "data" .. "/site/pack/packer/start"
+                    vim.cmd([[function! Bla()
     setlocal matchpairs=(:),{:},[:],":"
-    ]].."source " .. path .. [[/vim-matchup/after/ftplugin/tex_matchup.vim
+    ]] .. "source " .. path .. [[/vim-matchup/after/ftplugin/tex_matchup.vim
     endfunction
     let g:matchup_hotfix = {'vimwiki': 'Bla'}
     ]])
-  end
-  }
-  }}
+                end,
+            },
+        },
+    },
 }
-    -- function! MDfix()
-    --       echo "MDfix
-    --       let g:vimtex_enabled = 1
-    -- endfunction
-    -- let g:matchup_hotfix = { 'vimwiki': 'MDfix' }
+-- function! MDfix()
+--       echo "MDfix
+--       let g:vimtex_enabled = 1
+-- endfunction
+-- let g:matchup_hotfix = { 'vimwiki': 'MDfix' }
 
 -- acmd.augroup{
 --   group = "test_fold",

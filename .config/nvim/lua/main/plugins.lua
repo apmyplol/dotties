@@ -156,7 +156,12 @@ return packer.startup(function(use)
 
     -- for evatheme
     use { "rktjmp/lush.nvim" }
-    use {"rktjmp/shipwright.nvim"}
+    use { "rktjmp/shipwright.nvim" }
+
+    -- use { "dccsillag/magma-nvim", run = ":UpdateRemotePlugins" }
+     -- use {'hkupty/iron.nvim'}
+    -- use { "goerz/jupytext.vim" }
+    use {"luk400/vim-jukit"}
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()
