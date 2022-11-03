@@ -41,8 +41,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
                 name = "Jupyter / python stuff",
                 S = { "<cmd>call jukit#splits#output()<cr>", "start output split" },
                 T = { "<cmd>call jukit#splits#term()<cr>", "start split without commands" },
-                d = {"<cmd>call jukit#cells#delete_outputs(0)<cr>", "delete output of current cell"},
-                D = {"<cmd>call jukit#cells#delete_outputs(1)<cr>", "delete output of all cells"},
+                d = { "<cmd>call jukit#cells#delete_outputs(0)<cr>", "delete output of current cell" },
+                D = { "<cmd>call jukit#cells#delete_outputs(1)<cr>", "delete output of all cells" },
                 ["c"] = {
                     name = "cell manipulation",
                     c = { "<cmd>call jukit#cells#create_below(0)<cr>", "code cell below" },
@@ -56,6 +56,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
                     k = { "<cmd>call jukit#cells#move_up()<cr>", "move cell up" },
                     j = { "<cmd>call jukit#cells#move_down()<cr>", "move cell down" },
                 },
+                h = { "<cmd>call jukit#convert#save_nb_to_file(0,1,'html')<cr>", "convert to html" },
             },
         }
 
@@ -72,4 +73,5 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 -- vim.cmd("let g:magma_show_mimetype_debug = v:true")
 -- vim.g.jupytext_fmt = "py"
 vim.g.jukit_hist_use_ueberzug = 0
-vim.g.jukit_ueberzug_use_cached = 0
+-- vim.g.jukit_ueberzug_use_cached = 1
+vim.g.jukit_ueberzug_cutycapt_cmd = "/usr/bin/wkhtmltoimage"
