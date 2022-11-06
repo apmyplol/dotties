@@ -565,7 +565,7 @@ ls.add_snippets("obsidian", {
         },
         i(1, "7"),
         t { "", "kapitel: " },
-        i(2, "2.6"),
+        i(2, "3.0"),
         t { "", "aliases:" },
         i(3),
         t { "", "mathlink: " },

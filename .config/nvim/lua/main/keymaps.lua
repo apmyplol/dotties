@@ -44,6 +44,7 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-k>", ":bnext<CR>", opts)
 keymap("n", "<S-j>", ":bprevious<CR>", opts)
 keymap("n", "<C-w>", ":Bdelete<CR>", opts)
+keymap("n", "s", "<Plug>Lightspeed_s", opts)
 
 
 -- W um word zurück zu springen
