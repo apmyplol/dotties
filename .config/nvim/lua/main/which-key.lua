@@ -67,6 +67,7 @@ local setup = {
         -- list of mode / prefixes that should never be hooked by WhichKey
         -- this is mostly relevant for key maps that start with a native binding
         -- most people should not need to change this
+        n = {"s"},
         i = { "j", "k" },
         v = { "j", "k" },
     },
@@ -123,10 +124,6 @@ local mappings = {
         --      "<cmd>Gitsigns diffthis HEAD<cr>",
         --      "Diff",
         --    },
-    },
-    L = {
-        name = "Latex",
-        l = { "<plug>(vimtex-compile)", "Start latex compile" },
     },
     l = {
         name = "LSP",

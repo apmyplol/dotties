@@ -104,7 +104,8 @@ return packer.startup(function(use)
     -- aahh ich mag das plugin iwie nicht
     -- use {'iamcco/markdown-preview.nvim', run=":call mkdp#util#install()" , ft={'markdown'}}
     --use "plasticboy/vim-markdown"
-    use { "vimwiki/vimwiki", ft = { "markdown" } }
+    use { "vimwiki/vimwiki", ft = { "markdown", "vimwiki" } }
+   use { "ekickx/clipboard-image.nvim" } 
     -- use "ixru/nvim-markdown"
     -- use "renerocksai/telekasten.nvim"
     -- use "junegunn/goyo.vim"
@@ -161,7 +162,7 @@ return packer.startup(function(use)
     -- use { "dccsillag/magma-nvim", run = ":UpdateRemotePlugins" }
      -- use {'hkupty/iron.nvim'}
     -- use { "goerz/jupytext.vim" }
-    use {"luk400/vim-jukit"}
+    use {"luk400/vim-jukit", ft = {"ipynb", "py"}}
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()

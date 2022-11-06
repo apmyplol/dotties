@@ -10,11 +10,12 @@ surround.setup{
   map_insert_mode = true,
   quotes = {"'", '"'},
   brackets = {"(", '{', '['},
-  space_on_closing_char = false,
+  -- space_on_closing_char = false,
+  space_on_closing_char = true,
   pairs = {
     nestable = { b = { "(", ")" }, s = { "[", "]" }, B = { "{", "}" }, a = { "<", ">" }, e = {"\\{", "\\}"} },
-    linear = { q = { "'", "'" }, t = { "`", "`" }, d = { '"', '"' }, f = {"$", "$"}
+    linear = { q = { "'", "'" }, t = { "`", "`" }, d = { '"', '"' }, f = {"$", "$"}, m = {"$$", "$$"}
   },
-  prefix = "e"
+  prefix = "S"
   }
 }

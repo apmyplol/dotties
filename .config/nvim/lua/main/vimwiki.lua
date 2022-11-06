@@ -19,4 +19,3 @@ local opts = {
 for index, value in pairs(opts) do
   vim.g["vimwiki_" .. index] = value
 end
-

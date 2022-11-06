@@ -1,3 +1,26 @@
+-- add hotkeys
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+    pattern = "*.md",
+    callback = function()
+        local status_ok, which_key = pcall(require, "which-key")
+        if not status_ok then
+            return
+        end
+        which_key.register {
+            ["<CR>"] = {
+                "<cmd>call jukit#convert#notebook_convert('jupyter-notebook')<CR>",
+                "start output split",
+            },
+        }
+    end,
+})
+
+
+--- do telescope stuff 
+
+
+
 local pickers = require "telescope.pickers"
 local finders = require "telescope.finders"
 local conf = require("telescope.config").values

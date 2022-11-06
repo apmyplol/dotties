@@ -4,10 +4,37 @@ if not status_ok then
 end
 
 local function open_hook()
-  if workspaces.name() == "wiki" then
-    --register command
-  end
-  vim.api.nvim_command("NvimTreeOpen")
+    if workspaces.name() == "wiki" then
+        -- when going into workspace wiki then
+        -- change clipiboard image path
+        local status_ok, clipimage = pcall(require, "clipboard-image")
+        if not status_ok then
+            return
+        end
+        clipimage.setup {
+            vimwiki = {
+                img_dir = { "Bilder" },
+                img_dir_txt = "",
+                affix = "![[%s]]",
+            },
+        }
+
+        -- add vimwiki hotkeys
+        local status_ok, which_key = pcall(require, "which-key")
+        if not status_ok then
+            return
+        end
+        which_key.register {
+            ["<CR>"] = { "<cmd>VimwikiFollowLink<cr>", "Vimwiki Follow Link" },
+            ["<leader>W"] = {
+                j = { "<cmd>VimwikiNextLink<cr>", "goto Next wiki link" },
+                k = { "<cmd>VimwikiPrevLink<cr>", "goto prev wiki link" },
+                c = { "<cmd>VimwikiGoto<cr>", "crates vimwiki link" },
+                p = {"<cmd>PasteImg<cr>", "paste image from clipboard"}
+            },
+        }
+    end
+    vim.api.nvim_command "NvimTreeOpen"
 end
 
 workspaces.setup {
@@ -35,4 +62,3 @@ workspaces.setup {
         open = { open_hook },
     },
 }
-

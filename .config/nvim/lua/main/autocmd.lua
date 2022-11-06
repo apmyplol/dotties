@@ -10,7 +10,6 @@ acmd.augroup {
             "FileType",
             {
                 vimwiki = function()
-                    print "bla"
                     local path = vim.fn.stdpath "data" .. "/site/pack/packer/start"
                     vim.cmd([[function! Bla()
     setlocal matchpairs=(:),{:},[:],":"
