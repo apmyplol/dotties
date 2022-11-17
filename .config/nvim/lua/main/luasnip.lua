@@ -58,16 +58,16 @@ h.bigsymbol = function(trig, tex, name, desc) -- creates big math symbol snippet
     return s(
         -- %s(%S+)%s(.+) ersetzt durch  %s%(?([^()]+)%)?%s(%S+)
         {
-            trig = "[^\\]?" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)",
+            trig = "([$%s])" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)",
             name = name,
             dscr = desc,
             regTrig = true,
             hidden = true,
         },
         f(function(_, snip)
-            local out = "\\" .. tex .. "_{" .. snip.captures[1] .. "}"
-            if snip.captures[2] ~= " " then
-                out = out .. "^{" .. snip.captures[2] .. "}"
+            local out = snip.captures[1] .. "\\" .. tex .. "_{" .. snip.captures[2] .. "}"
+            if snip.captures[3] ~= " " then
+                out = out .. "^{" .. snip.captures[3] .. "}"
             end
             return out
         end, {})
@@ -308,9 +308,11 @@ ls.add_snippets(
         h.bigsymbol("sup", "sup", "supremum", "creates supremum based on expression seperated by spaces"),
         h.bigsymbol("cup", "cup", "∪ symbol", "creates cup symbol based on expression seperated by spaces"),
         h.bigsymbol("cap", "cap", "∩ symbol", "creates cap symbol based on expression seperated by spaces"),
+        h.bigsymbol("bcup", "bigcup", "big ∪ symbol", "creates cup symbol based on expression seperated by spaces"),
+        h.bigsymbol("bcap", "bigcap", "big ∩ symbol", "creates cap symbol based on expression seperated by spaces"),
         -- FIX: liminf und sup sind nicht ganz richtig, \rightarrow fehlt
-        h.bigsymbol("liminf", "liminf", "∩ symbol", "creates liminf symbol based on expression seperated by spaces"),
-        h.bigsymbol("limsup", "limsup", "∩ symbol", "creates limsup symbol based on expression seperated by spaces"),
+        h.bigsymbol("linf", "liminf", "limes inferior", "creates liminf symbol based on expression seperated by spaces"),
+        h.bigsymbol("lsup", "limsup", "limes superior", "creates limsup symbol based on expression seperated by spaces"),
 
         -- limes
         s(
@@ -546,7 +548,7 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "6"),
+        i(1, "9"),
         t { "", "kapitel: " },
         i(2, "?"),
         t { "", "aliases:" },
@@ -563,9 +565,9 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "7"),
+        i(1, "9"),
         t { "", "kapitel: " },
-        i(2, "3.0"),
+        i(2, "3.2"),
         t { "", "aliases:" },
         i(3),
         t { "", "mathlink: " },
