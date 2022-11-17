@@ -16,6 +16,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
         if not status_ok then
             return
         end
+        vim.api.nvim_command("set filetype=ipynb")
         which_key.register {
             ["<leader>np"] = {
                 "<cmd>call jukit#convert#notebook_convert('jupyter-notebook')<CR>",
