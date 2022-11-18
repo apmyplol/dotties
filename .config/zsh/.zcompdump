@@ -1,4 +1,4 @@
-#files: 822	version: 5.9
+#files: 827	version: 5.9
 
 _comps=(
 '-' '_precommand'
@@ -168,6 +168,8 @@ _comps=(
 'bibtex' '_bibtex'
 'bindkey' '_bindkey'
 'bison' '_bison'
+'black' '_black'
+'blackd' '_blackd'
 'bluetoothctl' '_bluetoothctl'
 'bmake' '_make'
 'bogofilter' '_bogofilter'
@@ -1123,6 +1125,7 @@ _comps=(
 'resolvectl' '_resolvectl'
 'restart' '_initctl'
 'retawq' '_webbrowser'
+'rg' '_rg'
 'rgrep' '_grep'
 'rgview' '_vim'
 'rgvim' '_vim'
@@ -1443,6 +1446,8 @@ _comps=(
 'wifi-menu' '_netctl'
 'wiggle' '_wiggle'
 'wipefs' '_wipefs'
+'wl-copy' '_wl-copy'
+'wl-paste' '_wl-paste'
 'wodim' '_cdrecord'
 'wpa_cli' '_wpa_cli'
 'write' '_users_on'
@@ -1674,18 +1679,19 @@ bindkey '^[,' _history-complete-newer
 bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
-autoload -Uz _alacritty _bluetoothctl _bootctl _busctl _bwrap \
-            _cargo _checkupdates _coredumpctl _curl _exa \
-            _flatpak _hostnamectl _journalctl _kernel-install _kitty \
-            _libinput _localectl _loginctl _machinectl _meson \
-            _mkinitcpio _mpv _netctl _networkctl _ninja \
-            _oomctl _paccache _pacdiff _paclist _paclog-pkglist \
-            _pacman _pacscripts _pacsearch _pacsort _pactree \
-            _pikaur _playerctl _pulseaudio _rankmirrors _resolvectl \
-            _sd_hosts_or_user_at_host _sd_machines _sd_outputmodes _sd_unit_files _starship \
-            _systemctl _systemd _systemd-analyze _systemd-delta _systemd-inhibit \
-            _systemd-nspawn _systemd-path _systemd-run _systemd-tmpfiles _timedatectl \
-            _udevadm _updpkgsums _zathura _cdr _all_labels \
+autoload -Uz _alacritty _black _blackd _bluetoothctl _bootctl \
+            _busctl _bwrap _cargo _checkupdates _coredumpctl \
+            _curl _exa _flatpak _hostnamectl _journalctl \
+            _kernel-install _kitty _libinput _localectl _loginctl \
+            _machinectl _meson _mkinitcpio _mpv _netctl \
+            _networkctl _ninja _oomctl _paccache _pacdiff \
+            _paclist _paclog-pkglist _pacman _pacscripts _pacsearch \
+            _pacsort _pactree _pikaur _playerctl _pulseaudio \
+            _rankmirrors _resolvectl _rg _sd_hosts_or_user_at_host _sd_machines \
+            _sd_outputmodes _sd_unit_files _starship _systemctl _systemd \
+            _systemd-analyze _systemd-delta _systemd-inhibit _systemd-nspawn _systemd-path \
+            _systemd-run _systemd-tmpfiles _timedatectl _udevadm _updpkgsums \
+            _wl-copy _wl-paste _zathura _cdr _all_labels \
             _all_matches _alternative _approximate _arg_compile _arguments \
             _bash_completions _cache_invalid _call_function _combination _comp_locale \
             _complete _complete_debug _complete_help _complete_help_generic _complete_tag \
