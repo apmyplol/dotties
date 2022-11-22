@@ -31,6 +31,15 @@ local conds = require "luasnip.extras.expand_conditions"
 
 -- helper functions for defining snippets
 local h = {}
+
+
+h.inmath = function()
+    local pos = vim.api.nvim_command_output [[echo join(map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")'), ' > ')]]
+    return string.find(pos, "VimwikiEqIn") or string.find(pos, "textSnipTEX")
+end
+
+local s_mathonly = ls.extend_decorator.apply(s, {}, {condition = h.inmath})
+
 h.alignsnippet = function()
     if h.aligncount == nil then
         return t "hmm"
@@ -53,9 +62,11 @@ h.alignsnippet = function()
     )
 end
 
+
+
 h.bigsymbol = function(trig, tex, name, desc) -- creates big math symbol snippet, e.g. sum, integral,. etc
     -- print("[^\\]" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)")
-    return s(
+    return s_mathonly(
         -- %s(%S+)%s(.+) ersetzt durch  %s%(?([^()]+)%)?%s(%S+)
         {
             trig = "([$%s])" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)",
@@ -89,6 +100,7 @@ h.returnfunc = function(bool, choice1, choice2)
         return sn(nil, { c(1, { t(choice2), t(choice1) }) })
     end
 end
+
 h.greek = {
     a = "alpha",
     b = "beta",
@@ -143,6 +155,7 @@ h.greek = {
 
 h.triglist = "[%a|{}[]]"
 
+
 ls.add_snippets(
     -- snippet to create snippets lol
 
@@ -178,7 +191,8 @@ ls.add_snippets(
     -- tex snippets
     "tex",
     {
-        s({
+
+        s_mathonly({
             trig = "%-%-(%d)%-%-",
             name = "& expandor",
             dscr = "create snippet that expands the right amount of & infinetely",
@@ -194,7 +208,7 @@ ls.add_snippets(
         }),
 
         -- Snippets for math text
-        s(
+        s_mathonly(
             {
                 trig = "fan([%a%d])",
                 name = "fancy math text",
@@ -207,7 +221,7 @@ ls.add_snippets(
                     or "\\mathcal{" .. snip.captures[1]:lower() .. "}"
             end, {})
         ),
-        s(
+        s_mathonly(
             {
                 trig = "calli([%a%d])",
                 name = "calligraphy math text",
@@ -220,7 +234,7 @@ ls.add_snippets(
                     or "\\mathscr{" .. snip.captures[1]:lower() .. "}"
             end, {})
         ),
-        s(
+        s_mathonly(
             {
                 trig = "bo([%a%d])",
                 name = "Bold math text",
@@ -233,7 +247,7 @@ ls.add_snippets(
                     or "\\mathbb{" .. snip.captures[1]:lower() .. "}"
             end, {})
         ),
-        s(
+        s_mathonly(
             {
                 trig = "fat([%a%d])",
                 name = "fat/bold math text, not letters",
@@ -246,7 +260,7 @@ ls.add_snippets(
             end, {})
         ),
         -- TODO: maybe add .* before gr, so that 2grpi could also expand to 2\pi
-        s(
+        s_mathonly(
             {
                 trig = "([gG][rR])(%a%a?)",
                 name = "greek math text",
@@ -260,7 +274,7 @@ ls.add_snippets(
                 return (letter ~= nil and "\\" .. letter or "rip")
             end, {})
         ),
-        s( -- TODO: add (?s) too abs snippet to use \| as the abs
+        s_mathonly( -- TODO: add (?s) too abs snippet to use \| as the abs
             {
                 trig = "abs(s?)%s(.+)%sabs",
                 name = "absolute values",
@@ -277,13 +291,13 @@ ls.add_snippets(
             end, {})
         ),
         -- TODO: Add pnorm trig = "...norm[pi%d]"
-        s(
+        s_mathonly(
             { trig = "norm%s(.+)%snorm", name = "norm", dscr = "replaces norm with |", regTrig = true, hidden = true },
             f(function(_, snip)
                 return "\\| " .. snip.captures[1] .. " \\|"
             end, {})
         ),
-        s(
+        s_mathonly(
             {
                 trig = "[^\\]?bi(g+)%s(.+)%s[^\\]?bi(g+)",
                 name = "Bigg Thicc",
@@ -311,11 +325,11 @@ ls.add_snippets(
         h.bigsymbol("bcup", "bigcup", "big ∪ symbol", "creates cup symbol based on expression seperated by spaces"),
         h.bigsymbol("bcap", "bigcap", "big ∩ symbol", "creates cap symbol based on expression seperated by spaces"),
         -- FIX: liminf und sup sind nicht ganz richtig, \rightarrow fehlt
-        h.bigsymbol("linf", "liminf", "limes inferior", "creates liminf symbol based on expression seperated by spaces"),
+        h.bigsymbol("limf", "liminf", "limes inferior", "creates liminf symbol based on expression seperated by spaces"),
         h.bigsymbol("lsup", "limsup", "limes superior", "creates limsup symbol based on expression seperated by spaces"),
 
         -- limes
-        s(
+        s_mathonly(
             {
                 trig = "lim%s(%S+)%s(%S+)",
                 name = "limes",
@@ -327,7 +341,7 @@ ls.add_snippets(
                 return "\\lim_{" .. snip.captures[1] .. " \\rightarrow " .. snip.captures[2] .. "}"
             end, {})
         ),
-        s(
+        s_mathonly(
             {
                 trig = "(%d)r(%S+)",
                 name = "n-th root",
@@ -341,7 +355,7 @@ ls.add_snippets(
         ),
 
         -- Fraction snippets
-        s(
+        s_mathonly(
             {
                 trig = "(%S)/(%S)",
                 name = "fraction easy mode",
@@ -353,7 +367,7 @@ ls.add_snippets(
                 return "\\frac{" .. snip.captures[1] .. "}{" .. snip.captures[2] .. "}"
             end, {})
         ),
-        s(
+        s_mathonly(
             {
                 trig = "(%S+)%s/%s(%S+)",
                 name = "fraction hard mode",
@@ -365,7 +379,7 @@ ls.add_snippets(
                 return "\\frac{" .. snip.captures[1] .. "}{" .. snip.captures[2] .. "}"
             end, {})
         ),
-        s(
+        s_mathonly(
             {
                 trig = "i(o?)(%-?[%a%d%.])(%-?[%a%d%.])",
                 name = "interval",
@@ -384,7 +398,7 @@ ls.add_snippets(
                 end
             end, {})
         ),
-        s(
+        s_mathonly(
             {
                 trig = "i(o?)%s(%S+)%s(%S+)",
                 name = "interval",
@@ -403,7 +417,7 @@ ls.add_snippets(
                 end
             end, {})
         ),
-        s(
+        s_mathonly(
             {
                 trig = "ih(%-?[%a%d%.])(%-?[%a%d%.])",
                 name = "half opened interval choice node",
@@ -428,7 +442,7 @@ ls.add_snippets(
                 end, {}),
             })
         ),
-        s(
+        s_mathonly(
             {
                 trig = "ih%s(%S+)%s(%S+)",
                 name = "half opened interval choice node",
@@ -453,7 +467,7 @@ ls.add_snippets(
                 end, {}),
             })
         ),
-        s(
+        s_mathonly(
             { trig = "(%a)x(%a)", name = "times", dscr = "expands dxd to d \times d", regTrig = true, hidden = true },
             f(function(_, snip)
                 return snip.captures[1] .. "\\times " .. snip.captures[2]
@@ -461,8 +475,8 @@ ls.add_snippets(
         ),
 
         -- snippets for sub and superscript for single letters and longer expressions
-        -- s(
-        --   { trig = "(%S+)%ss%s(.+)", name = "sub/superscript in general", dscr = "expands superscript or subscript expressions",  regTrig = true, hidden = true },
+        -- s_mathonly(
+        --   { trig = "(%S+)%ss%s_mathonly(.+)", name = "sub/superscript in general", dscr = "expands superscript or subscript expressions",  regTrig = true, hidden = true },
         --     c(1,{
         --       f(function(_, snip)
         --         return snip.captures[1] .. "^{" .. snip.captures[2] .. "}"
@@ -472,7 +486,7 @@ ls.add_snippets(
         --       end, {})
         --   })
         -- ),
-        s(
+        s_mathonly(
             {
                 trig = "([^{%spi+:$%.-]+)%ss%s(.+)",
                 name = "sub/superscript in general",
@@ -491,7 +505,7 @@ ls.add_snippets(
         ),
 
         -- TODO: remove "i, p" from here, instead change snippet priority
-        s(
+        s_mathonly(
             {
                 trig = "([^{%spi+:$%.]+)%s?([%diknd])",
                 name = "subscript and superscript",
@@ -508,7 +522,7 @@ ls.add_snippets(
                 end, {}),
             })
         ),
-        s({
+        s_mathonly({
             trig = "([Nn][Aa][Cc][Hh])",
             name = "nach",
             dscr = "\\rightarrow or \\mapsto choicenode",
@@ -535,7 +549,7 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "3"),
+        i(1, "4"),
         t { "", "aliases:" },
         i(3),
         t { "", "---", "" },
@@ -548,9 +562,9 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "9"),
+        i(1, "11"),
         t { "", "kapitel: " },
-        i(2, "?"),
+        i(2, "5.2"),
         t { "", "aliases:" },
         i(3),
         t { "", "mathlink:" },
@@ -565,9 +579,9 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "9"),
+        i(1, "12"),
         t { "", "kapitel: " },
-        i(2, "3.2"),
+        i(2, "4.2"),
         t { "", "aliases:" },
         i(3),
         t { "", "mathlink: " },

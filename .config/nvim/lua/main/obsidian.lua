@@ -1,5 +1,30 @@
 -- add hotkeys
 
+
+vim.api.nvim_create_user_command("Upper", function(opts)
+    -- print(string.upper(opts.args))
+    -- print(vim.inspect(vim.api.nvim_win_get_cursor(0)))
+    -- local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    -- local dd = {}
+    -- for ind, line in pairs(lines) do
+    --     local i = 0
+    --     local pair_done = false
+    --     while true do
+    --         i = string.find(line, "$$", i + 1) -- find 'next' newline
+    --         if i == nil then
+    --             break
+    --         end
+    --         table.insert(dd, {ind, i})
+    --     end
+    -- end
+    -- local text = table.concat(lines)
+    -- print(text)
+    local pos = vim.api.nvim_command_output [[echo join(map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")'), ' > ')]]
+    if string.find(pos, "VimwikiEqIn") or string.find(pos, "textSnipTEX") then
+        print("Insideeee")
+    end
+end, { nargs = 0 })
+
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     pattern = "*.md",
     callback = function()
@@ -9,8 +34,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
         end
         which_key.register {
             ["<CR>"] = {
-                "<cmd>call jukit#convert#notebook_convert('jupyter-notebook')<CR>",
-                "start output split",
+                "<cmd>VimwikiFollowLink<CR>",
+                "follow markdown link",
             },
         }
     end,
