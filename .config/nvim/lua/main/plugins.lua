@@ -162,7 +162,7 @@ return packer.startup(function(use)
     -- use { "dccsillag/magma-nvim", run = ":UpdateRemotePlugins" }
      -- use {'hkupty/iron.nvim'}
     -- use { "goerz/jupytext.vim" }
-    use {"luk400/vim-jukit", ft = {"ipynb"}}
+    use {"luk400/vim-jukit", ft = {"ipynb", "python"}}
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()
