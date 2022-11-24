@@ -69,7 +69,7 @@ h.bigsymbol = function(trig, tex, name, desc) -- creates big math symbol snippet
     return s_mathonly(
         -- %s(%S+)%s(.+) ersetzt durch  %s%(?([^()]+)%)?%s(%S+)
         {
-            trig = "([$%s])" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)",
+            trig = "([^\\])" .. trig .. "%s%(?([^()]+)%)?%s?%s(.+)",
             name = name,
             dscr = desc,
             regTrig = true,

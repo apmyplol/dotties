@@ -1,52 +1,12 @@
--- add hotkeys
-
-
 vim.api.nvim_create_user_command("Upper", function(opts)
-    -- print(string.upper(opts.args))
-    -- print(vim.inspect(vim.api.nvim_win_get_cursor(0)))
-    -- local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-    -- local dd = {}
-    -- for ind, line in pairs(lines) do
-    --     local i = 0
-    --     local pair_done = false
-    --     while true do
-    --         i = string.find(line, "$$", i + 1) -- find 'next' newline
-    --         if i == nil then
-    --             break
-    --         end
-    --         table.insert(dd, {ind, i})
-    --     end
-    -- end
-    -- local text = table.concat(lines)
-    -- print(text)
     local pos = vim.api.nvim_command_output [[echo join(map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")'), ' > ')]]
     if string.find(pos, "VimwikiEqIn") or string.find(pos, "textSnipTEX") then
         print("Insideeee")
     end
 end, { nargs = 0 })
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-    pattern = "*.md",
-    callback = function()
-        local status_ok, which_key = pcall(require, "which-key")
-        if not status_ok then
-            return
-        end
-        which_key.register {
-            ["<CR>"] = {
-                "<cmd>VimwikiFollowLink<CR>",
-                "follow markdown link",
-            },
-        }
-    end,
-})
-
-
---- do telescope stuff 
-
-
-
 local pickers = require "telescope.pickers"
+local builtin = require "telescope.builtin"
 local finders = require "telescope.finders"
 local conf = require("telescope.config").values
 
@@ -272,7 +232,7 @@ function M.fileref_popup(opts)
             entries[#entries + 1] = { fname, f_no_underscore, file }
         end
         -- loop over all aliases and add {filename, alias} as entry
-        for alias in aliases:gsub("%s?", ""):gsub("\n", ""):gsub(",%s", "~"):gmatch "[^~]+" do
+        for alias in aliases:gsub("\n", ""):gsub(",%s", "~"):gmatch "[^~]+" do
             if alias ~= "" then
                 entries[#entries + 1] = { fname, alias, file }
             end
@@ -387,8 +347,119 @@ M.mathlink = function()
         :find()
 end
 
-M.findfile = function()
+M.findfile = function(mode)
+    opts = opts or {}
 
+    -- create entries manually to be able to search for aliases
+    local entries = {}
+    local full_search = vim.fn.system "rg -e 'aliases:' --ignore-file .rgignore"
+    -- loop over all files and their aliases
+    for str in full_search:gmatch "([^\n]+)\n" do
+        -- split stirng into filename and aliases
+        local file, aliases = str:match "(.*):aliases:(.*)"
+        -- add file without | as entry
+        local fname = file:match "([^/.]+)%.(.*)$"
+        entries[#entries + 1] = { fname, "", file }
+        if fname:find "_" then
+            local f_no_underscore = fname:gsub("_", " ")
+            entries[#entries + 1] = { fname, f_no_underscore, file }
+        end
+        -- loop over all aliases and add {filename, alias} as entry
+        for alias in aliases:gsub("\n", ""):gsub(",%s", "~"):gmatch "[^~]+" do
+            if alias:gsub(" ", "") ~= "" then
+                entries[#entries + 1] = { fname, alias, file }
+            end
+        end
+    end
+
+    -- entry creation done, create telescope picker
+    pickers
+        .new(opts, {
+            prompt_title = "Open File",
+            finder = finders.new_table {
+                results = entries,
+                entry_maker = function(entry)
+                    if entry[2] == "" then
+                        return { display = entry[1], ordinal = entry[1], alias = false, filename = entry[3] }
+                    else
+                        return {
+                            display = entry[1] .. "|" .. entry[2],
+                            ordinal = entry[1] .. " " .. entry[2],
+                            alias = true,
+                            filename = entry[3],
+                        }
+                    end
+                end,
+            },
+            sorter = conf.file_sorter(opts),
+            attach_mappings = function(prompt_bufnr, map)
+                actions.select_default:replace(function()
+                    local file = action_state.get_selected_entry()[3]
+                    actions.close(prompt_bufnr)
+                    vim.api.nvim_command("edit " .. file)
+                    -- if local prompt contains | then the text was probably completed using tab
+                    -- -> do not open obsidian rename window, just input the text
+                end)
+                map("i", "<C-CR>", function()
+                    local file = action_state.get_selected_entry()[3]
+                    actions.close(prompt_bufnr)
+                    vim.api.nvim_command("vnew " .. file)
+                end)
+                -- autocomplete prompt according to the entry that is selected
+                return true
+            end,
+        })
+        :find()
+end
+
+
+M.nonwiki = function(mode)
+    opts = opts or {}
+
+    -- create entries manually to be able to search for aliases
+    local entries = {}
+    local full_search = vim.fn.system [[find -type f -not -path "./7Sem/nlp/python/*" -path "./*Sem/*" -o -path "./Bilder/*" -o -path "./notes/*"]]
+
+    -- loop over all files and their aliases
+    for str in full_search:gmatch "([^\n]+)\n" do
+    --     -- split stirng into filename and aliases
+    --     local file, aliases = str:match "(.*):aliases:(.*)"
+    --     -- add file without | as entry
+        local fname = str:match "([^/.]+)%.(.*)$"
+        entries[#entries + 1] = { fname, str }
+    end
+    --
+    -- -- entry creation done, create telescope picker
+    pickers
+        .new(opts, {
+            prompt_title = "Open File",
+            finder = finders.new_table {
+                results = entries,
+                entry_maker = function(entry)
+                        return {
+                            display = entry[1],
+                            ordinal = entry[2],
+                        }
+                end,
+            },
+            sorter = conf.file_sorter(opts),
+            attach_mappings = function(prompt_bufnr, map)
+                actions.select_default:replace(function()
+                    local file = action_state.get_selected_entry().ordinal
+                    print(vim.inspect(file))
+                    actions.close(prompt_bufnr)
+                    vim.api.nvim_command("!xdg-open '" .. file .. "' &")
+                end)
+                map("i", "<C-CR>", function()
+                    local file = action_state.get_selected_entry().ordinal
+                    actions.close(prompt_bufnr)
+                    vim.api.nvim_command("edit '" .. file .. "' &")
+               end)
+                -- autocomplete prompt according to the entry that is selected
+                return true
+            end,
+        })
+        :find()
 end
 
 return M
