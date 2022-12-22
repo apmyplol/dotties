@@ -50,8 +50,26 @@ cmp.setup {
         end,
     },
     mapping = cmp.mapping.preset.insert {
-        ["<C-k>"] = cmp.mapping.select_prev_item(),
-        ["<C-j>"] = cmp.mapping.select_next_item(),
+        ["<C-k>"] = cmp.mapping(function(fallback)
+            if luasnip.choice_active() then
+                require("main.keymapfunctions").luasnipchoose(-1)
+            else
+                cmp.select_prev_item()
+            end
+        end, {
+            "i",
+            "s",
+        }),
+        ["<C-j>"] = cmp.mapping(function(fallback)
+            if luasnip.choice_active() then
+                require("main.keymapfunctions").luasnipchoose(1)
+            else
+                cmp.select_next_item()
+            end
+        end, {
+            "i",
+            "s",
+        }),
         ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
         ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
         ["<C-a>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),

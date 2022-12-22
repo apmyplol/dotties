@@ -63,10 +63,11 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
                             "<cmd>call jukit#convert#notebook_convert('jupyter-notebook')<CR>",
                             "convert back to notebook",
                         },
+                        h = {"<cmd>call jukit#convert#save_nb_to_file(0,1,'html')<cr>", "convert to html"},
                     },
                     ["["] = { "<cmd>call jukit#cells#jump_to_previous_cell()<cr>", "jump to cell above" },
                     ["]"] = { "<cmd>call jukit#cells#jump_to_next_cell()<cr>", "jump to cell below" },
-                    -- h = { "<cmd>call jukit#convert#save_nb_to_file(0,1,'html')<cr>", "convert to html" },
+                    h = { "<cmd>call jukit#convert#save_nb_to_file(0,1,'html')<cr>", "convert to html" },
                 },
             },
             {
