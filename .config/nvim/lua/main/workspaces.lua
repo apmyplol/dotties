@@ -3,7 +3,7 @@ if not status_ok then
     return
 end
 
-local obsidian_hook = require("main.obsidian_keymaps").hook
+local obsidian_hook = require("main.obsidian").keymaps.hook
 
 workspaces.setup {
     -- path to a file to store workspaces data in

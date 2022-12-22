@@ -1,7 +1,8 @@
 vim.api.nvim_create_user_command("Upper", function(opts)
-    local pos = vim.api.nvim_command_output [[echo join(map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")'), ' > ')]]
+    local pos =
+        vim.api.nvim_command_output [[echo join(map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")'), ' > ')]]
     if string.find(pos, "VimwikiEqIn") or string.find(pos, "textSnipTEX") then
-        print("Insideeee")
+        print "Insideeee"
     end
 end, { nargs = 0 })
 
@@ -297,7 +298,7 @@ function M.fileref_popup(opts)
         :find()
 end
 
-M.mathlink = function()
+M.mathlink = function(opts)
     opts = opts or {}
 
     -- create entries manually to be able to search for aliases
@@ -394,14 +395,14 @@ M.findfile = function(mode)
             sorter = conf.file_sorter(opts),
             attach_mappings = function(prompt_bufnr, map)
                 actions.select_default:replace(function()
-                    local file = action_state.get_selected_entry()[3]
+                    local file = action_state.get_selected_entry().filename
                     actions.close(prompt_bufnr)
                     vim.api.nvim_command("edit " .. file)
                     -- if local prompt contains | then the text was probably completed using tab
                     -- -> do not open obsidian rename window, just input the text
                 end)
                 map("i", "<C-CR>", function()
-                    local file = action_state.get_selected_entry()[3]
+                    local file = action_state.get_selected_entry().filename
                     actions.close(prompt_bufnr)
                     vim.api.nvim_command("vnew " .. file)
                 end)
@@ -412,19 +413,19 @@ M.findfile = function(mode)
         :find()
 end
 
-
 M.nonwiki = function(mode)
     opts = opts or {}
 
     -- create entries manually to be able to search for aliases
     local entries = {}
-    local full_search = vim.fn.system [[find -type f -not -path "./7Sem/nlp/python/*" -path "./*Sem/*" -o -path "./Bilder/*" -o -path "./notes/*"]]
+    local full_search =
+        vim.fn.system [[find -type f -not -path "./7Sem/nlp/python/*" -path "./*Sem/*" -o -path "./Bilder/*" -o -path "./notes/*"]]
 
     -- loop over all files and their aliases
     for str in full_search:gmatch "([^\n]+)\n" do
-    --     -- split stirng into filename and aliases
-    --     local file, aliases = str:match "(.*):aliases:(.*)"
-    --     -- add file without | as entry
+        --     -- split stirng into filename and aliases
+        --     local file, aliases = str:match "(.*):aliases:(.*)"
+        --     -- add file without | as entry
         local fname = str:match "([^/.]+)%.(.*)$"
         entries[#entries + 1] = { fname, str }
     end
@@ -436,10 +437,10 @@ M.nonwiki = function(mode)
             finder = finders.new_table {
                 results = entries,
                 entry_maker = function(entry)
-                        return {
-                            display = entry[1],
-                            ordinal = entry[2],
-                        }
+                    return {
+                        display = entry[1],
+                        ordinal = entry[2],
+                    }
                 end,
             },
             sorter = conf.file_sorter(opts),
@@ -454,7 +455,7 @@ M.nonwiki = function(mode)
                     local file = action_state.get_selected_entry().ordinal
                     actions.close(prompt_bufnr)
                     vim.api.nvim_command("edit '" .. file .. "' &")
-               end)
+                end)
                 -- autocomplete prompt according to the entry that is selected
                 return true
             end,

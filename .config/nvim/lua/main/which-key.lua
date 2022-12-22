@@ -32,9 +32,9 @@ local setup = {
     key_labels = {
         -- override the label used to display some keys. It doesn't effect WK in any other way.
         -- For example:
-        -- ["<space>"] = "SPC",
-        -- ["<cr>"] = "RET",
-        -- ["<tab>"] = "TAB",
+        ["<space>"] = "␣",
+        ["<cr>"] = "↵",
+        ["<tab>"] = "TAB",
     },
     icons = {
         breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
@@ -67,7 +67,7 @@ local setup = {
         -- list of mode / prefixes that should never be hooked by WhichKey
         -- this is mostly relevant for key maps that start with a native binding
         -- most people should not need to change this
-        n = {"s"},
+        n = { "s" },
         i = { "j", "k" },
         v = { "j", "k" },
     },
@@ -175,9 +175,21 @@ local mappings = {
     m = {
         name = "my stuff",
         c = { "<cmd>ColorizerAttachToBuffer<cr>", "enable colorizer" },
-        s = { "<cmd>source ~/.config/nvim/lua/main/luasnip.lua<cr>" },
+        s = { --  vim.cmd("source ~/.config/nvim/lua/main/tex_snip.lua") vim.cmd("source ~/.config/nvim/lua/main/luasnip.lua") print("new snippets loaded")
+            [[<cmd>lua require("luasnip").cleanup() print("cleaned snippets") vim.cmd("source ~/.config/nvim/lua/main/snippets/helpers.lua") vim.cmd("source ~/.config/nvim/lua/main/luasnip.lua") vim.cmd("source ~/.config/nvim/lua/main/snippets/tex_snip.lua") vim.cmd("source ~/.config/nvim/lua/main/snippets/obsidian_snip.lua") vim.notify("loaded snippets")<cr>]],
+            "reload snippets",
+        },
         l = { "<cmd>lua require'main.keymapfunctions'.latex()<cr>", "Show markdown/tex preview" },
-        S = {"<cmd>Shipwright ~/.config/nvim/lua/colors/shipwright_build.lua<cr>"}
+        S = { "<cmd>Shipwright ~/.config/nvim/lua/colors/shipwright_build.lua<cr>" },
+        R = {
+            function()
+                local reload = require("plenary.reload").reload_module
+                require("luasnip").cleanup()
+                reload("main", false)
+                dofile(vim.env.MYVIMRC)
+            end,
+            "reload entire nvim config"
+        },
     },
 }
 
@@ -203,7 +215,6 @@ local vmappings = {
         },
         b = { [[<CMD>lua require("Comment.api").toggle.blockwise()<CR>]], "Toggle blockwise comment" },
     },
-
 }
 
 which_key.setup(setup)

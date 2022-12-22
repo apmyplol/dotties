@@ -163,6 +163,7 @@ return packer.startup(function(use)
      -- use {'hkupty/iron.nvim'}
     -- use { "goerz/jupytext.vim" }
     use {"luk400/vim-jukit", ft = {"ipynb", "python"}}
+    use {"dylnmc/synstack.vim"}
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()
