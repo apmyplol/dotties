@@ -42,7 +42,9 @@ export ZDOTDIR=$HOME/.config/zsh
 # Set stuff for Wacom driver
 # TODO: Run wacom script and change middle mouse clicc behavior
 
-xrandr --output DVI-I-0 --off --output DVI-I-1 --off --output HDMI-0 --primary --mode 1920x1080 --pos 0x623 --rotate normal --output DP-0 --mode 1920x1200 --pos 1920x0 --rotate left --output DP-1 --off --output DVI-D-0 --off &
+# xrandr --output DVI-I-0 --off --output DVI-I-1 --off --output HDMI-0 --primary --mode 1920x1080 --pos 0x623 --rotate normal --output DP-0 --mode 1920x1200 --pos 1920x0 --rotate left --output DP-1 --off --output DVI-D-0 --off &
+# new layout for new gpu
+xrandr --output HDMI-0 --mode 1920x1080 --pos 0x606 --rotate normal --output DP-0 --off --output DP-1 --off --output DP-2 --mode 1920x1200 --pos 1920x0 --rotate left --output DP-3 --off --output DP-4 --off --output DP-5 --off
 #fcitx5 &
 redshift &
 anki &
