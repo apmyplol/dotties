@@ -164,6 +164,8 @@ return packer.startup(function(use)
     -- use { "goerz/jupytext.vim" }
     use {"luk400/vim-jukit", ft = {"ipynb", "python"}}
     use {"dylnmc/synstack.vim"}
+    -- images in kitty
+    use {'edluffy/hologram.nvim'}
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()

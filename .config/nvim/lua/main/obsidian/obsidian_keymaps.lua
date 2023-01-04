@@ -10,10 +10,24 @@ if not status_ok then
     return
 end
 
+local obsidian = require("main.obsidian.obsidian")
+
 local init_autocmd = function()
-    vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+    vim.api.nvim_create_autocmd({"BufWinEnter" }, {
         pattern = "*.md",
         callback = function()
+          print("bufwinenter triggered")
+      --       vim.cmd [[
+      --   unlet b:current_syntax
+      --   runtime syntax/tex.vim
+      -- ]]
+        end,
+    })
+
+    vim.api.nvim_create_autocmd({ "BufEnter"}, {
+        pattern = "*.md",
+        callback = function()
+          print("bufenter triggered")
       --       vim.cmd [[
       --   unlet b:current_syntax
       --   runtime syntax/tex.vim
@@ -41,6 +55,14 @@ O.hook = function()
         -- activate autocommand for markdown files
         init_autocmd()
 
+
+        local status_ok, hologram = pcall(require, "hologram")
+        if not status_ok then
+          return
+        end
+        hologram.setup{
+            auto_display = true -- WIP automatic markdown image display, may be prone to breaking
+        }
         -- add vimwiki hotkeys
         local status_ok, which_key = pcall(require, "which-key")
         if not status_ok then
@@ -48,15 +70,17 @@ O.hook = function()
         end
         which_key.register {
             ["<CR>"] = { "<cmd>VimwikiFollowLink<cr>", "Vimwiki Follow Link" },
+            h = { function() obsidian.preview_image(true) end, "preview image for 5 seconds that is on the line where the cursor is on" },
+            H = { function() obsidian.preview_image(false) end, "preview image that is on the line where the cursor is on" },
             ["<leader>W"] = {
                 j = { "<cmd>VimwikiNextLink<cr>", "goto Next wiki link" },
                 k = { "<cmd>VimwikiPrevLink<cr>", "goto prev wiki link" },
                 c = { "<cmd>!xdg-open obsidian://open?vault=wiki\\&file=%<cr><cr>", "opens current file in obsidian" },
                 p = { "<cmd>PasteImg<cr>", "paste image from clipboard" },
             },
-            ["<leader>f"] = { "<cmd> lua require 'main.obsidian'.obsidian.findfile()<cr><Esc>", "find file in wiki" },
+            ["<leader>f"] = { obsidian.findfile, "find file in wiki" },
             ["<leader>F"] = {
-                "<cmd> lua require 'main.obsidian'.obsidian.nonwiki()<cr><Esc>",
+                obsidian.nonwiki,
                 "open non wiki file such as pdf",
             },
             ["<c-l>"] = { [[llvf|h"lxxvwh"nxhxx"nPla(<c-r>l)]], "change link format to [ref](link)" },
@@ -70,8 +94,8 @@ O.hook = function()
         }, { mode = "v", noremap = true, silent = true, nowait = true })
 
         which_key.register({
-            ["<c-u>"] = { [[<cmd>lua require 'main.obsidian'.obsidian.fileref_popup()<CR>]], "wikilink autocomplete" },
-            ["<c-z>"] = { [[<cmd>lua require 'main.obsidian'.obsidian.mathlink()<CR>]], "mathlink autocomplete" },
+            ["<c-u>"] = { obsidian.fileref_popup, "wikilink autocomplete" },
+            ["<c-z>"] = { obsidian.mathlink, "mathlink autocomplete" },
         }, { mode = "i", noremap = true, silent = true, nowait = true })
     end
 end

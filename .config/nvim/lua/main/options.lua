@@ -27,6 +27,7 @@ local options = {
   shiftwidth = 2,                          -- the number of spaces inserted for each indentation
   tabstop = 2,                             -- insert 2 spaces for a tab
   cursorline = true,                       -- highlight the current line
+  shell = "/bin/zsh",
   cursorcolumn = true,
   number = true,                           -- set numbered lines
   relativenumber = false,                  -- set relative numbered lines

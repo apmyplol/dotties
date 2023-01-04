@@ -32,6 +32,11 @@ keymap("n", "<Down>", "<C-w>j", opts)
 keymap("n", "<Left>", "<C-w>h", opts)
 keymap("n", "<Right>", "<C-w>l", opts)
 
+keymap("n", "<C-a>k", "<C-w>k", opts)
+keymap("n", "<C-a>j", "<C-w>j", opts)
+keymap("n", "<C-a>h", "<C-w>h", opts)
+keymap("n", "<C-a>l", "<C-w>l", opts)
+
 -- keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 
 -- Resize with arrows
