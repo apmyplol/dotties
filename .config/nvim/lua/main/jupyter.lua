@@ -59,11 +59,11 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
                         M = { "<cmd>call jukit#cells#merge_above()<cr>", "merge with cell above" },
                         k = { "<cmd>call jukit#cells#move_up()<cr>", "move cell up" },
                         j = { "<cmd>call jukit#cells#move_down()<cr>", "move cell down" },
-                        R = {
-                            "<cmd>call jukit#convert#notebook_convert('jupyter-notebook')<CR>",
-                            "convert back to notebook",
-                        },
                         h = {"<cmd>call jukit#convert#save_nb_to_file(0,1,'html')<cr>", "convert to html"},
+                    },
+                    R = {
+                        "<cmd>call jukit#convert#notebook_convert('jupyter-notebook')<CR>",
+                        "convert back to notebook",
                     },
                     ["["] = { "<cmd>call jukit#cells#jump_to_previous_cell()<cr>", "jump to cell above" },
                     ["]"] = { "<cmd>call jukit#cells#jump_to_next_cell()<cr>", "jump to cell below" },
@@ -91,6 +91,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 -- vim.cmd("let g:magma_show_mimetype_debug = v:true")
 -- vim.g.jupytext_fmt = "py"
 vim.g.jukit_hist_use_ueberzug = 0
+vim.g.jukit_shell_cmd = "source ~/nlp && cd " .. vim.fn.getcwd() ..  " && ipython3"
 -- use which-key to make bindings myself
 vim.g.jukit_mappings = 0
 -- vim.g.jukit_ueberzug_use_cached = 1
