@@ -421,6 +421,8 @@ local globalkeys = gears.table.join(
             -- volume_update()
         end
     end, { description = "lower volume", group = "media" }),
+    -- Bug dass der keycode in `showkey` 164 = XF86Tools ist und nicht  
+    -- awful.key({}, "XF86AudioPlay", function()
     awful.key({}, "XF86AudioPlay", function()
         awful.spawn(commands.TOG_PLAY)
     end, { description = "play/pause", group = "media" }),
@@ -667,6 +669,8 @@ awful.rules.rules = {
                 "Wpa_gui",
                 "veromix",
                 "xtightvncviewer",
+                "pix2tex",
+                "pix2tex_gui"
             },
 
             -- Note that the name property shown in xprop might be set slightly after creation of the client
