@@ -7,5 +7,6 @@ alias pacown='pacman -Qo'
 alias n='nvim'
 
 alias neofetch='neofetch --colors 4 2 1 2 8 4 --ascii_colors 2 4'
+alias rm="trash"
 
 
