@@ -470,11 +470,15 @@ M.preview_image = function(delete)
   end
   local line = vim.api.nvim_get_current_line()
   -- s:match("%[([^[%s]+)[[|]")
-  local filename = line:match "%[([^[%s]+)[[|]"
+  local filename = line:match "%[%[([^%s|%]]+)"
+
+  print(filename)
 
   local line_num = vim.api.nvim_win_get_cursor(vim.api.nvim_get_current_win())[1]
 
   local source = vim.fn.getcwd() .. "/Bilder/" .. filename
+
+  print(source)
   -- local source = 'Bilder/kovkomb_caratheo.png'
   local buf = vim.api.nvim_get_current_buf()
   local image = himage:new(source, {})
@@ -486,6 +490,21 @@ M.preview_image = function(delete)
     vim.defer_fn(function()
         image:delete(0, {free = true})
     end, 5000)
+  end
+end
+
+M.enter_key = function()
+  local first_10_lines = vim.api.nvim_buf_get_lines(0, 0, 10, false)
+  local yaml = table.concat(first_10_lines, "\n"):match("^%-%-%-\n(.*)%-%-%-")
+  local _,yaml_length = string.gsub(yaml, "\n", "\n")
+  vim.api.nvim_command("VimwikiFollowLink")
+  if yaml and vim.api.nvim_buf_line_count(0) == 1 then
+    local input_tab = {"---"}
+    for i = 1, yaml_length do
+      input_tab[#input_tab+1] = first_10_lines[i+1]
+    end
+    input_tab[#input_tab+1] = "---"
+    vim.api.nvim_buf_set_lines(0, 0, 0, false, input_tab)
   end
 end
 
