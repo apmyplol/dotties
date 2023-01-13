@@ -5,7 +5,7 @@ end
 
 bufferline.setup {
     options = {
-        themable = true,
+        themable = false,
         numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
         close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
         right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
@@ -14,7 +14,9 @@ bufferline.setup {
         -- NOTE: this plugin is designed with this icon in mind,
         -- and so changing this is NOT recommended, this is intended
         -- as an escape hatch for people who cannot bear it for whatever reason
-        indicator = { style = "icon", icon = "▎" },
+        -- indicator = { style = "icon", icon = "🈁" },
+        indicator = { style = "none"},
+        -- indicator = { style = "icon", icon = "▎" },
         buffer_close_icon = "",
         -- buffer_close_icon = '',
         modified_icon = "●",
@@ -26,20 +28,21 @@ bufferline.setup {
         --- Please note some names can/will break the
         --- bufferline so use this at your discretion knowing that it has
         --- some limitations that will *NOT* be fixed.
-        -- name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
-        --   -- remove extension from markdown files for example
-        --   if buf.name:match('%.md') then
-        --     return vim.fn.fnamemodify(buf.name, ':t:r')
-        --   end
-        -- end,
-        max_name_length = 30,
-        max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
-        tab_size = 21,
-        diagnostics = false, -- | "nvim_lsp" | "coc",
+        name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
+          -- remove extension from markdown files for example
+          if buf.name:match('%.md') or buf.name:match("%.py") or buf.name:match("%.lua") then
+            return vim.fn.fnamemodify(buf.name, ':t:r')
+          end
+        end,
+        max_name_length = 18,
+        max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
+        tab_size = 15,
+        diagnostics = "nvim_lsp", -- | "nvim_lsp" | "coc",
         diagnostics_update_in_insert = false,
-        -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
-        --   return "("..count..")"
-        -- end,
+        diagnostics_indicator = function(count, level, diagnostics_dict, context)
+            local icon = level:match "error" and " " or " "
+            return " " .. icon .. count
+        end,
         -- NOTE: this will be called a lot so don't do any heavy processing here
         -- custom_filter = function(buf_number)
         --   -- filter out filetypes you don't want to see
@@ -56,11 +59,19 @@ bufferline.setup {
         --     return true
         --   end
         -- end,
-        offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
+        offsets = {
+            {
+                filetype = "NvimTree",
+                text = "File Explorer 📁",
+                highlight = "Directory",
+                seperator = true,
+                padding = 1,
+            },
+        },
         show_buffer_icons = true,
         show_buffer_close_icons = true,
         show_close_icon = true,
-        show_tab_indicators = true,
+        -- show_tab_indicators = true,
         persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
         -- can also be a table containing 2 custom separators
         -- [focused and unfocused]. eg: { '|', '|' }
@@ -71,98 +82,5 @@ bufferline.setup {
         --   -- add custom logic
         --   return buffer_a.modified > buffer_b.modified
         -- end
-    },
-    highlights = {
-        --   fill = {
-        --     fg = { attribute = "fg", highlight = "TabLine" },
-        --     bg = { attribute = "bg", highlight = "TabLine" },
-        --   },
-        --   background = {
-        --     fg = { attribute = "fg", highlight = "TabLine" },
-        --     bg = { attribute = "bg", highlight = "TabLine" },
-        --   },
-        --
-        --   -- buffer_selected = {
-        --   --   fg = {attribute='fg',highlight='#ff0000'},
-        --   --   bg = {attribute='bg',highlight='#0000ff'},
-        --   --   gui = 'none'
-        --   --   },
-        --   buffer_visible = {
-        --     fg = { attribute = "fg", highlight = "TabLine" },
-        --     bg = { attribute = "bg", highlight = "TabLine" },
-        --   },
-        --
-        --   close_button = {
-        --     fg = { attribute = "fg", highlight = "TabLine" },
-        --     bg = { attribute = "bg", highlight = "TabLine" },
-        --   },
-        --   close_button_visible = {
-        --     fg = { attribute = "fg", highlight = "TabLine" },
-        --     bg = { attribute = "bg", highlight = "TabLine" },
-        --   },
-        --   -- close_button_selected = {
-        --   --   fg = {attribute='fg',highlight='TabLineSel'},
-        --   --   bg ={attribute='bg',highlight='TabLineSel'}
-        --   --   },
-        --
-        --   tab_selected = {
-        --     fg = { attribute = "fg", highlight = "TabLine" },
-        --     bg = { attribute = "bg", highlight = "TabLine" },
-        --   },
-        --   tab = {
-        --     fg = { attribute = "fg", highlight = "TabLine" },
-        --     bg = { attribute = "bg", highlight = "TabLine" },
-        --   },
-        --   tab_close = {
-        --     -- fg = {attribute='fg',highlight='LspDiagnosticsDefaultError'},
-        --     fg = { attribute = "fg", highlight = "TabLineSel" },
-        --     bg = { attribute = "bg", highlight = "Normal" },
-        --   },
-        --
-        --   duplicate_selected = {
-        --     fg = { attribute = "fg", highlight = "TabLineSel" },
-        --     bg = { attribute = "bg", highlight = "TabLineSel" },
-        --     italic = true,
-        --   },
-        --   duplicate_visible = {
-        --     fg = { attribute = "fg", highlight = "TabLine" },
-        --     bg = { attribute = "bg", highlight = "TabLine" },
-        --     italic = true,
-        --   },
-        --   duplicate = {
-        --     fg = { attribute = "fg", highlight = "TabLine" },
-        --     bg = { attribute = "bg", highlight = "TabLine" },
-        --     italic = true,
-        --   },
-        --
-        --   modified = {
-        --     fg = { attribute = "fg", highlight = "TabLine" },
-        --     bg = { attribute = "bg", highlight = "TabLine" },
-        --   },
-        --   modified_selected = {
-        --     fg = { attribute = "fg", highlight = "Normal" },
-        --     bg = { attribute = "bg", highlight = "Normal" },
-        --   },
-        --   modified_visible = {
-        --     fg = { attribute = "fg", highlight = "TabLine" },
-        --     bg = { attribute = "bg", highlight = "TabLine" },
-        --   },
-        --
-        --   separator = {
-        --     fg = { attribute = "bg", highlight = "TabLine" },
-        --     bg = { attribute = "bg", highlight = "TabLine" },
-        --   },
-        --   separator_selected = {
-        --     fg = { attribute = "bg", highlight = "Normal" },
-        --     bg = { attribute = "bg", highlight = "Normal" },
-        --   },
-        --   -- separator_visible = {
-        --   --   fg = {attribute='bg',highlight='TabLine'},
-        --   --   bg = {attribute='bg',highlight='TabLine'}
-        --   --   },
-        -- indicator_selected = {
-        --   fg = { attribute = "fg", highlight = "Directory" },
-        --   bg = { attribute = "bg", highlight = "Directory" },
-        -- },
     },
 }

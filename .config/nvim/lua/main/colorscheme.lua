@@ -6,7 +6,7 @@
 --   return
 -- end
 
-colors = require("colors.evatheme")
+local colors = require("colors.evatheme")
 
 -- colorschemes generally want to do this
 vim.cmd("highlight clear")
