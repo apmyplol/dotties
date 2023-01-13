@@ -180,7 +180,7 @@ local mappings = {
             "reload snippets",
         },
         l = { "<cmd>lua require'main.keymapfunctions'.latex()<cr>", "Show markdown/tex preview" },
-        S = { "<cmd>Shipwright ~/.config/nvim/lua/colors/shipwright_build.lua<cr>" },
+        S = { "<cmd>Shipwright ~/.config/nvim/lua/colors/shipwright_build.lua<cr>", "Build theme with shipwright" },
         R = {
             function()
                 local reload = require("plenary.reload").reload_module

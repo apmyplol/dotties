@@ -5,6 +5,21 @@ end
 
 local obsidian_hook = require("main.obsidian").keymaps.hook
 
+local hook_function = function()
+  if workspaces.name() == "wiki" then
+    obsidian_hook()
+  elseif workspaces.name() == "nvim" then
+    vim.env.GIT_WORK_TREE = vim.fn.expand("~")
+    vim.env.GIT_DIR = vim.fn.expand("~/.dotties")
+  elseif workspaces.name() == "mpv" then
+    vim.env.GIT_WORK_TREE = vim.fn.expand("~/.config/mpv/")
+  elseif workspaces.name() == "awesome" then
+    vim.env.GIT_WORK_TREE = vim.fn.expand("~")
+    vim.env.GIT_DIR = vim.fn.expand("~/.dotties")
+  end
+
+end
+
 workspaces.setup {
     -- path to a file to store workspaces data in
     -- on a unix system this would be ~/.local/share/nvim/workspaces
@@ -27,6 +42,6 @@ workspaces.setup {
         add = {},
         remove = {},
         open_pre = {},
-        open = { obsidian_hook },
+        open = { hook_function, "NvimTreeOpen" },
     },
 }
