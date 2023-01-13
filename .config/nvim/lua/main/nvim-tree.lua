@@ -14,7 +14,9 @@ end
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup {
+    auto_reload_on_write = true,
     disable_netrw = false,
+    sync_root_with_cwd = true,
     hijack_netrw = true,
     open_on_setup = true,
     ignore_ft_on_setup = {
@@ -29,9 +31,11 @@ nvim_tree.setup {
         enable = true,
         auto_open = true,
     },
-    update_cwd = true,
+    -- update_cwd = true,
     diagnostics = {
         enable = true,
+        show_on_dirs = false,
+        show_on_open_dirs = false,
         icons = {
             hint = "",
             info = "",
@@ -39,15 +43,32 @@ nvim_tree.setup {
             error = "",
         },
     },
+    filters = {
+        dotfiles = false,
+        git_clean = false,
+        no_buffer = false,
+        custom = {},
+        exclude = {},
+    },
     update_focused_file = {
-        enable = true,
-        update_cwd = true,
+        enable = false,
+        update_root = false,
+        -- update_cwd = true,
         ignore_list = {},
+    },
+    system_open = {
+        cmd = "",
+        args = {},
     },
     git = {
         enable = true,
-        ignore = false,
+        ignore = true,
+        show_on_dirs = true,
+        show_on_open_dirs = true,
         timeout = 200,
+    },
+    trash = {
+        cmd = "gio trash",
     },
     view = {
         width = 40,
@@ -78,6 +99,7 @@ nvim_tree.setup {
         root_folder_modifier = ":t",
         highlight_git = true,
         icons = {
+            git_placement = "before",
             show = {
                 git = true,
                 folder = true,
@@ -106,6 +128,5 @@ nvim_tree.setup {
             },
         },
     },
-    -- git_hl = 1,
     -- disable_window_picker = 0,
 }
