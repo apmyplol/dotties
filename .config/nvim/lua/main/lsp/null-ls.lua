@@ -26,6 +26,7 @@ null_ls.setup {
             },
             --formatting.prettier.with { extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } },
         },
-        diagnostics.luacheck,
+        -- diagnostics.luacheck.with{ extra_args = {"--globals", "vim"} },
+    diagnostics.luacheck.with{ extra_args = {"--globals"} },
     },
 }
