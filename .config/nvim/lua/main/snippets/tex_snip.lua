@@ -397,7 +397,7 @@ local complex = {
     -- ),
     s_mathonly(
         {
-            trig = "([^{%spi+:$%&.\\%(-]+)%ss%s([^$_%^]+)",
+            trig = "([^{%spi+:$%&.\\,%(-]+)%ss%s([^$_%^]+)",
             name = "sub/superscript in general",
             dscr = "expands superscript or subscript expressions",
             regTrig = true,
