@@ -111,6 +111,7 @@ local complex = {
             dscr = "expands 'fancya' to \\mathcal{A}",
             regTrig = true,
             hidden = true,
+            snippetType = "autosnippet",
         },
         f(function(_, snip)
             return snip.captures[1]:lower() == snip.captures[1] and "\\mathcal{" .. snip.captures[1]:upper() .. "}"
@@ -124,6 +125,7 @@ local complex = {
             dscr = "expands 'callia' to \\mathcal{A}",
             regTrig = true,
             hidden = true,
+            snippetType = "autosnippet",
         },
         f(function(_, snip)
             return snip.captures[1]:lower() == snip.captures[1] and "\\mathscr{" .. snip.captures[1]:upper() .. "}"
@@ -137,6 +139,7 @@ local complex = {
             dscr = "Snippet for creating bold math text",
             regTrig = true,
             hidden = true,
+            snippetType = "autosnippet",
         },
         f(function(_, snip)
             return snip.captures[1]:lower() == snip.captures[1] and "\\mathbb{" .. snip.captures[1]:upper() .. "}"
@@ -150,6 +153,7 @@ local complex = {
             dscr = "expands 'fata' to \\\boldsymbol{a}",
             regTrig = true,
             hidden = true,
+            snippetType = "autosnippet",
         },
         f(function(_, snip)
             return "\\boldsymbol{" .. snip.captures[1] .. "}"
@@ -162,6 +166,7 @@ local complex = {
             dscr = "expands 'va' to \\\boldsymbol{a} and bva to \\boldsymbol{\\bar a}",
             regTrig = true,
             hidden = true,
+            snippetType = "autosnippet",
         },
         f(function(_, snip)
             return snip.captures[1] == "b" and "\\boldsymbol{\\bar " .. snip.captures[2] .. "}"
@@ -171,15 +176,16 @@ local complex = {
     -- TODO: maybe add .* before gr, so that 2grpi could also expand to 2\pi
     s_mathonly(
         {
-            trig = "([gG][rR])(%a%a?)",
+            trig = "([gG][rR])(%a[%a%s])",
             name = "greek math text",
             dscr = "Snippet for creating greek letters",
             regTrig = true,
             hidden = true,
+            snippetType = "autosnippet",
         },
         f(function(_, snip)
-            local letter = snip.captures[1]:lower() ~= snip.captures[1] and h.greek[snip.captures[2]:upper()]
-                or h.greek[snip.captures[2]]
+            local letter = snip.captures[1]:lower() ~= snip.captures[1] and h.greek[snip.captures[2]:upper():gsub("%s","")]
+                or h.greek[snip.captures[2]:gsub("%s", "")]
             return (letter ~= nil and "\\" .. letter or "rip")
         end, {})
     ),
@@ -309,7 +315,7 @@ local complex = {
     ),
     s_mathonly(
         {
-            trig = "i(o?)%s(%S+)%s(%S+)",
+            trig = "i(o?)%s([^%s\\]+)%s([^%s\\]+)",
             name = "interval",
             dscr = "expands 'i bla bla' to '[bla,bla]' and 'io bla bla' to '(bla, bla)'",
             regTrig = true,
@@ -397,7 +403,7 @@ local complex = {
     -- ),
     s_mathonly(
         {
-            trig = "([^{%spi+:$%&.\\,%(-]+)%ss%s([^$_%^]+)",
+            trig = "([^{%spi+:$%&.\\,%(%)-_=*<>]+)%ss%s([^$_%^]+)",
             name = "sub/superscript in general",
             dscr = "expands superscript or subscript expressions",
             regTrig = true,
@@ -416,7 +422,7 @@ local complex = {
     -- TODO: remove "i, p" from here, instead change snippet priority
     s_mathonly(
         {
-            trig = "([^{%spi+:$%.&\\-,]+)%s?([%diknd])",
+            trig = "([^{%spi+:$%.&+%(%)\\-,_=*<>]+)%s?([%diknd])",
             name = "subscript and superscript",
             dscr = "expands superscript or subscript numbers, depending on choice",
             regTrig = true,
@@ -470,52 +476,64 @@ local complex = {
 }
 
 local simple = {
-    s_mathonly("cdot", { t "\\cdot " }),
-    s_mathonly("quad", { t "\\quad " }),
-    s_mathonly("bar", { t "\\bar " }),
-    s_mathonly("in", { t "\\in " }),
-    s_mathonly("nin", { t "\\notin " }),
-    s_mathonly("inf", { t "\\infty" }),
-    s_mathonly("cup", { t "\\cup" }),
-    s_mathonly("cap", { t "\\cap" }),
-    s_mathonly("gleich", { t "\\Leftrightarrow " }),
-    s_mathonly("gdw", { t "\\Leftrightarrow " }),
-    s_mathonly("lrarrow", { t "\\Leftrightarrow " }),
-    s_mathonly("partial", { t "\\partial " }),
-    s_mathonly("kl", { t "\\leq " }),
-    s_mathonly("gr", { t "\\geq " }),
-    s_mathonly("also", { t "\\Rightarrow " }),
-    s_mathonly("tilde", { t "\\tilde " }),
-    s_mathonly("sin", { t "\\sin " }),
-    s_mathonly("cos", { t "\\cos " }),
-    s_mathonly("tan", { t "\\tan " }),
-    s_mathonly("asin", { t "\\arcsin " }),
-    s_mathonly("acos", { t "\\arccos " }),
-    s_mathonly("atan", { t "\\arctan " }),
-    s_mathonly("cosh", { t "\\cosh " }),
-    s_mathonly("sinh", { t "\\sinh " }),
-    s_mathonly("tanh", { t "\\tanh " }),
-    s_mathonly("sm", { t "\\setminus " }),
-    s_mathonly("ohne", { t "\\setminus " }),
-    s_mathonly("fall", { t "\\forall " }),
-    s_mathonly("leer", { t "\\emptyset " }),
-    s_mathonly("neq", { t "\\neq " }),
-    s_mathonly("times", { t "\\times  " }),
-    s_mathonly("frac", { t "\\frac{", i(1), t "}{", i(2), t "}", i(3), t "" }),
-    s_mathonly("sum", { t "\\sum_{", i(1), t "}^{", i(2), t "}", i(3), t "" }),
-    s_mathonly("root", { t "\\sqrt[", i(1), t "]{", i(2), t "}", i(3), t "" }),
-    s_mathonly("text", { t "\\text{", i(1), t "}", i(2), t "" }),
-    s_mathonly("choose", { t "{", i(1), t " \\choose ", i(2), t "}", i(3), t "" }),
-    s_mathonly("lim", { t "\\lim_{", i(1), t " \\rightarrow \\infty", i(2), t " } ", i(3), t "" }),
-    s_mathonly("align", { t "\\begin{align*}", t "", i(1), t "", t "\\end{align*}", t "" }),
-    s_mathonly("color", { t "\\textcolor{", i(1), t "}{", i(2), t "}", i(3), t "" }),
-    s_mathonly("overline", { t "\\overline{", i(1), t "}", i(2), t "" }),
-    s_mathonly("unten", { t "\\underset{", i(1), t "}{", i(2), t "}", i(3), t "" }),
-    s_mathonly("oben", { t "\\overset{", i(1), t "}{", i(2), t "}", i(3), t "" }),
-    s_mathonly("men", { t "\\{", i(1), t "\\}", i(2), t "" }),
-    s_mathonly("set", { t "\\{", i(1), t "\\}", i(2), t "" }),
-    s_mathonly("bul", { t "\\bullet" }),
+    s_mathonly( "root", { t "\\sqrt[", i(1), t "]{", i(2), t "}", i(3), t "" } ),
+    s_mathonly( "text", { t "\\text{", i(1), t "}", i(2), t "" } ),
+    s_mathonly( "frac", { t "\\frac{", i(1), t "}{", i(2), t "}", i(3), t "" } ),
+    s_mathonly( "sum", { t "\\sum_{", i(1), t "}^{", i(2), t "}", i(3), t "" } ),
+    s_mathonly( "lim", { t "\\lim_{", i(1), t " \\rightarrow \\infty", i(2), t " } ", i(3), t "" } ),
+    s_mathonly( "align", { t "\\begin{align*}", t "", i(1), t "", t "\\end{align*}", t "" } ),
 }
 
+local simple_autotrig = {
+    { "cdot", { t "\\cdot " } },
+    { "exi",   { t "\\exists " } },
+    { "quad", { t "\\quad " } },
+    { "bar", { t "\\bar " } },
+    { "inn", { t "\\in " } },
+    { "nin", { t "\\notin " } },
+    { "inf", { t "\\infty" } },
+    { "cup", { t "\\cup" } },
+    { "cap", { t "\\cap" } },
+    { "gleich", { t "\\Leftrightarrow " } },
+    { "gdw", { t "\\iff " } },
+    { "iff", { t "\\iff " } },
+    { "lrarrow", { t "\\Leftrightarrow " } },
+    { "partial", { t "\\partial " } },
+    { "kl", { t "\\leq " } },
+    { "ge", { t "\\geq " } },
+    { "also", { t "\\Rightarrow " } },
+    { "tilde", { t "\\tilde " } },
+    { "sin", { t "\\sin " } },
+    { "cos", { t "\\cos " } },
+    { "tan", { t "\\tan " } },
+    { "asin", { t "\\arcsin " } },
+    { "acos", { t "\\arccos " } },
+    { "atan", { t "\\arctan " } },
+    { "cosh", { t "\\cosh " } },
+    { "sinh", { t "\\sinh " } },
+    { "tanh", { t "\\tanh " } },
+    { "sm", { t "\\setminus " } },
+    { "ohne", { t "\\setminus " } },
+    { "fall", { t "\\forall " } },
+    { "leer", { t "\\emptyset " } },
+    { "neq", { t "\\neq " } },
+    { "times", { t "\\times " } },
+    { "choose", { t "{", i(1), t " \\choose ", i(2), t "}", i(3), t "" } },
+    { "color", { t "\\textcolor{", i(1), t "}{", i(2), t "}", i(3), t "" } },
+    { "overline", { t "\\overline{", i(1), t "}", i(2), t "" } },
+    { "unten", { t "\\underset{", i(1), t "}{", i(2), t "}", i(3), t "" } },
+    { "oben", { t "\\overset{", i(1), t "}{", i(2), t "}", i(3), t "" } },
+    { "men", { t "\\{", i(1), t "\\}", i(2), t "" } },
+    { "set", { t "\\{", i(1), t "\\}", i(2), t "" } },
+    { "bul", { t "\\bullet " } },
+}
+
+local simple_autotrig_snips = {}
+
+for _, s in pairs(simple_autotrig) do
+  simple_autotrig_snips[#simple_autotrig_snips+1] = s_mathonly({trig = s[1], snippetType="autosnippet"}, s[2])
+end
+
+ls.add_snippets("tex", simple_autotrig_snips)
 ls.add_snippets("tex", simple)
 ls.add_snippets("tex", complex)

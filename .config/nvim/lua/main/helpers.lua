@@ -13,12 +13,15 @@ end
 M.inmath = function()
     local pos =
         vim.api.nvim_command_output [[echo join(map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")'), ' > ')]]
-    return pos:find "VimwikiEqIn"
+    return (
+        pos:find "VimwikiEqIn"
+        or pos:find "texSnip"
         or pos:find "textSnipTEX"
         or pos:find "texMathDelimZimeTI"
         or pos:find "texMathZoneTI"
         or pos:find "texMathDelimZimeTD"
         or pos:find "texMathZoneTD"
+    )
 end
 
 return M

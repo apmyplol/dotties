@@ -27,6 +27,10 @@ local fmta = require("luasnip.extras.fmt").fmta
 local types = require "luasnip.util.types"
 local conds = require "luasnip.extras.expand_conditions"
 
+ls.setup{
+  enable_autosnippets = true
+}
+
 
 ls.add_snippets(
     -- snippet to create snippets lol

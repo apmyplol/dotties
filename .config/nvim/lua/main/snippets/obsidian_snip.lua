@@ -32,9 +32,9 @@ ls.add_snippets("obsidian", {
         c(
             1,
             {
-                sn(nil, { i(1), t "$$ ", i(2), t " $$" }),
-                sn(nil, { i(1), t "$ ", i(2), t " $" }),
-                sn(nil, { i(1), t { "$$", "" }, i(2), t { "", "$$" } }),
+                sn(nil, { t "$", i(1), t "$" , i(0)}),
+                sn(nil, { t "$$ ", i(1), t " $$", i(0) }),
+                sn(nil, { t { "$$", "" }, i(1), t { "", "$$" }, i(0) }),
             }
             -- , {[-1] = {[events.leave] = function(node, _event_args) vim.inspect(print(node, _event_args)) end}})
         )
@@ -59,7 +59,7 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "20"),
+        i(1, "23"),
         t { "", "kapitel: " },
         i(2, "6.3"),
         t { "", "aliases:" },
@@ -76,9 +76,9 @@ ls.add_snippets("obsidian", {
             "date: " .. os.date "%d-%m-%Y",
             "vorlesung: ",
         },
-        i(1, "21"),
+        i(1, "25"),
         t { "", "kapitel: " },
-        i(2, "6.1"),
+        i(2, "7.0"),
         t { "", "aliases:" },
         i(3),
         t { "", "mathlink: " },

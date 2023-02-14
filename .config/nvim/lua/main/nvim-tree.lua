@@ -11,6 +11,9 @@ if not config_status_ok then
     return
 end
 
+-- autostart nvim-tree
+vim.api.nvim_create_autocmd({"VimEnter"}, {callback = function() require("nvim-tree.api").tree.open() end})
+
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup {
@@ -18,12 +21,6 @@ nvim_tree.setup {
     disable_netrw = false,
     sync_root_with_cwd = true,
     hijack_netrw = true,
-    open_on_setup = true,
-    ignore_ft_on_setup = {
-        "startify",
-        "dashboard",
-        "alpha",
-    },
     -- auto_close = true,
     open_on_tab = false,
     hijack_cursor = false,

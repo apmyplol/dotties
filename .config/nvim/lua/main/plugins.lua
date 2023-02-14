@@ -82,9 +82,12 @@ return packer.startup(function(use)
 
     use "ggandor/lightspeed.nvim" -- for quick jumping around files
 
+    use "williamboman/mason.nvim"
+    use "williamboman/mason-lspconfig.nvim"
     -- LSP for code completion and definitions etc
     use "neovim/nvim-lspconfig"
-    use "williamboman/nvim-lsp-installer"
+
+    -- use {"williamboman/nvim-lsp-installer", commit = "45571e107983a247e86a6047dd31a22e74a230e8"}
     use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
     use "lewis6991/gitsigns.nvim" -- for git information, added/deleted stuff and see changes while file is opened
@@ -105,7 +108,7 @@ return packer.startup(function(use)
     -- use {'iamcco/markdown-preview.nvim', run=":call mkdp#util#install()" , ft={'markdown'}}
     --use "plasticboy/vim-markdown"
     use { "vimwiki/vimwiki", ft = { "markdown", "vimwiki" } }
-   use { "ekickx/clipboard-image.nvim" } 
+    use { "ekickx/clipboard-image.nvim" }
     -- use "ixru/nvim-markdown"
     -- use "renerocksai/telekasten.nvim"
     -- use "junegunn/goyo.vim"
@@ -160,12 +163,15 @@ return packer.startup(function(use)
     use { "rktjmp/shipwright.nvim" }
 
     -- use { "dccsillag/magma-nvim", run = ":UpdateRemotePlugins" }
-     -- use {'hkupty/iron.nvim'}
+    -- use {'hkupty/iron.nvim'}
     -- use { "goerz/jupytext.vim" }
-    use {"luk400/vim-jukit", ft = {"ipynb", "python"}}
-    use {"dylnmc/synstack.vim"}
+    use { "luk400/vim-jukit", ft = { "ipynb", "python" } }
+    use { "dylnmc/synstack.vim" }
     -- images in kitty
-    use {'edluffy/hologram.nvim'}
+    use { "edluffy/hologram.nvim" }
+
+    -- better quickfix list
+    use { "kevinhwang91/nvim-bqf", ft = "qf" }
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()

@@ -9,7 +9,7 @@ end
 
 lightspeed.setup{
   ignore_case = false,
-  exit_after_idle_msecs = { unlabeled = 100, labeled = nil },
-  jump_to_unique_chars = { safety_timeout = 400 },
+  exit_after_idle_msecs = { unlabeled = nil, labeled = nil },
+  jump_to_unique_chars = { safety_timeout = nil },
   -- disable_default_mappings = true
 }

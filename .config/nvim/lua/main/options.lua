@@ -38,7 +38,10 @@ local options = {
   sidescrolloff = 8,
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
   foldmethod = "expr",
-  foldexpr = "nvim_treesitter#foldexpr()"
+  foldexpr = "nvim_treesitter#foldexpr()",
+  grepprg = "rg --vimgrep --no-heading --smart-case",
+ grepformat= "%f:%l:%c:%m",
+
 }
 
 vim.opt.shortmess:append "c"
