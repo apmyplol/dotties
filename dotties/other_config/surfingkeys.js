@@ -1,7 +1,3 @@
-api.mapkey('<ctrl-y>', 'Show me the money', function() {
-    Front.showPopup('a well-known phrase uttered by characters in the 1996 film Jerry Maguire (Escape to close).');
-});
-
 api.map("F", "gf")
 api.map("p", "d")
 api.map("d", "D")
