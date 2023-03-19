@@ -9,15 +9,24 @@
 sleep 5
 
 xsetwacom set "Wacom Graphire3 Pen stylus" Mode "Relative"
-xsetwacom set "Wacom Graphire3 Pen stylus" Area 0 0 40832 29692
 xsetwacom set "Wacom Graphire3 Pen eraser" Mode "Relative"
-xsetwacom set "Wacom Graphire3 Pen eraser" Area 0 0 40832 29692
+xsetwacom set "Wacom Graphire3 Pen stylus" Area 0 0 53081 38599
+xsetwacom set "Wacom Graphire3 Pen eraser" Area 0 0 53081 38599
+
+# xsetwacom set "Wacom Graphire3 Pen stylus" Area 0 0 40832 29692
+# xsetwacom set "Wacom Graphire3 Pen eraser" Area 0 0 40832 29692
 
 # Set button mappings
-xsetwacom set "Wacom Graphire3 Pen stylus" Button 3 "key ctrl z"
-xsetwacom set "Wacom Graphire3 Pen stylus" Button 2 "key e"
-xsetwacom set "Wacom Graphire3 Pen eraser" Button 1 "key v button +3"
+# miro bindings
+# xsetwacom set "Wacom Graphire3 Pen stylus" Button 3 "key ctrl z"
+# xsetwacom set "Wacom Graphire3 Pen stylus" Button 2 "key e"
+# xsetwacom set "Wacom Graphire3 Pen eraser" Button 1 "key v button +3"
 
+# canvas bindings
+xsetwacom set "Wacom Graphire3 Pen stylus" Button 3 "key ctrl z"
+xsetwacom set "Wacom Graphire3 Pen stylus" Button 2 "button 3"
+xsetwacom set "Wacom Graphire3 Pen eraser" Button 1 "key +space button +1"
+#
 # set smoothness
 xsetwacom set "Wacom Graphire3 Pen stylus" RawSample 3
 # xsetwacom set "Wacom Graphire3 Pen stylus" Threshold 10
