@@ -10,11 +10,12 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-
 -- mapping "h" onto "ö" for better navigation
 
 keymap("n", "ö", "h", opts)
--- keymap("n", "i", "a", opts)
+
+keymap("n", "<C-u>", "<C-u>zz", opts)
+keymap("n", "<C-d>", "<C-d>zz", opts)
 
 -- Modes
 --   normal_mode = "n",
@@ -23,14 +24,14 @@ keymap("n", "ö", "h", opts)
 --   visual_block_mode = "x",
 --   term_mode = "t",
 --   command_mode = "c",
-
--- Normal --
--- Better window navigation
--- moving between *windows* with arrow keys
 keymap("n", "<Up>", "<C-w>k", opts)
 keymap("n", "<Down>", "<C-w>j", opts)
 keymap("n", "<Left>", "<C-w>h", opts)
 keymap("n", "<Right>", "<C-w>l", opts)
+
+-- Normal --
+-- Better window navigation
+-- moving between *windows* with arrow keys
 
 keymap("n", "<C-a>k", "<C-w>k", opts)
 keymap("n", "<C-a>j", "<C-w>j", opts)
@@ -51,10 +52,17 @@ keymap("n", "<S-j>", ":bprevious<CR>", opts)
 keymap("n", "<C-w>", ":Bdelete<CR>", opts)
 keymap("n", "s", "<Plug>Lightspeed_s", opts)
 
-
 -- W um word zurück zu springen
 keymap("n", "W", "b", opts)
 keymap("v", "W", "b", opts)
+keymap("n", "E", "ge", opts)
+keymap("v", "E", "ge", opts)
+
+keymap("n", ",", ";", opts)
+keymap("v", ",", ";", opts)
+keymap("n", ";", ",", opts)
+keymap("v", ";", ",", opts)
+
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
@@ -85,7 +93,6 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 -- Telescope
 -- keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown())<cr>", opts)
 keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
-
 
 -- keymap for chose-nodes in luasnip
 keymap("i", "<C-k>", "<cmd>lua require 'main.keymapfunctions'.luasnipchoose(-1)<cr>", opts)
