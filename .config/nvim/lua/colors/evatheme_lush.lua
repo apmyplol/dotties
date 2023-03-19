@@ -4,11 +4,10 @@ local hsl = lush.hsl
 local evacolors = {
     alacbg = hsl "#4D427D",
     alacfg = hsl "#B3ACD8",
-
     -- 初号機 colors
     oldpurple = hsl "#765898",
     oldpurple2 = hsl "#965fd4",
-    pcurple1 = hsl "#A877C8",
+    purple1 = hsl "#A877C8",
     purple2 = hsl "#B1A8DD",
     reb_purple1 = hsl "#775899",
     reb_purple2 = hsl "#7573A3",
@@ -19,7 +18,6 @@ local evacolors = {
     red = hsl "#FF0000",
     reb_green = hsl "#54CF51",
     reb_orange = hsl "#ff8c28",
-
     -- 二号機 colors
     eva2 = {
         red = hsl "#A3001C",
@@ -27,7 +25,6 @@ local evacolors = {
         purple = hsl "#8866A2",
         reb_purp = hsl "#74738D",
     },
-
     -- 零号機 colors
     eva0 = {
         blue = hsl "#7999f2",
@@ -103,7 +100,7 @@ local theme = lush(function()
         -- CursorIM     { fg = ec.green }, -- Like Cursor, but used when in IME mode |CursorIM|
         CursorColumn { bg = ec.alacbg.da(10) }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
         CursorLine { bg = ec.alacbg.da(10) }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-        Directory { fg = ec.oldpurple.li(10).ro(30)}, -- Directory names (and other special names in listings)
+        Directory { fg = ec.oldpurple.li(10).ro(30) }, -- Directory names (and other special names in listings)
         -- DiffAdd      { }, -- Diff mode: Added line |diff.txt|
         -- DiffChange   { }, -- Diff mode: Changed line |diff.txt|
         -- DiffDelete   { }, -- Diff mode: Deleted line |diff.txt|
@@ -166,17 +163,14 @@ local theme = lush(function()
         -- Uncomment and edit if you want more specific syntax highlighting.
 
         Comment { fg = ec.eva2.reb_purp.da(7) }, -- Any comment
-
         Constant {}, -- (*) Any constant
         String { fg = ec.orange.da(30), italic = true }, --   A string constant: "this is a string"
         Character {}, --   A character constant: 'c', '\n'
         Number {}, --   A number constant: 234, 0xff
         Boolean {}, --   A boolean constant: TRUE, false
         Float {}, --   A floating point constant: 2.3e10
-
         Identifier { fg = ec.reb_green }, -- (*) Any variable name
         Function { fg = ec.reb_green.da(20), gui = "bold" }, --   Function name (also: methods for classes)
-
         Statement { fg = ec.oldpurple2 }, -- (*) Any statement
         Conditional { fg = ec.oldpurple2 }, --   if, then, else, endif, switch, etc.
         -- Repeat         { }, --   for, do, while, etc.
@@ -220,7 +214,6 @@ local theme = lush(function()
         LspCodeLens {}, -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
         LspCodeLensSeparator {}, -- Used to color the seperator between two or more code lens.
         LspSignatureActiveParameter {}, -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
-
         -- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
         --
         DiagnosticError { fg = ec.eva2.red, bold = true }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
@@ -338,13 +331,12 @@ local theme = lush(function()
         -- NvimTreeLspDiagnosticsHint          (DiagnosticHint)
 
         NvimTreeGitDirty { fg = ec.green },
-        NvimTreeGitStaged {fg = ec.green, bold=true, italic = true },
+        NvimTreeGitStaged { fg = ec.green, bold = true, italic = true },
         -- NvimTreeGitMerge
         -- NvimTreeGitRenamed
-        NvimTreeGitNew { fg = ec.white},
+        NvimTreeGitNew { fg = ec.white },
         -- NvimTreeGitDeleted
-        NvimTreeGitIgnored {fg=ec.black},    --  (Comment)
-
+        NvimTreeGitIgnored { fg = ec.black }, --  (Comment)
         -- NvimTreeWindowPicker
 
         -- There are also links to normal bindings to style the tree itself.
@@ -372,10 +364,60 @@ local theme = lush(function()
 
         LualineNormal { bg = ec.reb_purple1, fg = ec.alacfg },
         LualineInsert { bg = ec.reb_green, fg = ec.alacbg.da(40) },
-        LualineVisual { bg = ec.pcurple1, fg = ec.alacbg.da(40) },
-        LualineReplace { bg = ec.purple1, fg = ec.alacfg },
+        LualineVisual { bg = ec.purple1, fg = ec.alacbg.da(40) },
+        LualineReplace { bg = ec.alacbg, fg = ec.alacfg },
         LualineCommand { bg = ec.reb_orange, fg = ec.alacbg },
         LualineInactive { bg = ec.reb_purple1.da(40), fg = ec.alacfg.da(20) },
+        ------------------ Obsidian Stuff -------------------
+        ObsH1 { bg = ec.alacbg, fg = ec.oldpurple2.ro(90), bold = true },
+        ObsH2 { bg = ec.alacbg, fg = ec.oldpurple2.ro(30), bold = true },
+        ObsH3 { bg = ec.alacbg, fg = ec.oldpurple2, bold = true },
+        ObsH4 { bg = ec.alacbg, fg = ec.oldpurple2.ro(-20), bold = true },
+        ObsH5 { bg = ec.alacbg, fg = ec.oldpurple2.ro(-20).li(20), bold = true },
+        ObsTag { bg = ec.reb_orange.da(30), fg = ec.alacbg },
+        ObsYamlFM { bg = ec.alacbg.li(10), fg = ec.alacfg.da(10) },
+        ObsTextBlockRef { bg = ec.alacbg.da(10), fg = ec.white.da(30), italic = true },
+        ObsLinkName { bg = ec.alacbg, fg = ec.reb_green.li(30), underline = true },
+        ObsLinkDest { bg = ec.alacbg, fg = ec.reb_green, underline = true },
+        ObsLinkNoRename { bg = ec.alacbg, fg = ec.reb_green.li(30), underline = true },
+        ObsLinkRename { bg = ec.alacbg, fg = ec.reb_green.li(30), underline = true },
+        ObsCalloutHeadline {},
+        ObsCalloutTitle { bold = true },
+        TexLink { bold = true },
+        ObsBold { bold = true },
+        ObsItalics { italic = true },
+        ObsBoldItalics { bold = true, italic = true },
+        ObsSingleTicks {bg = ec.black.li(15).ro(50)},
+        ObsTriTicksDelim {fg=ec.reb_green.ro(-20), bold=true, bg=ec.black},
+        ObsPyBlockDelim {fg=ec.reb_green.ro(-20), bold=true, bg=ec.black},
+        -- callout stuffs
+        ObsCalloutNote { bold = true },
+        ObsCalloutAbstract { bold = true },
+        ObsCalloutSummary { bold = true },
+        ObsCalloutTldr { bold = true },
+        ObsCalloutInfo { bold = true },
+        ObsCalloutTodo { bold = true },
+        ObsCalloutTip { bold = true },
+        ObsCalloutHint { bold = true },
+        ObsCalloutImportant { bold = true },
+        ObsCalloutSuccess { bold = true },
+        ObsCalloutCheck { bold = true },
+        ObsCalloutDone { bold = true },
+        ObsCalloutQuestion { bold = true },
+        ObsCalloutHelp { bold = true },
+        ObsCalloutFaq { bold = true },
+        ObsCalloutWarning { bold = true },
+        ObsCalloutCaution { bold = true },
+        ObsCalloutAttention { bold = true },
+        ObsCalloutFailure { bold = true },
+        ObsCalloutFail { bold = true },
+        ObsCalloutMissing { bold = true },
+        ObsCalloutDanger { bold = true },
+        ObsCalloutError { bold = true },
+        ObsCalloutBug { bold = true },
+        ObsCalloutExample { bold = true },
+        ObsCalloutQuote { bold = true },
+        ObsCalloutCite { bold = true },
     }
 end)
 
