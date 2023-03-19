@@ -10,3 +10,4 @@ set notification-error-bg '#ff8c28'
 set show-hidden true
 set highlight-active-color '#00FF00'
 set highlight-fg '#000000'
+set sandbox none

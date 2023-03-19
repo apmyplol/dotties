@@ -779,5 +779,5 @@ awful.spawn.with_shell(
 )
 
 awful.spawn.with_shell(
-    "pgrep -l picom || picom --experimental-backends --xrender-sync-fence --config " .. cdir .. "picom.conf"
+    "pgrep -l picom || picom --xrender-sync-fence --config " .. cdir .. "picom.conf"
 ) -- für logs --log-level info --log-file /home/afa/picom.log")
