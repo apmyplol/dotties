@@ -6,6 +6,8 @@ alias pacrs='sudo pacman -Rs'
 alias pacown='pacman -Qo'
 alias n='nvim'
 
+alias rm="trash"
+
 alias neofetch='neofetch --colors 4 2 1 2 8 4 --ascii_colors 2 4'
 
 alias jukit_kitty="kitty --listen-on=unix:@"$(date +%s%N)" -o allow_remote_control=yes"

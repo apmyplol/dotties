@@ -6,3 +6,4 @@
 .config/lazygit/state.yml
 .dotties
 .config/zsh/plugins
+.config/zsh/.zcompdump
