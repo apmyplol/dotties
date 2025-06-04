@@ -11,3 +11,7 @@ set show-hidden true
 set highlight-active-color '#00FF00'
 set highlight-fg '#000000'
 set sandbox none
+set selection-clipboard clipboard
+set synctex true
+# set synctex-editor-command "kitty echo %{line} %{input}"
+# set synctex-editor-command "nvim --headless -c \"VimtexInverseSearch %{line} '%{input}'\""

@@ -43,6 +43,33 @@ truncation_symbol = "" #"… "
 format = "[$path]($style)[ $read_only]($read_only_style)"
 style = "bold cyan"
 read_only = "🔒"
-repo_root_format = "[$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) " 
+# repo_root_format = "[$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) " 
 repo_root_style = "bold green"
 home_symbol = "🏠"
+
+[git_branch]
+disabled = true
+
+[git_commit]
+disabled = true
+
+[git_state]
+disabled = true
+
+[git_metrics]
+disabled = true
+
+[git_status]
+disabled = true
+
+# [pijul_channel]
+# disabled = true
+#
+# [docker_context]
+# disabled = true
+#
+# [package]
+# disabled = true
+#
+# [bun]
+# disabled = true

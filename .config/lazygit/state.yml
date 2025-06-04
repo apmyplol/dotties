@@ -1,7 +1,21 @@
 lastupdatecheck: 0
 recentrepos:
-- /home/afa/eccspra
-- /home/afa/dotties
+    - /home/afa/uni/m2/paper/power_metric
+    - /home/afa/curr/paper/power_metric
+    - /home/afa/Documents/bachelor-verteidigung
+    - /home/afa/Documents/dgeo-anims/Bseminar
+    - /home/afa/.config/nvim
+    - /home/afa/Documents/dgeo-anims
+    - /home/afa/.config/nvim/my_plugins/obsidian
+    - /home/afa/eccspra
 startuppopupversion: 5
+lastversion: 0.51.1
 customcommandshistory: []
 hidecommandlog: false
+ignorewhitespaceindiffview: false
+diffcontextsize: 3
+renamesimilaritythreshold: 50
+localbranchsortorder: recency
+remotebranchsortorder: alphabetical
+gitlogorder: topo-order
+gitlogshowgraph: when-maximised
