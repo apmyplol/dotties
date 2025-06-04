@@ -72,5 +72,5 @@ case $(tty) in /dev/pts/[0-9]*)
 esac
 
 # Dotfiles config
-alias dotties='/usr/bin/git --git-dir=$HOME/.dotties/ --work-tree=$HOME'
+alias dotties='/usr/bin/git --git-dir=/home/afa/.dotties/ --work-tree=/home/afa/'
 
