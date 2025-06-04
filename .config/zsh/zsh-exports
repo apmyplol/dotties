@@ -8,7 +8,7 @@ SAVEHIST=1000000
 # EXA Colors
 
 
-export EXA_ICON_SPACING=2
+export EZA_ICON_SPACING=2
 # files, dirs, links, executables, links with not target
 clr="reset:ex=33;01:di=33:ln=04;35:or=33:lp=35:fi=00"
 
@@ -43,4 +43,13 @@ clr=$clr":da=0:uu=33"
 # markdow
 clr=$clr":*.md=00:README.md=38;5;226;04"
 
-export EXA_COLORS=$clr
+export EZA_COLORS=$clr
+
+# >>> coursier install directory >>>
+export PATH="$PATH:/home/afa/.local/share/coursier/bin"
+export PATH="$PATH:/home/afa/.config/hypr/scripts"
+# <<< coursier install directory <<<
+#
+
+export EDITOR=nvim
+export VISUAL=nvim

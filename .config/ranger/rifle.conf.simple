@@ -1,0 +1,3 @@
+# mime ^text,  label editor = nvim -- "$@"
+else = xdg-open "$1" &
+

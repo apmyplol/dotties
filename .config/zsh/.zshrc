@@ -103,10 +103,10 @@ setxkbmap -option caps:escape
 # and set exa aliases
 case $(tty) in /dev/pts/[0-9]*)
   # If not on tty then change PS1 to シンジくん
-  alias ls='exa --icons --git --group-directories-first'
-  alias lsa='exa --icons --git -lah'
+  alias ls='exa --icons --group-directories-first' #--git
+  alias lsa='exa --icons -lah' # --git
   alias lst='exa --icons --tree'
-  alias lsta='exa --icons --tree --long --git'
+  alias lsta='exa --icons --tree --long' #--git
   eval "$(starship init zsh)"
 
 esac
